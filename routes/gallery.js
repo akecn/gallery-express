@@ -7,7 +7,7 @@ var path = require('path'),
 
 exports.guide = function(req, res, next) {
 	var baseUrl = process.cwd(),
-		urlPath = path.resolve(baseUrl, './readme.md');
+		urlPath = path.resolve(baseUrl, './gallery-express/readme.md');
 
 	fs.exists(urlPath, function(exists) {
 		if (exists) {
@@ -38,7 +38,7 @@ exports.docs = function(req, res, next) {
 		filename = req.params[2] ? req.params[2] : 'index',
 		baseUrl = process.cwd();
 
-	var urlPath = path.resolve(baseUrl, '../' + gallery, './' + version, './guide/' + filename + '.md');
+	var urlPath = path.resolve(baseUrl, './' + gallery, './' + version, './guide/' + filename + '.md');
 
 	fs.exists(urlPath, function(exists) {
 		if (exists) {
