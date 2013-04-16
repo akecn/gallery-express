@@ -66,9 +66,9 @@ exports.commits = function(req, res, next){
   getDb('commits', query, function(err, json){
     res.json(json);
     //清空数据
-    if (emptyHistory) removeDb('commits', function(err){
-      writeLog('清空commits表数据', err);
-    });
+    //if (emptyHistory) removeDb('commits', function(err){
+      //writeLog('清空commits表数据', err);
+    //});
   });
 };
 
@@ -77,8 +77,8 @@ exports.log = function(req, res, next){
   getDb('log', {}, function(err, json){
     res.json(json);
     //清空数据
-    if (emptyHistory) removeDb('log', function(err){
-      writeLog('清空log表数据', err);
-    });
+    //if (emptyHistory) removeDb('log', function(err){
+      //writeLog('清空log表数据', err);
+    //});
   });
 };
