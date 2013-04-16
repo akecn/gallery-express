@@ -25,7 +25,7 @@ offline           // 组件目录名, 小写, 多字符用 – 分隔
 |          |         |---------index.js                     // 组件入口文件
 |          |         |---------index.deps.js                    // 组件combo时使用的配置信息
 |          |-----README.md                                  	// 用于介绍组件信息和版本更新
-|          |-----package.json                                 // 组件信息
+|          |-----abc.json                                 // 组件信息（用于首页显示信息）
 |          |-----gruntfile.js                                 // grunt打包时使用的配置信息
 ```
 
@@ -34,7 +34,7 @@ offline           // 组件目录名, 小写, 多字符用 – 分隔
 * 统一使用 UTF-8编码；
 * 模块起始必须是gallery名，比如"gallery/offline/1.0/index"
 * index.js为组件入口文件，必须存在
-* package.json为组件构建配置，必须存在（有工具后会自动生成）
+* abc.json为组件信息，用于首页的组件信息显示，必须存在（有工具后会自动生成）
 * 组件的教程放在<code>guide</code>目录下，必须是<code>md</code>文件，不能是静态html页面！
 * 可以在package.json中指定打包发布模块
 * 打包后的文件会放在<code>build</code>目录中，发布到cdn上的只是build目录下的文件
