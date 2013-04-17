@@ -1,17 +1,17 @@
 body{font-family:"Microsoft Yahei";overflow-x:hidden;}
 .color-line{width:100%;height:10px;position:fixed;top:0;z-index:9;background-color:#24abeb;}.color-line .one,.color-line .two,.color-line .three{height:10px;display:inline-block;vertical-align:top;}
 .color-line .one{width:110px;background-color:#ff5500;}
-.color-line .two{width:170px;background-color:#008f68;}
+.color-line .two{width:170px;background-color:#333;}
 .container-fluid{padding:0;padding-right:70px;}
 .bs-docs-sidebar h1{margin:0;padding:0;text-indent:15px;position:fixed;top:10px;background-color:#24ABEB;height:90px;width:280px;line-height:90px;font-weight:600;color:#fff;}
 .bs-docs-sidebar .nav{margin-top:100px;background-color:#24ABEB;height:1680px;width:280px;padding:0;}.bs-docs-sidebar .nav li{height:45px;line-height:45px;border-bottom:1px solid #3bbaf7;}.bs-docs-sidebar .nav li:last-child{border:none;}
-.bs-docs-sidebar .nav li a{display:block;height:45px;font-size:18px;color:#fff;margin:0;padding:0 15px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}.bs-docs-sidebar .nav li a:hover{background-color:#1F8FC4;text-shadow:0 1px 0 rgba(255, 255, 255, 0.5);}
-.bs-docs-sidebar .nav li.active a{background-color:#1F8FC4;text-shadow:0 1px 0 rgba(255, 255, 255, 0.5);}
+.bs-docs-sidebar .nav li a{display:block;height:45px;font-size:18px;color:#fff;margin:0;padding:0 15px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-shadow:none;}.bs-docs-sidebar .nav li a:hover{background-color:#1F8FC4;}
+.bs-docs-sidebar .nav li.active a{background-color:#1F8FC4;}
 .bs-docs-sidebar .nav-toggle{display:block;position:fixed;top:320px;width:16px;height:85px;margin-left:264px;background:url('../images/toggle.png');z-index:99;}
 .bs-docs-sidebar-mini{position:fixed;left:0;top:10px;height:100%;width:0;background-color:#24ABEB;z-index:50;-webkit-box-shadow:10px 0 10px 0 rgba(0, 0, 0, 0.1);box-shadow:10px 0 10px 0 rgba(0, 0, 0, 0.1);overflow:hidden;}.bs-docs-sidebar-mini .nav-toggle{display:block;position:absolute;top:320px;left:10px;width:16px;height:85px;background:url('../images/toggle.png') no-repeat -16px 0;z-index:99;}
-.bs-docs-content{margin-top:55px;color:#555;}.bs-docs-content .link{position:fixed;right:70px;top:10px;width:265px;height:40px;}.bs-docs-content .link a{display:inline-block;height:40px;line-height:40px;text-align:center;color:#fff;text-decoration:none;font-size:16px;}
+.bs-docs-content{margin-top:55px;color:#555;}.bs-docs-content .link{position:fixed;right:0;top:10px;width:265px;height:40px;}.bs-docs-content .link a{display:inline-block;height:40px;line-height:40px;text-align:center;color:#fff;text-decoration:none;font-size:16px;}
 .bs-docs-content .link .source{width:117px;background-color:#f50;}
-.bs-docs-content .link .home{width:148px;background-color:#008f68;}
+.bs-docs-content .link .home{width:148px;background-color:#333;}
 .bs-docs-content h1{display:none;}
 .bs-docs-content h1.title{display:block;font-size:48px;font-weight:500;color:#333;}.bs-docs-content h1.title:first-letter{text-transform:uppercase;}
 .bs-docs-content .title-hr{margin-top:30px;border-bottom:none;border-top:4px solid #e5e5e5;}
