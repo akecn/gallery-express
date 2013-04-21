@@ -167,6 +167,10 @@ a {
     text-decoration: none;
 }
 
+img {
+    max-width: 100%;
+}
+
 .l-left {
     float: left;
 }
@@ -207,11 +211,6 @@ a {
     -o-animation-fill-mode: both;
     animation-fill-mode: both;
 }
-
-/*.w {
-    width: 1280px;
-    margin: 0 auto;
-}*/
 
 #header {
     background: #10222b;
@@ -255,6 +254,16 @@ a {
     background: url(/images/guide.png) no-repeat;
 }
 
+.guide .guide-link:hover {
+    -webkit-transform-origin: top center;
+    -moz-transform-origin: top center;
+    -o-transform-origin: top center;
+    transform-origin: top center;
+    -webkit-animation-name: swing;
+    -moz-animation-name: swing;
+    -o-animation-name: swing;
+    animation-name: swing;
+}
 
 .guide .dev {
     float: left;
@@ -271,7 +280,6 @@ a {
     background-position: -480px 0;
 }
 
-
 .guide .guide-link em {
     display: block;
     margin-top: 20px;
@@ -279,7 +287,6 @@ a {
 
     font-style: normal;
 }
-
 
 .guide .ft {
     margin-top: 65px;
@@ -294,25 +301,151 @@ a {
     padding-left: 109px;
     text-align: left;
     color: #fff;
-    background: #24abeb url(/images/source.png) 20px no-repeat;
+    background: #24abeb url(/images/source.png) 10px no-repeat;
     font-size: 40px;
 }
 
 
 .contribute {
-    padding: 5%;
-    height: 282px;
+    display: table;
+    min-height: 280px;
+    width: 100%;
+    padding: 65px 34px 65px 51px;
+    box-sizing: border-box;
     background: #24abeb;
+    overflow: hidden;
+}
+
+.contribute .hd {
+    display: table-cell;
+    width: 77px;
+    min-height: 150px;
+    padding: 0 13px;
+    line-height: 40px;
+    background: #0e4661;
+    vertical-align: middle;
+}
+
+.contribute .title {
+    font-size: 25px;
+    color: #fff;
+}
+
+.contribute .bd {
+    display: table-cell;
+    overflow: hidden;
+}
+
+.author-list {
+    margin-bottom: -10px;
+    overflow: hidden;
+}
+
+.author-list .author {
+    float: left;
+    margin-left: 12px;
+    margin-bottom: 7px;
+}
+
+.author-list .author:hover {
+    -webkit-animation-name: pulse;
+    -moz-animation-name: pulse;
+    -o-animation-name: pulse;
+    animation-name: pulse;
+}
+
+.author-list img {
+    width: 70px;
+    height: 70px;
+}
+
+.component {
+    padding: 97px 43px 112px 48px;
+}
+
+.component-list .item {
+    display: inline-block;
+    width: 218px;
+    height: 212px;
+    margin-right: 10px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.component-list .item-link {
+    position: absolute;
+    display: block;
+    width: 194px;
+    height: 188px;
+    padding: 10px 10px 14px 14px;
+    background: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.component-list .cover {
+    width: 194px;
+    height: 188px;
+}
+
+.component-list .name {
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    color: #333;
+}
+
+.component-list .author {
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+    padding: 0 10px 0 14px;
+    margin-left: -14px;
+    background: #24abeb;
+    color: #fff;
+}
+
+.component-list .avatar {
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+}
+
+.component-list .desc {
+    margin-top: 8px;
+    color: #333;
+    font-size: 14px;
+    line-height: 22px;
 }
 
 .contact {
-    height: 151px;
+    height: 51px;
+    padding: 43px 53px 57px;
 }
+
+.contact .item {
+    float: left;
+    margin-right: 73px;
+    color: #fff;
+}
+
+.contact .desc {
+    margin-top: 15px;
+    font-size: 24px;
+}
+
+.contact a {
+    color: #fff;
+}
+
 
 .index-author {
     height: 38px;
+    padding-right: 17px;
     line-height: 38px;
     background: #e3e1e1;
+    font-size: 14px;
 }
 
 

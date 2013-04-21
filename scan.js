@@ -6,7 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 var fs = require('fs');
-var TIME =  24 * 60 * 60 * 1000;
+var crypto = require('crypto');
+
+var TIME = 24 * 60 * 60 * 1000;
 var FILE_NAME = 'abc.json';
 
 var scan = function (path, cb) {
@@ -20,11 +22,19 @@ var scan = function (path, cb) {
 
     dirs.forEach(function (dir) {
         fs.readFile(path + '/' + dir + '/' + FILE_NAME, 'utf8', function (err, data) {
-            if (data) {
-                result.components.push(JSON.parse(data));
-            } else {
-                console.log(err);
+            if (!data) {
+                return;
             }
+
+            data = JSON.parse(data);
+
+            if(data.author.email) {
+                var md5 = crypto.createHash('md5');
+                md5.update(data.author.email, 'utf8');
+                data.author.md5 = md5.digest('hex');
+            }
+
+            result.components.push(data);
 
             if (--count == 0) {
                 result.date = Date();

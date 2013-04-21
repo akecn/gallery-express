@@ -4,26 +4,70 @@ html
         meta(charset='utf-8')
         title= 'KISSY-Gallery'
         link(rel='stylesheet', href='/stylesheets/index.css')
-        script(src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js")
-        script(src='/javascripts/index.js')
     body
         #page
             #header
-                .logo.w1336
+                .logo
             #main
-                .guide.w1336
+                .guide
                     .bd
-                        a.guide-link.dev(href="#")
+                        a.guide-link.animated.dev(href="#")
                             em 15分钟开发kissy组件
-                        a.guide-link.spec(href="#")
+                        a.guide-link.animated.spec(href="/guide")
                             em gallery组件规范说明
-                        a.guide-link.tool(href="#")
+                        a.guide-link.animated.tool(href="#")
                             em abc工具使用指南
                     .ft
                         a.source.animated(href="#")  source on github
                 .contribute
-                    p.title 成为贡献者
+                    .hd
+                        p.title 成为 贡献者
+                    .bd
+                        ul.author-list.right-col
+                            each item in components
+                                li.author.animated
+                                    img(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=70"
+                                        title="#{item.author.name}"
+                                        alt="#{item.author.name}")
                 .component
+                    ul.component-list
+                        each item in components
+                            if item.cover
+                                li.has-cover.item
+                                    a.item-link(href="#"
+                                    title="#{item.name}")
+                                        img.cover(src="#{item.cover}")
+                                    a.item-link.item-detail(href="#"
+                                    title="#{item.name}")
+                                        strong.name.l-block #{item.name}
+                                        span.author.l-block #{item.author.name}
+                                            img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
+                                        span.desc.l-block #{item.desc}
+                            else
+                                li.item
+                                    a.item-link.item-detail(href="#"
+                                    title="#{item.name}")
+                                        strong.name.l-block #{item.name}
+                                        span.author.l-block #{item.author.name}
+                                            img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
+                                        span.desc.l-block #{item.desc}
+
             #footer
                 .contact
+                    ul
+                        li.item
+                            p.title 开发者旺旺群
+                            p.desc  112213123
+                        li.item
+                            p.title 邮箱
+                            p.desc kissyteam@gmail.com
+                        li.item
+                            p.title 讨论组
+                            p.desc
+                                a(href="#") kissy-ui
+                        li.item
+                            p.title &nbsp;
+                            p.desc
+                                a(href="#") Kissy首页
                 .index-author
+                   p.author-name.l-right 设计：亚城 / 剑平 &nbsp;&nbsp;&nbsp;&nbsp;开发：踏风 / 自寒 / 伯方

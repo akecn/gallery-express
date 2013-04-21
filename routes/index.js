@@ -17,10 +17,4 @@ exports.index = function (req, res) {
             res.render('index', data);
         }
     });
-
-
 };
-
-exports.tag = function (req, res) {
-
-}
