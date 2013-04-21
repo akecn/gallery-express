@@ -33,9 +33,6 @@ app.get('/', index.index);
 
 app.get('/guide', gallery.guide);
 
-app.get('/:tag', index.tag);
-
-
 app.post('/receive/write', receive.write);
 
 app.get('/receive/commits', receive.commits);
