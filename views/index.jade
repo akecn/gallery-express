@@ -34,15 +34,16 @@ html
                         each item in components
                             if item.cover
                                 li.has-cover.item
-                                    a.item-link(href="#"
-                                    title="#{item.name}")
-                                        img.cover(src="#{item.cover}")
-                                    a.item-link.item-detail(href="#"
-                                    title="#{item.name}")
-                                        strong.name.l-block #{item.name}
-                                        span.author.l-block #{item.author.name}
-                                            img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
-                                        span.desc.l-block #{item.desc}
+                                    .wrap
+                                        a.item-link(href="#"
+                                        title="#{item.name}")
+                                            img.cover(src="#{item.cover}")
+                                        a.item-link.item-detail(href="#"
+                                        title="#{item.name}")
+                                            strong.name.l-block #{item.name}
+                                            span.author.l-block #{item.author.name}
+                                                img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
+                                            span.desc.l-block #{item.desc}
                             else
                                 li.item
                                     a.item-link.item-detail(href="#"

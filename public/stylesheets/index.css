@@ -363,6 +363,28 @@ img {
     padding: 97px 43px 112px 48px;
 }
 
+.component .has-cover {
+    -webkit-perspective: 800;
+}
+
+.component .wrap {
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: 1s;
+}
+
+.component .has-cover:hover  .wrap {
+    -webkit-transform: rotateY(180deg);
+}
+
+.component .has-cover .item-link {
+    -webkit-backface-visibility: hidden;
+}
+
+.component .has-cover .item-detail {
+    -webkit-transform: rotateY(180deg);
+}
+
+
 .component-list .item {
     display: inline-block;
     width: 218px;
