@@ -13,7 +13,11 @@ exports.guide = function(req, res, next) {
 		if (exists) {
 			fs.readFile(urlPath, 'utf8', function(err, data) {
 				if (err) {
-					next();
+					res.render('404', {
+						title: '404',
+						word: err,
+						pretty: true
+					});
 				} else {
 					var tokens = marked.lexer(data);
 					var htmlContent = marked.parser(tokens);
@@ -25,7 +29,11 @@ exports.guide = function(req, res, next) {
 				}
 			});
 		} else {
-			next();
+			res.render('404', {
+				title: '404',
+				word: 'file not exist: ' + urlPath,
+				pretty: true
+			});
 		}
 	});
 };
@@ -44,7 +52,11 @@ exports.docs = function(req, res, next) {
 		if (exists) {
 			fs.readFile(urlPath, 'utf8', function(err, data) {
 				if (err) {
-					next();
+					res.render('404', {
+						title: '404',
+						word: err,
+						pretty: true
+					});
 				} else {
 					var tokens = marked.lexer(data);
 					var htmlContent = marked.parser(tokens);
@@ -56,7 +68,11 @@ exports.docs = function(req, res, next) {
 				}
 			});
 		} else {
-			next();
+			res.render('404', {
+				title: '404',
+				word: 'file not exist: ' + urlPath,
+				pretty: true
+			});
 		}
 	});
 };
