@@ -47,11 +47,17 @@ offline           // 组件目录名, 小写, 多字符用 – 分隔
 {
     "name": "uploader",
     "version":"1.4",
-    "author":"明河",
+    "author":{"name":"明河","email":"minghe36@126.com","page":"https://github.com/minghe"},
     "cover":"http://img02.taobaocdn.com/tps/i2/T1C1X_Xs8gXXcd0fwt-322-176.png",
     "desc":"异步文件上传组件"
 }
 ```
+
+想要在首页显示头像，email字段需要是[gravatar](http://cn.gravatar.com/)上的，没有的话可以到gravatar上传一个。
+
+page字段指向你的个人主页。
+
+cover字段为组件封面图片
 
 ## 组件打包临时方案
 
