@@ -18,20 +18,20 @@ html
                         a.guide-link.animated.tool(href="#")
                             em abc工具使用指南
                     .ft
-                        a.source.animated(href="https://github.com/kissygalleryteam")  source on github
+                        a#J_Source.source.animated(href="https://github.com/kissygalleryteam")  source on github
                 .contribute
                     .hd
                         p.title 成为 贡献者
                     .bd
                         ul.author-list.right-col
                             each item in components
-                                li.author.animated
+                                li.author
                                     a(href="#{item.author.page}"
                                         target="_blank")
                                         img(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=70"
                                             title="#{item.author.name}"
                                             alt="#{item.author.name}")
-                                    .author-info
+                                    .author-info.animated
                                         p.author-name #{item.author.name}
                                         p #{item.author.email}
 
@@ -78,3 +78,9 @@ html
                                 a(href="#") Kissy首页
                 .index-author
                    p.author-name.l-right 设计：亚城 / 剑平 &nbsp;&nbsp;&nbsp;&nbsp;开发：踏风 / 自寒 / 伯方
+
+        script
+            setTimeout(
+                function(){
+                  document.getElementById('J_Source').classList.add('bounce')
+                }, 800)
