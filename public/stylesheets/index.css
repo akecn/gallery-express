@@ -432,12 +432,6 @@ img {
     margin-bottom: 7px;
 }
 
-.author-list .author:hover {
-    -webkit-animation-name: pulse;
-    -moz-animation-name: pulse;
-    -o-animation-name: pulse;
-    animation-name: pulse;
-}
 
 .author-list .author-info {
     position: absolute;
@@ -463,6 +457,11 @@ img {
 .author-list img {
     width: 70px;
     height: 70px;
+}
+
+
+.author-list .author-email {
+    font-size: 12px;
 }
 
 .author-list .author-name {
