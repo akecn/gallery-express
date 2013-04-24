@@ -239,7 +239,6 @@ img {
 }
 
 .guide > .bd {
-    overflow: hidden;
     margin-top: 87px;
     text-align: center;
 }
@@ -305,7 +304,6 @@ img {
     font-size: 40px;
 }
 
-
 .contribute {
     display: table;
     min-height: 280px;
@@ -333,16 +331,15 @@ img {
 
 .contribute .bd {
     display: table-cell;
-    overflow: hidden;
 }
 
 .author-list {
     margin-bottom: -10px;
-    overflow: hidden;
 }
 
 .author-list .author {
     float: left;
+    position: relative;
     margin-left: 12px;
     margin-bottom: 7px;
 }
@@ -357,6 +354,22 @@ img {
 .author-list img {
     width: 70px;
     height: 70px;
+}
+
+.author-list .author-info {
+    position: absolute;
+    left: -170px;
+    top: 0;
+    width: 150px;
+    height: 60px;
+    padding: 5px 10px;
+    text-align: right;
+    background: rgb(255, 255, 217);
+
+}
+
+.author-list .author-name {
+    margin: 10px 0;
 }
 
 .component {
@@ -377,6 +390,7 @@ img {
 }
 
 .component .has-cover .item-link {
+    line-height: 188px;
     -webkit-backface-visibility: hidden;
 }
 
@@ -384,14 +398,11 @@ img {
     -webkit-transform: rotateY(180deg);
 }
 
-
 .component-list .item {
     display: inline-block;
     width: 218px;
     height: 212px;
     margin-right: 10px;
-    overflow: hidden;
-    background: #fff;
 }
 
 .component-list .item-link {
@@ -406,8 +417,7 @@ img {
 }
 
 .component-list .cover {
-    width: 194px;
-    height: 188px;
+    vertical-align: middle;
 }
 
 .component-list .name {
@@ -418,6 +428,7 @@ img {
 }
 
 .component-list .author {
+    position: relative;
     height: 30px;
     line-height: 30px;
     width: 100%;
@@ -426,6 +437,7 @@ img {
     background: #24abeb;
     color: #fff;
 }
+
 
 .component-list .avatar {
     float: left;
@@ -460,7 +472,6 @@ img {
 .contact a {
     color: #fff;
 }
-
 
 .index-author {
     height: 38px;

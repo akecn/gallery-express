@@ -13,12 +13,12 @@ html
                     .bd
                         a.guide-link.animated.dev(href="#")
                             em 15分钟开发kissy组件
-                        a.guide-link.animated.spec(href="/guide")
+                        a.guide-link.animated.spec(href="http://gallery.kissyui.com/guide")
                             em gallery组件规范说明
                         a.guide-link.animated.tool(href="#")
                             em abc工具使用指南
                     .ft
-                        a.source.animated(href="#")  source on github
+                        a.source.animated(href="https://github.com/kissygalleryteam")  source on github
                 .contribute
                     .hd
                         p.title 成为 贡献者
@@ -26,9 +26,15 @@ html
                         ul.author-list.right-col
                             each item in components
                                 li.author.animated
-                                    img(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=70"
-                                        title="#{item.author.name}"
-                                        alt="#{item.author.name}")
+                                    a(href="#{item.author.page}"
+                                        target="_blank")
+                                        img(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=70"
+                                            title="#{item.author.name}"
+                                            alt="#{item.author.name}")
+                                    .author-info
+                                        p.author-name #{item.author.name}
+                                        p #{item.author.email}
+
                 .component
                     ul.component-list
                         each item in components
@@ -58,14 +64,14 @@ html
                     ul
                         li.item
                             p.title 开发者旺旺群
-                            p.desc  112213123
+                            p.desc  600859238
                         li.item
                             p.title 邮箱
                             p.desc kissyteam@gmail.com
                         li.item
                             p.title 讨论组
                             p.desc
-                                a(href="#") kissy-ui
+                                a(href="http://groups.google.com/group/kissy-ui/") kissy-ui
                         li.item
                             p.title &nbsp;
                             p.desc
