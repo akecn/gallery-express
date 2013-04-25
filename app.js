@@ -44,6 +44,7 @@ app.get(/^((?:\/[^\/]+)+)\/([^\/]+)\/guide(?:\/(?:([^\/\.]+)(?:\.html)?)?)?$/, g
 app.get('*', function(req, res) {
     res.render('404', {
         title: '404',
+        word: 'something seems error...',
         pretty: true
     });
 });

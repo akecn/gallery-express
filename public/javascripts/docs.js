@@ -1,6 +1,15 @@
 ! function($) {
 
 	$(function() {
+		var img = new Image();
+		var id = "_beacon_" + Math.random();
+
+		window[id] = img; // 防止img变量被浏览器过早回收
+		img.src = "http://log.mmstat.com/ued.1.1.2?type=9&_gm:id=kissy_gallery&_r_=" + Math.random();
+		img.onload = function () {
+			window[id] = null;
+		};
+
 		$('pre').addClass('prettyprint');
 		prettyPrint();
 
