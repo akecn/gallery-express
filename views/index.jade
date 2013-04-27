@@ -42,19 +42,22 @@ html
                             if item.cover
                                 li.has-cover.item
                                     .wrap
-                                        a.item-link(href="#"
-                                        title="#{item.name}")
+                                        a.item-link(href="/#{item.name}/#{item.version}/guide/index.html"
+                                        title="#{item.name}"
+                                        target="_blank")
                                             img.cover(src="#{item.cover}")
-                                        a.item-link.item-detail(href="#"
-                                        title="#{item.name}")
+                                        a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
+                                        title="#{item.name}"
+                                        target="_blank")
                                             strong.name.l-block #{item.name}
                                             span.author.l-block #{item.author.name}
                                                 img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
                                             span.desc.l-block #{item.desc}
                             else
                                 li.item
-                                    a.item-link.item-detail(href="#"
-                                    title="#{item.name}")
+                                    a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
+                                    title="#{item.name}"
+                                    target="_blank")
                                         strong.name.l-block #{item.name}
                                         span.author.l-block #{item.author.name}
                                             img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
@@ -72,11 +75,13 @@ html
                         li.item
                             p.title 讨论组
                             p.desc
-                                a(href="http://groups.google.com/group/kissy-ui/") kissy-ui
+                                a(href="http://groups.google.com/group/kissy-ui/"
+                                target="_blank") kissy-ui
                         li.item
                             p.title &nbsp;
                             p.desc
-                                a(href="#") Kissy首页
+                                a(href="http://docs.kissyui.com/"
+                                target="_blank") Kissy首页
                 .index-author
                    p.author-name.l-right 设计：亚城 / 剑平 &nbsp;&nbsp;&nbsp;&nbsp;开发：踏风 / 自寒 / 伯方
 
