@@ -19,9 +19,13 @@ var scan = function (path, cb) {
     var dirs = fs.readdirSync(path),
         count = dirs.length;
 
-
     dirs.forEach(function (dir) {
         fs.readFile(path + '/' + dir + '/' + FILE_NAME, 'utf8', function (err, data) {
+            if (--count == 0) {
+                result.date = Date();
+                fs.writeFile(path + '/gallery-express/component-info.json', JSON.stringify(result), cb);
+            }
+
             if (!data) {
                 return;
             }
@@ -36,10 +40,7 @@ var scan = function (path, cb) {
 
             result.components.push(data);
 
-            if (--count == 0) {
-                result.date = Date();
-                fs.writeFile('./component-info.json', JSON.stringify(result), cb);
-            }
+
         });
     });
 
