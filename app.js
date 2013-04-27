@@ -6,7 +6,7 @@ var express = require('express'),
     receive = require('./routes/receive'),
     path = require('path');
 
-require('./scan').init('../');
+require('./scan').init('./');
 
 var app = express();
 
