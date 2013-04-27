@@ -41,6 +41,8 @@ app.get('/receive/log', receive.log);
 
 app.get(/^((?:\/[^\/]+)+)\/([^\/]+)\/guide(?:\/(?:([^\/\.]+)(?:\.html)?)?)?$/, gallery.docs);
 
+app.get(/^((?:\/[^\/]+)+)\/([^\/]+)\/demo\/(.+)$/, gallery.demo);
+
 app.get('*', function(req, res) {
     res.render('404', {
         title: '404',
