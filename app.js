@@ -6,7 +6,7 @@ var express = require('express'),
     receive = require('./routes/receive'),
     path = require('path');
 
-require('./scan').init('../');
+require('./scan').init('.');
 
 var app = express();
 
@@ -41,9 +41,12 @@ app.get('/receive/log', receive.log);
 
 app.get(/^((?:\/[^\/]+)+)\/([^\/]+)\/guide(?:\/(?:([^\/\.]+)(?:\.html)?)?)?$/, gallery.docs);
 
+app.get(/^((?:\/[^\/]+)+)\/([^\/]+)\/demo\/(.+)$/, gallery.demo);
+
 app.get('*', function(req, res) {
     res.render('404', {
         title: '404',
+        word: 'something seems error...',
         pretty: true
     });
 });

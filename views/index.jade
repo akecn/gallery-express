@@ -13,41 +13,51 @@ html
                     .bd
                         a.guide-link.animated.dev(href="#")
                             em 15分钟开发kissy组件
-                        a.guide-link.animated.spec(href="/guide")
+                        a.guide-link.animated.spec(href="http://gallery.kissyui.com/guide"
+                            target="_blank")
                             em gallery组件规范说明
                         a.guide-link.animated.tool(href="#")
                             em abc工具使用指南
                     .ft
-                        a.source.animated(href="#")  source on github
+                        a#J_Source.source.animated(href="https://github.com/kissygalleryteam")  source on github
                 .contribute
                     .hd
                         p.title 成为 贡献者
                     .bd
                         ul.author-list.right-col
                             each item in components
-                                li.author.animated
-                                    img(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=70"
-                                        title="#{item.author.name}"
-                                        alt="#{item.author.name}")
+                                li.author
+                                    a(href="#{item.author.page}"
+                                        target="_blank")
+                                        img(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=70"
+                                            title="#{item.author.name}"
+                                            alt="#{item.author.name}")
+                                    .author-info.animated
+                                        p.author-name #{item.author.name}
+                                        p.author-email #{item.author.email}
+
                 .component
                     ul.component-list
                         each item in components
                             if item.cover
                                 li.has-cover.item
                                     .wrap
-                                        a.item-link(href="#"
-                                        title="#{item.name}")
+                                        a.item-link(href="/#{item.name}/#{item.version}/guide/index.html"
+                                        title="#{item.name}"
+                                        target="_blank")
                                             img.cover(src="#{item.cover}")
-                                        a.item-link.item-detail(href="#"
-                                        title="#{item.name}")
+                                        a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
+                                        title="#{item.name}"
+                                        target="_blank")
                                             strong.name.l-block #{item.name}
                                             span.author.l-block #{item.author.name}
                                                 img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
                                             span.desc.l-block #{item.desc}
                             else
                                 li.item
-                                    a.item-link.item-detail(href="#"
-                                    title="#{item.name}")
+                                    a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
+                                    title="#{item.name}"
+                                    target="_blank")
                                         strong.name.l-block #{item.name}
                                         span.author.l-block #{item.author.name}
                                             img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
@@ -58,17 +68,25 @@ html
                     ul
                         li.item
                             p.title 开发者旺旺群
-                            p.desc  112213123
+                            p.desc  600859238
                         li.item
                             p.title 邮箱
                             p.desc kissyteam@gmail.com
                         li.item
                             p.title 讨论组
                             p.desc
-                                a(href="#") kissy-ui
+                                a(href="http://groups.google.com/group/kissy-ui/"
+                                target="_blank") kissy-ui
                         li.item
                             p.title &nbsp;
                             p.desc
-                                a(href="#") Kissy首页
+                                a(href="http://docs.kissyui.com/"
+                                target="_blank") Kissy首页
                 .index-author
                    p.author-name.l-right 设计：亚城 / 剑平 &nbsp;&nbsp;&nbsp;&nbsp;开发：踏风 / 自寒 / 伯方
+
+        script
+            setTimeout(
+                function(){
+                  document.getElementById('J_Source').classList.add('bounce')
+                }, 800)
