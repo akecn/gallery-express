@@ -71,8 +71,6 @@ TODO:待补充
 
 ## 组件调试
 
-### 请将组件代码clone在自己创建的gallery目录下。
-
 组件初始化脚本demo：
 
 ```javascript
@@ -85,20 +83,27 @@ TODO:待补充
 
 ### 配置gallery包
 
+本地调试，请配置gallery包路径
+
 ```javascript
-    KISSY.config({
-      packages:[
-        {
-          name:"gallery",
-          tag:"20111220",
-          path:"../../../",  // 开发时目录, 发布到cdn上需要适当修改
-          charset:"utf-8"
-        }
-      ]
-    });
+    if (KISSY.Config.debug) {
+        KISSY.config({
+          packages:[
+            {
+              name:"gallery",
+              tag:"20111220",
+              path:"../../../",  // 开发时目录, 发布到cdn上需要适当修改
+              ignorePackageNameInUri:true,
+              charset:"utf-8"
+            }
+          ]
+        });
+    }
 ```
 
 这样就可以使用本地源码文件进行调试了。
+
+ignorePackageNameInUri这个配置参数，可以不让路径带上gallery目录，这样本地就不需要创建一个gallery目录。
 
 ## 如何组织组件代码
 
