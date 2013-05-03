@@ -1,14 +1,7 @@
 # kissy gallery组件开发规范说明
 
-v0.2 by 剑平 && 伯方
-
-KISSY Gallery 工具正在开发过程中，**以下规范内容为过渡用**：
 
 ## 目录规范
-
-组件目录结构说明，这些目录暂时都需要手动建立，有了工具后会自动创建。
-
-请手动创建一个名为<code>gallery</code>的目录，然后在其下创建组件目录（git版本控制）
 
 拿 offline 举例，具体的可以参考[example](https://github.com/kissygalleryteam/offline "例子") :
 
@@ -41,7 +34,7 @@ offline           // 组件目录名, 小写, 多字符用 – 分隔
 * **.deps.js为组件combo配置，日后工具会自动生成
 * README.md必须存在，简单介绍下组件信息！
 
-### package.json内容
+### abc.json内容
 
 ```javascript
 {
@@ -67,8 +60,6 @@ TODO:待补充
 
 我们需要把组件发布到淘宝cdn上，方便用户直接引用，kissy1.3配置了<code>gallery</code>包指向，淘宝cdn的地址，这样用户不需要额外配置gallery的包路径。
 
-目前工具没搞好，组件发布，请单独联系承玉或剑平
-
 ## 组件调试
 
 组件初始化脚本demo：
@@ -92,7 +83,7 @@ TODO:待补充
             {
               name:"gallery",
               tag:"20111220",
-              path:"../../../",  // 开发时目录, 发布到cdn上需要适当修改
+              path:"../../../",
               ignorePackageNameInUri:true,
               charset:"utf-8"
             }
@@ -162,128 +153,3 @@ KISSY.use('gallery/uploader/1.4/plugins/imageZoom/imageZoom', function(S, ImageZ
 * 组件注释符合YUIDoc规范
 * js中需要模版的请使用xtemplate模块
 * 请不要直接向KISSY全局变量注入属性或方法
-
-## 临时打包方案
-
-临时使用ant打包。
-
-请参考[offline的打包](https://github.com/kissygalleryteam/offline) :
-
-```xml
-<project name="component.build" default="build" basedir="."  xmlns:ac="antlib:net.sf.antcontrib">
-    <description>gallery component  Build File</description>
-    <property name="charset" value="utf-8"/>
-    <property name="name" value="offline"/>
-    <property name="version" value="1.0"/>
-    <property name="build.files" value="index.js"/>
-    <property name="tool.dir" location="../../../kissy-tools"/>
-    <property name="compiler" location="${tool.dir}/closure-compiler/compiler.jar"/>
-    <property name="yuicompressor" location="${tool.dir}/yuicompressor/yuicompressor.jar"/>
-    <property name="module.compiler" value="${tool.dir}/module-compiler/module-compiler.jar"/>
-    <property name="build.dir" location="./build/"/>
-    <property name="src.dir" location="."/>
-    <target name="dircheck">
-        <condition property="build.dir.exists">
-            <available file="${build.dir}" type="dir"/>
-        </condition>
-    </target>
-    <!--删除build目录下的所有文件-->
-    <target name="clean-build" if="${build.dir.exists}" depends="dircheck">
-        <delete >
-            <fileset dir="${build.dir}" includes="**/*.js,**/*.css,**/*.swf,**/*.less"/>
-        </delete>
-    </target>
-    <target name="mkdir">
-        <mkdir dir="${build.dir}">
-
-        </mkdir>
-    </target>
-    <!--压缩css文件-->
-    <target name="minify-css">
-        <apply executable="java" verbose="true" dest="${build.dir}" failonerror="true" parallel="false">
-            <fileset dir="${build.dir}" includes="**/*.css" excludes="*-min.css"/>
-            <arg line="-jar"/>
-            <arg path="${yuicompressor}/"/>
-            <arg line="--charset gbk"/>
-            <arg value="--type"/>
-            <arg value="css"/>
-            <arg value="-o"/>
-            <targetfile/>
-            <mapper type="glob" from="*.css" to="*-min.css"/>
-        </apply>
-    </target>
-    <!--压缩前去除页面多余空白-->
-    <target name="crlf">
-        <fixcrlf includes="*.js" srcdir="${build.dir}" encoding="utf8" eol="crlf"></fixcrlf>
-    </target>
-    <!--压缩脚本-->
-    <target name="minify" depends="crlf">
-        <apply executable="java" verbose="true" dest="${build.dir}" failonerror="true" parallel="false">
-            <fileset dir="${build.dir}" includes="**/*.js"/>
-            <arg line="-jar"/>
-            <arg path="${tool.dir}/closure-compiler/compiler.jar"/>
-            <arg line="--charset utf8"/>
-            <arg value="--warning_level"/>
-            <arg value="QUIET"/>
-            <arg value="--js"/>
-            <srcfile/>
-            <arg value="--js_output_file"/>
-            <targetfile/>
-            <mapper type="regexp" from="^(.*)\.js$" to="\1-min.js"/>
-        </apply>
-    </target>
-    <!--改变压缩文件的编码-->
-    <target name="native2ascii">
-        <native2ascii encoding="${charset}" src="${build.dir}" dest="${build.dir}" includes="**/*-min.js" ext=".ascii.js"/>
-        <delete >
-            <fileset dir="${build.dir}" includes="**/*-min.js"/>
-        </delete>
-        <renameext srcDir="${build.dir}" includes="**/*.ascii.js"  fromExtension=".ascii.js" toExtension=".js" replace="true"/>
-    </target>
-
-    <!--js  combo 地址获取-->
-    <target name='combo'>
-        <ac:for param="page">
-            <!--入口模块文件所在目录的所有模块循环处理-->
-            <path>
-                <fileset dir="${src.dir}" includes="${build.files}"/>
-            </path>
-            <sequential>
-                <ac:var name="var.modname" unset="true"/>
-                <basename property="var.modname" file="@{page}" suffix=".js"/>
-                <echo>
-                    build ${var.modname} in @{page}
-                </echo>
-                <java classname="com.taobao.f2e.Main">
-                    <arg value="-require"/>
-                    <!-- 入口模块 -->
-                    <arg value="gallery/${name}/${version}/${var.modname}"/>
-
-                    <arg value="-baseUrls"/>
-                    <arg value="../../../"/>
-
-                    <arg value="-encodings"/>
-                    <arg value="${charset}"/>
-
-                    <arg value="-outputEncoding"/>
-                    <arg value="${charset}"/>
-
-                    <arg value="-output"/>
-                    <arg value="${build.dir}/${var.modname}.js"/>
-
-                    <arg value="-outputDependency"/>
-                    <arg value="${build.dir}/${var.modname}.dep.js"/>
-
-                    <classpath>
-                        <pathelement path="${module.compiler}"/>
-                        <pathelement path="${java.class.path}"/>
-                    </classpath>
-                </java>
-            </sequential>
-        </ac:for>
-    </target>
-
-    <target name="build" depends="clean-build,combo,minify-css,minify,native2ascii">
-    </target>
-</project>
-```
