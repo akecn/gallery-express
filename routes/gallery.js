@@ -117,3 +117,40 @@ exports.demo = function(req, res, next) {
 		}
 	});
 };
+
+exports.other = function(req, res ,next) {
+	var filePath = req.params[0],
+		baseUrl = process.cwd();
+
+	var urlPath = path.resolve(baseUrl, './' + filePath);
+	fs.exists(urlPath, function(exists) {
+		if (exists) {
+			fs.readFile(urlPath, 'utf8', function(err, data) {
+				if (err) {
+					res.render('404', {
+						title: '404',
+						word: err,
+						pretty: true
+					});
+				} else {
+					if(filePath.indexOf('html') !== -1){
+						res.setHeader("Content-Type", "text/html");
+					}
+					else if(filePath.indexOf('css') !== -1){
+						res.setHeader("Content-Type", "text/css");
+					}
+					else if(filePath.indexOf('js') !== -1){
+						res.setHeader("Content-Type", "application/javascript");
+					}
+					res.end(data);
+				}
+			});
+		} else {
+			res.render('404', {
+				title: '404',
+				word: 'file not exist: ' + urlPath,
+				pretty: true
+			});
+		}
+	});
+}
