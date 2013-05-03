@@ -1,5 +1,13 @@
 # 十五分钟开发一个kissy组件
 
+gallery首页地址为：[http://gallery.kissyui.com/](http://gallery.kissyui.com/)，
+
+发布：承玉
+
+答疑：伯方、翰文
+
+组件迁移：tb5887802
+
 ## Step1: 安装kissy gallery组件工具
 
 ````sh
@@ -46,9 +54,9 @@ grunt
 
 打包成功后，会在build目录下生成*index.js*和*index-min.js*。
 
-## Step5:补充组件描述
+## Step4:补充组件描述、教程、demo
 
-打开*abc.json*，修改组件信息：
+打开abc.json，修改组件信息，比如像下面的内容：
 
 
 ```javascript
@@ -66,6 +74,15 @@ grunt
 page字段指向你的个人主页，
 
 cover字段为组件封面图片。
+
+
+### 组件使用教程和demo
+
+组件的所有的教程，必须放在guide目录下，而且必须是md文件，服务器会自动渲染成html页面。
+
+demo必须放在demo目录，所有的demo请仿照着demo/index.html来写，特别是gallery包的配置。
+
+文档和demo1天同步一次（github的接口限制）。
 
 
 ## Step5:发布组件
