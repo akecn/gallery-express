@@ -33,6 +33,8 @@ app.get('/', index.index);
 
 app.get('/guide', gallery.guide);
 
+app.get('/quickstart', gallery.quickstart);
+
 app.post('/receive/write', receive.write);
 
 app.get('/receive/commits', receive.commits);
@@ -41,9 +43,7 @@ app.get('/receive/log', receive.log);
 
 app.get(/^((?:\/[^\/]+)+)\/([^\/]+)\/guide(?:\/(?:([^\/\.]+)(?:\.html)?)?)?$/, gallery.docs);
 
-app.get(/^((?:\/[^\/]+)+)\/([^\/]+)\/demo\/(.+)$/, gallery.demo);
-
-app.get(/^(.+)$/, gallery.other);
+app.get(/^(.+)$/, gallery.staticfile);
 
 app.get('*', function(req, res) {
     res.render('404', {
