@@ -84,6 +84,11 @@ demo必须放在demo目录，所有的demo请仿照着demo/index.html来写，�
 
 文档和demo1天同步一次（github的接口限制）。
 
+guide的访问地址示例：[http://gallery.kissyui.com/imgcrop/2.0/guide/index.html](http://gallery.kissyui.com/imgcrop/2.0/guide/index.html)。
+
+demo的访问地址示例：[http://gallery.kissyui.com/imgcrop/2.0/demo/index.html](http://gallery.kissyui.com/imgcrop/2.0/demo/index.html)。
+
+请把demo的入口放在guide的md文件内。
 
 ## Step5:发布组件
 
