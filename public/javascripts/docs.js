@@ -6,7 +6,7 @@
 
 		window[id] = img; // 防止img变量被浏览器过早回收
 		img.src = "http://log.mmstat.com/ued.1.1.2?type=9&_gm:id=kissy_gallery&_r_=" + Math.random();
-		img.onload = function () {
+		img.onload = function() {
 			window[id] = null;
 		};
 
@@ -16,7 +16,7 @@
 		$('.bs-docs-content').find('table').addClass('table table-striped table-bordered');
 
 		var path = window.location.pathname;
-		if (path === '/guide') {
+		if (path === '/guide' || path === '/quickstart') {
 			$('.source').attr('href', 'https://github.com/kissygalleryteam/gallery-express');
 		} else {
 			var filepath = path.split('guide')[0],
@@ -31,7 +31,7 @@
 		for (var i = 0, len = h2_list.length; i < len; i++) {
 			var cur_list = h2_list[i];
 			list_title = cur_list.innerHTML;
-			var list_id = cur_list.id ? cur_list.id : cur_list.id = list_title.replace(/&amp;/g, 'and');
+			var list_id = cur_list.id ? cur_list.id : cur_list.id = list_title.replace(/[&.?!;:\*\(\)\s]/g, '_');
 			nav_list.append('<li><a href = "#' + list_id + '">' + list_title + '</a></li>');
 		}
 
