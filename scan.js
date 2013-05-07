@@ -13,6 +13,7 @@ var FILE_NAME = 'abc.json';
 
 var scan = function (path, cb) {
     var result = {
+        authors: {},
         components: [],
         date: Date.now()
     };
@@ -38,6 +39,7 @@ var scan = function (path, cb) {
                 data.author.md5 = md5.digest('hex');
             }
 
+            result.authors[data.author.name] = data.author;
             result.components.push(data);
 
 

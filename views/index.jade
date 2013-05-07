@@ -25,16 +25,16 @@ html
                         p.title 成为 贡献者
                     .bd
                         ul.author-list.right-col
-                            each item in components
+                            each item in authors
                                 li.author
-                                    a(href="#{item.author.page}"
+                                    a(href="#{item.page}"
                                         target="_blank")
-                                        img(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=70"
-                                            title="#{item.author.name}"
-                                            alt="#{item.author.name}")
+                                        img(src="http://0.gravatar.com/avatar/#{item.md5}?s=70"
+                                            title="#{item.name}"
+                                            alt="#{item.name}")
                                     .author-info.animated
-                                        p.author-name #{item.author.name}
-                                        p.author-email #{item.author.email}
+                                        p.author-name #{item.name}
+                                        p.author-email #{item.email}
 
                 .component
                     ul.component-list
