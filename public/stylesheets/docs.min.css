@@ -16,7 +16,7 @@ body{font-family:"Microsoft Yahei";overflow-x:hidden;}
 .bs-docs-content h1{display:none;}
 .bs-docs-content h1.title{display:block;float:left;font-size:48px;font-weight:500;color:#333;}.bs-docs-content h1.title:first-letter{text-transform:uppercase;}
 .bs-docs-content .title-hr{margin-top:30px;border-bottom:none;border-top:4px solid #e5e5e5;}
-.bs-docs-content h2{font-size:24px;color:#317eac;margin-bottom:20px;}
+.bs-docs-content h2{font-size:24px;color:#317eac;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid #eee;}
 .bs-docs-content .alert{margin:20px 0;padding:10px 35px 10px 14px;color:#817B58;background-color:#EDEBE1;border-color:#E0D9CB;}
 .bs-docs-content h3{font-size:18px;color:#317eac;}
 .bs-docs-content h4{font-size:14px;color:#317eac;}
@@ -24,4 +24,5 @@ body{font-family:"Microsoft Yahei";overflow-x:hidden;}
 .bs-docs-content hr{margin:10px 0 20px;border-bottom:none;border-top:1px solid #ccc;}
 .bs-docs-content pre.prettyprint{padding:8px 10px;border:1px solid #ccc;}
 .bs-docs-content table{width:auto;}.bs-docs-content table th,.bs-docs-content table td{padding:6px 13px;}
+.bs-docs-content .GithubEmbed{position:relative;margin-bottom:40px;min-height:40px;}.bs-docs-content .GithubEmbed a.btn{position:absolute;bottom:7px;right:100px;}
 @media (min-width:1200px){}@media (min-width:980px) and (max-width:1199px){.bs-docs-sidebar h1{width:226px;} .bs-docs-sidebar .nav{width:226px;} .bs-docs-sidebar .nav-toggle{margin-left:210px;}}@media (min-width:768px) and (max-width:979px){.bs-docs-sidebar h1{width:166px;} .bs-docs-sidebar .nav{width:166px;} .bs-docs-sidebar .nav-toggle{margin-left:150px;}}@media (max-width:767px){body{padding:0;} .container-fluid{padding-left:20px;padding-right:20px;}.container-fluid .bs-docs-sidebar{display:none;} .container-fluid .bs-docs-content{width:95%;}}

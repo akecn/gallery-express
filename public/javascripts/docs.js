@@ -16,18 +16,25 @@
 		$('.bs-docs-content').find('table').addClass('table table-striped table-bordered');
 
 		var path = window.location.pathname;
+		var reponame;
 		if (path === '/guide' || path === '/quickstart') {
+			reponame = 'gallery-express';
 			$('.source').attr('href', 'https://github.com/kissygalleryteam/gallery-express');
 		} else {
 			var filepath = path.split('guide')[0],
 				index = filepath.indexOf('/', 1),
-				reponame = filepath.substring(1, index),
 				foldername = filepath.substring(index);
+			reponame = filepath.substring(1, index);
 			var githubUrl = 'https://github.com/kissygalleryteam/' + reponame + '/tree/master' + foldername;
 			$('.source').attr('href', githubUrl);
 			var starUrl = 'http://ghbtns.com/github-btn.html?user=kissygalleryteam&repo=' + reponame + '&type=watch&count=true&size=large';
 			$('.github-star').attr('src', starUrl).show();
 		}
+
+		var githubRepo = 'kissygalleryteam/' + reponame;
+		$('.github-widget').attr('data-repo', githubRepo);
+		var githubRepoIssue = 'https://github.com/kissygalleryteam/' + reponame + '/issues/new';
+		$('.GithubEmbed .btn').attr('href', githubRepoIssue);
 
 		var h2_list = $('h2');
 		var nav_list = $('.bs-docs-sidenav');
