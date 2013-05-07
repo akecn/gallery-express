@@ -12,8 +12,9 @@ body{font-family:"Microsoft Yahei";overflow-x:hidden;}
 .bs-docs-content{margin-top:55px;color:#555;}.bs-docs-content .link{position:fixed;right:0;top:10px;width:265px;height:40px;}.bs-docs-content .link a{display:inline-block;height:40px;line-height:40px;text-align:center;color:#fff;text-decoration:none;font-size:16px;}
 .bs-docs-content .link .source{width:117px;background-color:#f50;}
 .bs-docs-content .link .home{width:148px;background-color:#333;}
+.bs-docs-content .github-star{display:none;position:relative;top:20px;left:20px;}
 .bs-docs-content h1{display:none;}
-.bs-docs-content h1.title{display:block;font-size:48px;font-weight:500;color:#333;}.bs-docs-content h1.title:first-letter{text-transform:uppercase;}
+.bs-docs-content h1.title{display:block;float:left;font-size:48px;font-weight:500;color:#333;}.bs-docs-content h1.title:first-letter{text-transform:uppercase;}
 .bs-docs-content .title-hr{margin-top:30px;border-bottom:none;border-top:4px solid #e5e5e5;}
 .bs-docs-content h2{font-size:24px;color:#317eac;margin-bottom:20px;}
 .bs-docs-content .alert{margin:20px 0;padding:10px 35px 10px 14px;color:#817B58;background-color:#EDEBE1;border-color:#E0D9CB;}

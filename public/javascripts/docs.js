@@ -21,9 +21,12 @@
 		} else {
 			var filepath = path.split('guide')[0],
 				index = filepath.indexOf('/', 1),
-				reponame = filepath.substring(0, index),
+				reponame = filepath.substring(1, index),
 				foldername = filepath.substring(index);
-			$('.source').attr('href', 'https://github.com/kissygalleryteam' + reponame + '/tree/master' + foldername);
+			var githubUrl = 'https://github.com/kissygalleryteam/' + reponame + '/tree/master' + foldername;
+			$('.source').attr('href', githubUrl);
+			var starUrl = 'http://ghbtns.com/github-btn.html?user=kissygalleryteam&repo=' + reponame + '&type=watch&count=true&size=large';
+			$('.github-star').attr('src', starUrl).show();
 		}
 
 		var h2_list = $('h2');

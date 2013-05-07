@@ -81,7 +81,6 @@ exports.staticfile = function(req, res ,next) {
 						pretty: true
 					});
 				} else {
-						console.log(filePath);
 					if(filePath.indexOf('.html') !== -1){
 						res.setHeader("Content-Type", "text/html");
 					}
