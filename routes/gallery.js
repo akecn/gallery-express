@@ -3,7 +3,8 @@
  */
 var path = require('path'),
 	fs = require('fs'),
-	marked = require('marked');
+	marked = require('marked'),
+	mime = require('./mime');
 
 function renderMD(urlPath, postTitle, res) {
 	fs.exists(urlPath, function(exists) {
@@ -65,7 +66,7 @@ exports.docs = function(req, res, next) {
 
 };
 
-exports.staticfile = function(req, res ,next) {
+exports.staticfile = function(req, res, next) {
 	var filePath = req.params[0],
 		baseUrl = process.cwd();
 
@@ -73,7 +74,7 @@ exports.staticfile = function(req, res ,next) {
 
 	fs.exists(urlPath, function(exists) {
 		if (exists) {
-			fs.readFile(urlPath, 'utf8', function(err, data) {
+			fs.readFile(urlPath, 'binary', function(err, data) {
 				if (err) {
 					res.render('404', {
 						title: '404',
@@ -81,16 +82,14 @@ exports.staticfile = function(req, res ,next) {
 						pretty: true
 					});
 				} else {
-					if(filePath.indexOf('.html') !== -1){
-						res.setHeader("Content-Type", "text/html");
-					}
-					else if(filePath.indexOf('.css') !== -1){
-						res.setHeader("Content-Type", "text/css");
-					}
-					else if(filePath.indexOf('.js') !== -1){
-						res.setHeader("Content-Type", "application/javascript");
-					}
-					res.end(data);
+					var ext = path.extname(filePath);
+					ext = ext ? ext.slice(1) : 'unknown';
+					var contentType = mime.types[ext] || 'text/plain';
+					res.writeHead(200, {
+						'Content-Type': contentType
+					});
+					res.write(data, 'binary');
+					res.end();
 				}
 			});
 		} else {
