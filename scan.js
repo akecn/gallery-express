@@ -22,7 +22,7 @@ var scan = function (path, cb) {
 
     dirs.forEach(function (dir) {
         fs.readFile(path + '/' + dir + '/' + FILE_NAME, 'utf8', function (err, data) {
-            if (--count == 0) {
+            if (count-- == 0) {
                 result.date = Date();
                 fs.writeFile(path + '/gallery-express/component-info.json', JSON.stringify(result), cb);
             }
