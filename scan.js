@@ -22,25 +22,23 @@ var scan = function (path, cb) {
 
     dirs.forEach(function (dir) {
         fs.readFile(path + '/' + dir + '/' + FILE_NAME, 'utf8', function (err, data) {
-            if (count-- == 0) {
+            if (data) {
+                data = JSON.parse(data);
+
+                if (data.author.email) {
+                    var md5 = crypto.createHash('md5');
+                    md5.update(data.author.email, 'utf8');
+                    data.author.md5 = md5.digest('hex');
+                }
+
+                result.authors[data.author.name] = data.author;
+                result.components.push(data);
+            }
+
+            if (--count == 0) {
                 result.date = Date();
                 fs.writeFile(path + '/gallery-express/component-info.json', JSON.stringify(result), cb);
             }
-
-            if (!data) {
-                return;
-            }
-
-            data = JSON.parse(data);
-
-            if(data.author.email) {
-                var md5 = crypto.createHash('md5');
-                md5.update(data.author.email, 'utf8');
-                data.author.md5 = md5.digest('hex');
-            }
-
-            result.authors[data.author.name] = data.author;
-            result.components.push(data);
 
 
         });
