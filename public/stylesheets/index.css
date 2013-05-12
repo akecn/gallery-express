@@ -491,6 +491,7 @@ img {
 }
 
 .component .has-cover .item-detail {
+    line-height: inherit;
     -webkit-transform: rotateY(180deg);
 }
 
@@ -498,7 +499,7 @@ img {
     display: inline-block;
     width: 218px;
     height: 212px;
-    margin-right: 10px;
+    margin: 10px 10px 0 0;
 }
 
 .component-list .item-link {
@@ -542,7 +543,7 @@ img {
 }
 
 .component-list .desc {
-    margin-top: 8px;
+    margin: 8px 0 8px;
     color: #333;
     font-size: 14px;
     line-height: 22px;

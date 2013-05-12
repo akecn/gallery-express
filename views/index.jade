@@ -53,6 +53,12 @@ html
                                             span.author.l-block #{item.author.name}
                                                 img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
                                             span.desc.l-block #{item.desc}
+                                            iframe.github-star(allowtransparency="true"
+                                            frameborder="0"
+                                            scrolling="0"
+                                            width="170"
+                                            height="30"
+                                            src="http://ghbtns.com/github-btn.html?user=kissygalleryteam&repo=#{item.name}&type=watch&count=true&size=large")
                             else
                                 li.item
                                     a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
@@ -62,6 +68,12 @@ html
                                         span.author.l-block #{item.author.name}
                                             img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
                                         span.desc.l-block #{item.desc}
+                                        iframe.github-star(allowtransparency="true"
+                                            frameborder="0"
+                                            scrolling="0"
+                                            width="170"
+                                            height="30"
+                                            src="http://ghbtns.com/github-btn.html?user=kissygalleryteam&repo=#{item.name}&type=watch&count=true&size=large")
 
             #footer
                 .contact
