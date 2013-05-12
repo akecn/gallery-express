@@ -15,7 +15,8 @@ body{font-family:"Microsoft Yahei";overflow-x:hidden;}
 .bs-docs-content .github-star{display:none;position:relative;top:20px;left:20px;}
 .bs-docs-content h1{display:none;}
 .bs-docs-content h1.title{display:block;float:left;font-size:48px;font-weight:500;color:#333;}.bs-docs-content h1.title:first-letter{text-transform:uppercase;}
-.bs-docs-content .title-hr{margin-top:30px;border-bottom:none;border-top:4px solid #e5e5e5;}
+.bs-docs-content hr{display:none;}
+.bs-docs-content hr.title-hr{display:block;width:100%;margin-top:30px;border-bottom:none;border-top:4px solid #e5e5e5;}
 .bs-docs-content h2{font-size:24px;color:#317eac;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid #eee;}
 .bs-docs-content .alert{margin:20px 0;padding:10px 35px 10px 14px;color:#817B58;background-color:#EDEBE1;border-color:#E0D9CB;}
 .bs-docs-content h3{font-size:18px;color:#317eac;}
