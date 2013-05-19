@@ -2,11 +2,19 @@
 
 gallery首页地址为：[http://gallery.kissyui.com/](http://gallery.kissyui.com/)，
 
+请先加入组件作者旺旺群：*600859238*。
+
 发布：承玉
 
 答疑：伯方、翰文
 
 组件迁移：tb5887802
+
+## Step0: 在github中创建个组件库
+
+比如，你的组件名称是EditorUploader，创建个库名叫[editorUploader](https://github.com/minghe/editorUploader)。
+
+然后clone这个库到你本地。
 
 ## Step1: 安装kissy gallery组件工具
 
@@ -22,9 +30,9 @@ npm install generator-kissy-gallery -g
 
 ## Step2:创建组件目录
 
-手动创建一个组件目录，比如offline。
+进入之前clone的库目录，比如editorUploader/。
 
-进入该目录，打开命令行工具，执行如下命令：
+打开命令行工具，执行如下命令：
 
 ````sh
 yo kissy-gallery 1.0
@@ -92,17 +100,25 @@ demo的访问地址示例：[http://gallery.kissyui.com/imgcrop/2.0/demo/index.h
 
 ## Step5:发布组件
 
-![kissy gallery组件发布流程](http://img02.taobaocdn.com/tps/i2/T1dBKnXtNgXXaGUE2E-714-565.png)
+### 第一次发布在[kpm](https://github.com/kissygalleryteam/kpm/issues)下建一个issue
 
-第一次发布会麻烦些，需要在kpm下建一个issue，需要gallery管理员在kissygalleryteam用户名下fork你的库。
-
-后面的发布就简单了，发个pull request，然后通知承玉发布即可。
-
-当你的组件发布成功后，系统会反馈发布消息到你建的issue。
-
-issue的内容可以参考：[velocity组件](https://github.com/kissygalleryteam/kpm/issues/5)，正文带上你用户名下的组件库路径。
+issue的内容可以参考：[editorUploader组件](https://github.com/kissygalleryteam/kpm/issues/26)，正文带上你用户名下的组件库路径。
 
 issue标题统一为:add module 组件名称。
+
+新建issue的目的有二个：
+
+* 通知官方库管理员fork你的组件库(审核)
+* 当你的组件发布成功后，系统会反馈发布消息到你建的issue。
+
+
+### 向官方库发送pull request
+
+前提是管理员已经fork你的组件库。
+
+### 通知承玉发布代码
+
+发布同时会合并你的代码到官方库。
 
 发布成功后，系统返回的消息类似如下：
 
@@ -110,8 +126,9 @@ issue标题统一为:add module 组件名称。
 
 *组件的abc.json中写上author的name和email，不然会发布失败！*
 
+### 完整流程如下
 
-
+![kissy gallery组件发布流程](http://img02.taobaocdn.com/tps/i2/T1dBKnXtNgXXaGUE2E-714-565.png)
 
 
 
