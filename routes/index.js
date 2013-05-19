@@ -2,8 +2,8 @@
  * GET home page.
  */
 
-var config = require('../config'),
-    fs = require('fs');
+var config = require('../config');
+var fs = require('fs');
 
 exports.index = function (req, res) {
     fs.readFile('./gallery-express/component-info.json', {
@@ -17,4 +17,8 @@ exports.index = function (req, res) {
             res.render('index', data);
         }
     });
+};
+
+exports.list = function (req, res) {
+    res.render('list');
 };
