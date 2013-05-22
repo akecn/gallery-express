@@ -10,6 +10,8 @@ gallery首页地址为：[http://gallery.kissyui.com/](http://gallery.kissyui.co
 
 组件迁移：tb5887802
 
+视频教程：[优酷](http://v.youku.com/v_show/id_XNTYwMzgxNDI4.html)，[youtube](http://youtu.be/quMgyoO8zB8)
+
 ## Step0: 在github中创建个组件库
 
 比如，你的组件名称是EditorUploader，创建个库名叫[editorUploader](https://github.com/minghe/editorUploader)。
