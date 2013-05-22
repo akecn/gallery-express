@@ -2,15 +2,21 @@ html
     head
         meta(charset='utf-8')
         title= 'KISSY-Gallery'
-        script(src='http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js')
-        script(src='/javascripts/list.js')
+        link(rel='stylesheet', href='http://a.tbcdn.cn/s/kissy/1.3.0/css/dpl/??base-min.css')
         link(rel='stylesheet', href='/stylesheets/list.css')
     body
-        h2 Kissy Gallery
-            span 社区贡献的组件汇集地
-        div#J_Coms
+        div.content
+            h2 Kissy Gallery
+                span 社区贡献组件汇集地
+            ul.component-list.row
+                each item in components
+                        li.item
+                            a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
+                            title="#{item.name}"
+                            target="_blank")
+                                strong.name #{item.name}
+                            p.desc #{item.desc}
 
-
-
-
-
+            ul.row
+                li.span4
+                    a(href="http://gallery.kissyui.com/").all-com-btn 全部 gallery 组件

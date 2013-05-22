@@ -4,9 +4,10 @@
 
 var config = require('../config');
 var fs = require('fs');
+var dataJson =  './gallery-express/component-info.json';
 
 exports.index = function (req, res) {
-    fs.readFile('./gallery-express/component-info.json', {
+    fs.readFile(dataJson, {
         encoding: 'utf8'
     }, function (err, data) {
         if (err) {
@@ -20,5 +21,14 @@ exports.index = function (req, res) {
 };
 
 exports.list = function (req, res) {
-    res.render('list');
+    fs.readFile(dataJson, {
+        encoding: 'utf8'
+    }, function (err, data) {
+        if (err) {
+            console.log(err);
+        } else {
+            var data = JSON.parse(data);
+            res.render('list', data);
+        }
+    });
 };
