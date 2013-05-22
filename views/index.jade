@@ -46,6 +46,27 @@ html
                                         title="#{item.name}"
                                         target="_blank")
                                             img.cover(src="#{item.cover}")
+
+                                        .detail-link-wrap
+                                            a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
+                                            title="#{item.name}"
+                                            target="_blank")
+                                                strong.name.l-block #{item.name}
+                                                span.author.l-block #{item.author.name}
+                                                    img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
+                                                span.desc.l-block #{item.desc}
+                                                iframe.github-star(allowtransparency="true"
+                                                frameborder="0"
+                                                scrolling="0"
+                                                width="170"
+                                                height="30"
+                                                src="http://ghbtns.com/github-btn.html?user=kissygalleryteam&repo=#{item.name}&type=watch&count=true&size=large")
+
+                                            a.demo-link(href="/#{item.name}/#{item.version}/demo/index.html"
+                                            target="_blank") demo
+                            else
+                                li.item
+                                    .detail-link-wrap
                                         a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
                                         title="#{item.name}"
                                         target="_blank")
@@ -54,26 +75,14 @@ html
                                                 img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
                                             span.desc.l-block #{item.desc}
                                             iframe.github-star(allowtransparency="true"
-                                            frameborder="0"
-                                            scrolling="0"
-                                            width="170"
-                                            height="30"
-                                            src="http://ghbtns.com/github-btn.html?user=kissygalleryteam&repo=#{item.name}&type=watch&count=true&size=large")
-                            else
-                                li.item
-                                    a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
-                                    title="#{item.name}"
-                                    target="_blank")
-                                        strong.name.l-block #{item.name}
-                                        span.author.l-block #{item.author.name}
-                                            img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
-                                        span.desc.l-block #{item.desc}
-                                        iframe.github-star(allowtransparency="true"
-                                            frameborder="0"
-                                            scrolling="0"
-                                            width="170"
-                                            height="30"
-                                            src="http://ghbtns.com/github-btn.html?user=kissygalleryteam&repo=#{item.name}&type=watch&count=true&size=large")
+                                                frameborder="0"
+                                                scrolling="0"
+                                                width="170"
+                                                height="30"
+                                                src="http://ghbtns.com/github-btn.html?user=kissygalleryteam&repo=#{item.name}&type=watch&count=true&size=large")
+
+                                        a.demo-link(href="/#{item.name}/#{item.version}/demo/index.html"
+                                        target="_blank") demo
 
             #footer
                 .contact

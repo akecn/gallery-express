@@ -3,6 +3,7 @@
 #################
 
 *.pydevproject
+component-info.json
 .project
 .metadata
 bin/
