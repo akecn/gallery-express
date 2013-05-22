@@ -314,7 +314,7 @@ img {
 .guide {
     width: 90%;
     margin: 0 auto;
-    height: 537px;
+    height: 450px;
     text-align: center;
 }
 
@@ -394,9 +394,9 @@ img {
 
 .contribute {
     display: table;
-    min-height: 280px;
+    min-height: 240px;
     width: 100%;
-    padding: 65px 34px 65px 51px;
+    padding: 40px;
     box-sizing: border-box;
     background: #24abeb;
     overflow: hidden;
@@ -404,16 +404,17 @@ img {
 
 .contribute .hd {
     display: table-cell;
-    width: 77px;
+    width: 30px;
     min-height: 150px;
     padding: 0 13px;
     line-height: 40px;
     background: #0e4661;
     vertical-align: middle;
+    text-align: center;
 }
 
 .contribute .title {
-    font-size: 25px;
+    font-size: 20px;
     color: #fff;
 }
 
@@ -499,7 +500,7 @@ img {
     display: inline-block;
     width: 218px;
     height: 212px;
-    margin: 10px 10px 0 0;
+    margin: 20px 10px 0 0;
     vertical-align: top;
 }
 
