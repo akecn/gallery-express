@@ -12,11 +12,11 @@ html
                 each item in components
                         li.item
                             a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
-                            title="#{item.name}"
+                            title="#{item.name}",target="_blank"
                             )
                                 strong.name #{item.name}
                             p.desc #{item.desc}
 
             ul.row
                 li.span4
-                    a(href="http://gallery.kissyui.com/").all-com-btn 全部 gallery 组件
+                    a(href="http://gallery.kissyui.com/",target="_blank").all-com-btn 全部 gallery 组件
