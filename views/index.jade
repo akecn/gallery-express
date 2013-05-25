@@ -45,7 +45,10 @@ html
                                         a.item-link(href="/#{item.name}/#{item.version}/guide/index.html"
                                         title="#{item.name}"
                                         target="_blank")
-                                            img.cover(src="#{item.cover}")
+                                            p.cover-wrapper
+                                                img.cover(src="#{item.cover}")
+
+                                            p.cover-name #{item.name}
 
                                         .detail-link-wrap
                                             a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
