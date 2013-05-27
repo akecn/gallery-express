@@ -27,7 +27,7 @@
 			reponame = filepath.substring(1, index);
 			var githubUrl = 'https://github.com/kissygalleryteam/' + reponame + '/tree/master' + foldername;
 			$('.source').attr('href', githubUrl);
-			var starUrl = 'http://ghbtns.com/github-btn.html?user=kissygalleryteam&repo=' + reponame + '&type=watch&count=true&size=large';
+            var starUrl = 'http://ghbtns.com/github-btn.html?user=kissygalleryteam&repo=' + reponame + '&type=watch&count=true&size=large';
 			$('.github-star').attr('src', starUrl).show();
 		}
 
