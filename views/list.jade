@@ -9,7 +9,8 @@ html
             h2 Kissy Gallery
                 span 社区贡献组件汇集地
             ul.component-list.row
-                each item in components
+                each item,i in components
+                    if i <= 15
                         li.item
                             a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
                             title="#{item.name}",target="_blank"
