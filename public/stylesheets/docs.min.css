@@ -9,9 +9,9 @@ body{font-family:"Microsoft Yahei";overflow-x:hidden;}
 .bs-docs-sidebar .nav li.active a{background-color:#1F8FC4;}
 .bs-docs-sidebar .nav-toggle{display:block;position:fixed;top:320px;width:16px;height:85px;margin-left:264px;background:url('../images/toggle.png');z-index:99;}
 .bs-docs-sidebar-mini{position:fixed;left:0;top:10px;height:100%;width:0;background-color:#24ABEB;z-index:50;-webkit-box-shadow:10px 0 10px 0 rgba(0, 0, 0, 0.1);box-shadow:10px 0 10px 0 rgba(0, 0, 0, 0.1);overflow:hidden;}.bs-docs-sidebar-mini .nav-toggle{display:block;position:absolute;top:320px;left:10px;width:16px;height:85px;background:url('../images/toggle.png') no-repeat -16px 0;z-index:99;}
-.bs-docs-content{margin-top:55px;color:#555;}.bs-docs-content .link{position:fixed;right:0;top:10px;width:265px;height:40px;}.bs-docs-content .link a{display:inline-block;height:40px;line-height:40px;text-align:center;color:#fff;text-decoration:none;font-size:16px;}
-.bs-docs-content .link .source{width:117px;background-color:#f50;}
-.bs-docs-content .link .home{width:148px;background-color:#333;}
+.bs-docs-content{margin-top:55px;color:#555;}.bs-docs-content .common-link{position:fixed;right:0;top:10px;width:265px;height:40px;}.bs-docs-content .common-link a{display:inline-block;height:40px;line-height:40px;text-align:center;color:#fff;text-decoration:none;font-size:16px;}
+.bs-docs-content .common-link .source{width:117px;background-color:#f50;}
+.bs-docs-content .common-link .home{width:148px;background-color:#333;}
 .bs-docs-content .github-star{display:none;position:relative;top:20px;left:20px;}
 .bs-docs-content h1{display:none;}
 .bs-docs-content h1.title{display:block;float:left;font-size:48px;font-weight:500;color:#333;}.bs-docs-content h1.title:first-letter{text-transform:uppercase;}
