@@ -594,9 +594,9 @@ img {
 .component-list .demo-link:before {
     content: "";
     position: absolute;
-    left: -32px;
+    left: -31px;
     top: 0;
-    border-width: 12px 16px;
+    border-width: 13px 16px;
     border-style: solid;
     border-color: transparent #DB8167 transparent transparent;
 }
