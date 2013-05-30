@@ -466,6 +466,9 @@ img {
 .author-list .author-name {
     margin: 10px 0;
 }
+.author-name a{
+    color:#666;
+}
 
 .component {
     padding: 97px 43px 112px 48px;
