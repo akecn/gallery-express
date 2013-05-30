@@ -6,7 +6,7 @@ var path = require('path'),
 	marked = require('marked'),
 	shell = require('shelljs'),
 	GitHubApi = require("github"),
-    // socket = require('socket.io'),
+	// socket = require('socket.io'),
 	mime = require('./mime');
 
 function renderMD(urlPath, postTitle, res) {
@@ -65,6 +65,71 @@ exports.sync = function(req, res, next) {
 	var reposUrl = 'https://github.com/kissygalleryteam/' + reposName + '.git';
 	// var io = socket.listen(server);
 
+	res.writeHead(200, {
+		'Content-Type': 'text/plain'
+	});
+
+	if (reposName === 'gallery-express') {
+		res.write('cannot operate repos gallery-express');
+		res.end();
+		return;
+	} else {
+		var github = new GitHubApi({
+			version: "3.0.0",
+			timeout: 5000
+		});
+
+		github.authenticate({
+			type: "oauth",
+			token: "7d9e8064e9b3e5d5311c6eabe9fcf6d1243481f8"
+		});
+
+		github.repos.get({
+			user: 'kissygalleryteam',
+			repo: reposName
+		}, function(err) {
+			if (err) {
+				console.log('err');
+				res.write('error to find repos ' + reposUrl);
+				res.end();
+			} else {
+				console.log('ok');
+
+				if (!shell.which('git')) {
+					shell.echo('Sorry, this script requires git');
+					shell.exit(1);
+				}
+
+				if (shell.test('-d', reposName)) {
+					console.log('update');
+					shell.exec('cd ' + reposName + ' && git pull', function(code, output) {
+						if (code === 0) {
+							console.log('success');
+							res.write('git pull success\nfrom ' + reposUrl);
+							res.end();
+						} else {
+							console.log('fail');
+							res.write('git pull fail\nfrom ' + reposUrl);
+							res.end();
+						}
+					});
+				} else {
+					console.log('add');
+					shell.exec('git clone ' + reposUrl, function(code, output) {
+						if (code === 0) {
+							console.log('success');
+							res.write('git clone success\nfrom ' + reposUrl);
+							res.end();
+						} else {
+							console.log('fail');
+							res.write('git clone fail\nfrom ' + reposUrl);
+							res.end();
+						}
+					});
+				}
+			}
+		})
+	}
 	/*io.sockets.on('connection', function (socket) {
 		var github = new GitHubApi({
 			version: "3.0.0",
@@ -108,53 +173,6 @@ exports.sync = function(req, res, next) {
 			}
 		})
 	});*/
-
-	var github = new GitHubApi({
-		version: "3.0.0",
-		timeout: 5000
-	});
-
-	github.authenticate({
-		type: "oauth",
-		token: "7d9e8064e9b3e5d5311c6eabe9fcf6d1243481f8"
-	});
-
-	github.repos.get({
-		user: 'kissygalleryteam',
-		repo: reposName
-	}, function(err) {
-		res.writeHead(200, {
-			'Content-Type': 'text/plain'
-		});
-		if (err) {
-			console.log('err');
-			res.write('error to get ' + reposUrl);
-			res.end();
-		} else {
-			console.log('ok');
-			
-			if (!shell.which('git')) {
-				shell.echo('Sorry, this script requires git');
-				shell.exit(1);
-			}
-
-			if (shell.test('-d', reposName)) {
-				shell.rm('-rf', reposName)
-			}
-
-			shell.exec('git clone ' + reposUrl, function(code, output) {
-				if (code === 0) {
-					console.log('success');
-					res.write('git clone success\nfrom ' + reposUrl);
-					res.end();
-				} else {
-					console.log('fail');
-					res.write('git clone fail\nfrom ' + reposUrl);
-					res.end();
-				}
-			});
-		}
-	})
 };
 
 exports.docs = function(req, res, next) {
