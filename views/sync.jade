@@ -1,0 +1,24 @@
+!!!5
+html
+	head
+		meta(charset='utf-8')
+		title= title
+		link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+		script(src='/socket.io/socket.io.js')
+	body
+		p#content= 'wait...'
+		script
+			var socket = io.connect('http://gallery.kissyui.com')
+			var content = document.getElementById('content')
+			socket.on('start', function (data) {
+				content.innerHTML = 'git clone is in progress...\n from ' + data.repos
+			})
+			socket.on('error', function(data) {
+				content.innerHTML = data.error
+			})
+			socket.on('success', function(data) {
+				content.innerHTML = 'git clone success'
+			})
+			socket.on('fail', function(data) {
+				content.innerHTML = 'git clone fail'
+			})
