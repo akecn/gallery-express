@@ -73,63 +73,64 @@ exports.sync = function(req, res, next) {
 		res.write('cannot operate repos gallery-express');
 		res.end();
 		return;
-	} else {
-		var github = new GitHubApi({
-			version: "3.0.0",
-			timeout: 5000
-		});
-
-		github.authenticate({
-			type: "oauth",
-			token: "7d9e8064e9b3e5d5311c6eabe9fcf6d1243481f8"
-		});
-
-		github.repos.get({
-			user: 'kissygalleryteam',
-			repo: reposName
-		}, function(err) {
-			if (err) {
-				console.log('err');
-				res.write('error to find repos ' + reposUrl);
-				res.end();
-			} else {
-				console.log('ok');
-
-				if (!shell.which('git')) {
-					shell.echo('Sorry, this script requires git');
-					shell.exit(1);
-				}
-
-				if (shell.test('-d', reposName)) {
-					console.log('update');
-					shell.exec('cd ' + reposName + ' && git pull', function(code, output) {
-						if (code === 0) {
-							console.log('success');
-							res.write('git pull success\nfrom ' + reposUrl);
-							res.end();
-						} else {
-							console.log('fail');
-							res.write('git pull fail\nfrom ' + reposUrl);
-							res.end();
-						}
-					});
-				} else {
-					console.log('add');
-					shell.exec('git clone ' + reposUrl, function(code, output) {
-						if (code === 0) {
-							console.log('success');
-							res.write('git clone success\nfrom ' + reposUrl);
-							res.end();
-						} else {
-							console.log('fail');
-							res.write('git clone fail\nfrom ' + reposUrl);
-							res.end();
-						}
-					});
-				}
-			}
-		})
 	}
+
+	var github = new GitHubApi({
+		version: "3.0.0",
+		timeout: 5000
+	});
+
+	github.authenticate({
+		type: "oauth",
+		token: "7d9e8064e9b3e5d5311c6eabe9fcf6d1243481f8"
+	});
+
+	github.repos.get({
+		user: 'kissygalleryteam',
+		repo: reposName
+	}, function(err) {
+		if (err) {
+			console.log('get repos err');
+			res.write('error to find repos: ' + reposUrl);
+			res.end();
+		} else {
+			console.log('get repos ok');
+
+			if (!shell.which('git')) {
+				shell.echo('Sorry, this script requires git');
+				shell.exit(1);
+			}
+
+			if (shell.test('-d', reposName)) {
+				console.log('git pull begin');
+				shell.exec('cd ' + reposName + ' && git pull', function(code, output) {
+					if (code === 0) {
+						console.log('git pull success');
+						res.write('git pull success\nfrom ' + reposUrl);
+						res.end();
+					} else {
+						console.log('git pull fail');
+						res.write('git pull fail\nfrom ' + reposUrl);
+						res.end();
+					}
+				});
+			} else {
+				console.log('git clone begin');
+				shell.exec('git clone ' + reposUrl, function(code, output) {
+					if (code === 0) {
+						console.log('git clone success');
+						res.write('git clone success\nfrom ' + reposUrl);
+						res.end();
+					} else {
+						console.log('git clone fail');
+						res.write('git clone fail\nfrom ' + reposUrl);
+						res.end();
+					}
+				});
+			}
+		}
+	})
+	
 	/*io.sockets.on('connection', function (socket) {
 		var github = new GitHubApi({
 			version: "3.0.0",
