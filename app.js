@@ -8,7 +8,8 @@ var express = require('express'),
 
 require('./scan').init('.');
 
-var app = express();
+app = express();
+server = http.createServer(app);
 
 app.configure(function() {
     app.set('port', process.env.PORT || 3000);
@@ -42,6 +43,8 @@ app.get('/receive/commits', receive.commits);
 
 app.get('/receive/log', receive.log);
 
+app.get(/^\/sync\/(.+)$/, gallery.sync);
+
 app.get(/^((?:\/[^\/]+)+)\/([^\/]+)\/guide(?:\/(?:([^\/\.]+)(?:\.html)?)?)?$/, gallery.docs);
 
 app.get(/^(.+)$/, gallery.staticfile);
@@ -54,7 +57,6 @@ app.get('*', function(req, res) {
     });
 });
 
-http.createServer(app).listen(app.get('port'), function() {
+server.listen(app.get('port'), function() {
     console.log("Express server listening on port " + app.get('port'));
 });
-
