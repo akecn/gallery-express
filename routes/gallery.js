@@ -48,17 +48,9 @@ function log(text) {
 	var t = new Date().toLocaleString();
 	fs.exists('log.txt', function(exists) {
 		if (exists) {
-			fs.appendFileSync('log.txt', t + ': ' + text + '\t\r\n', function(err) {
-				if (err) {
-					console.log(err);
-				}
-			});
+			fs.appendFileSync('log.txt', t + ': ' + text + '\t\r\n');
 		} else {
-			fs.writeFileSync('log.txt', t + ': ' + text + '\t\r\n', function(err) {
-				if (err) {
-					console.log(err);
-				}
-			});
+			fs.writeFileSync('log.txt', t + ': ' + text + '\t\r\n');
 		}
 	});
 }
