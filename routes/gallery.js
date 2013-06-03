@@ -10,16 +10,19 @@ var path = require('path'),
 	mime = require('./mime');
 
 function renderMD(urlPath, postTitle, res) {
+	log('target file: ' + urlPath);
 	fs.exists(urlPath, function(exists) {
 		if (exists) {
 			fs.readFile(urlPath, 'utf8', function(err, data) {
 				if (err) {
+					log('file read error');
 					res.render('404', {
 						title: '404',
 						word: err,
 						pretty: true
 					});
 				} else {
+					log('ready for render file');
 					var tokens = marked.lexer(data);
 					var htmlContent = marked.parser(tokens);
 					res.render('show', {
@@ -27,9 +30,11 @@ function renderMD(urlPath, postTitle, res) {
 						blogContent: htmlContent,
 						pretty: true
 					});
+					log('render finished');
 				}
 			});
 		} else {
+			log('file not found');
 			res.render('404', {
 				title: '404',
 				word: 'file not exist: ' + urlPath,
@@ -39,7 +44,27 @@ function renderMD(urlPath, postTitle, res) {
 	});
 }
 
+function log(text) {
+	var t = new Date().toLocaleString();
+	fs.exists('log.txt', function(exists) {
+		if (exists) {
+			fs.appendFileSync('log.txt', t + ': ' + text + '\t\r\n', function(err) {
+				if (err) {
+					console.log(err);
+				}
+			});
+		} else {
+			fs.writeFileSync('log.txt', t + ': ' + text + '\t\r\n', function(err) {
+				if (err) {
+					console.log(err);
+				}
+			});
+		}
+	});
+}
+
 exports.guide = function(req, res, next) {
+	log('request for guide');
 	var baseUrl = process.cwd(),
 		urlPath = path.resolve(baseUrl, './gallery-express/readme.md');
 
@@ -48,6 +73,7 @@ exports.guide = function(req, res, next) {
 };
 
 exports.quickstart = function(req, res, next) {
+	log('request for quickstart');
 	var baseUrl = process.cwd(),
 		urlPath = path.resolve(baseUrl, './gallery-express/quick-start.md');
 
@@ -56,6 +82,7 @@ exports.quickstart = function(req, res, next) {
 };
 
 exports.sync = function(req, res, next) {
+	log('request for sync');
 	/*res.render('sync', {
 		title: 'sync',
 		pretty: true
@@ -64,6 +91,7 @@ exports.sync = function(req, res, next) {
 	var reposName = req.params[0];
 	var reposUrl = 'https://github.com/kissygalleryteam/' + reposName + '.git';
 	// var io = socket.listen(server);
+	log('target repos: ' + reposName);
 
 	res.writeHead(200, {
 		'Content-Type': 'text/plain'
@@ -90,47 +118,46 @@ exports.sync = function(req, res, next) {
 		repo: reposName
 	}, function(err) {
 		if (err) {
-			console.log('get repos err');
+			log('error to get repos from github');
 			res.write('error to find repos: ' + reposUrl);
 			res.end();
 		} else {
-			console.log('get repos ok');
-
+			log('success to get repos from github');
 			if (!shell.which('git')) {
 				shell.echo('Sorry, this script requires git');
 				shell.exit(1);
 			}
 
 			if (shell.test('-d', reposName)) {
-				console.log('git pull begin');
+				log('repos exists on server, begin git pull');
 				shell.exec('cd ' + reposName + ' && git pull', function(code, output) {
 					if (code === 0) {
-						console.log('git pull success');
+						log('git pull success');
 						res.write('git pull success\nfrom ' + reposUrl);
 						res.end();
 					} else {
-						console.log('git pull fail');
+						log('git pull fail');
 						res.write('git pull fail\nfrom ' + reposUrl);
 						res.end();
 					}
 				});
 			} else {
-				console.log('git clone begin');
+				log('repos not exist on server, begin git clone');
 				shell.exec('git clone ' + reposUrl, function(code, output) {
 					if (code === 0) {
-						console.log('git clone success');
+						log('git clone success');
 						res.write('git clone success\nfrom ' + reposUrl);
 						res.end();
 					} else {
-						console.log('git clone fail');
+						log('git clone fail');
 						res.write('git clone fail\nfrom ' + reposUrl);
 						res.end();
 					}
 				});
 			}
 		}
-	})
-	
+	});
+
 	/*io.sockets.on('connection', function (socket) {
 		var github = new GitHubApi({
 			version: "3.0.0",
@@ -177,6 +204,7 @@ exports.sync = function(req, res, next) {
 };
 
 exports.docs = function(req, res, next) {
+	log('request for doc');
 	var gallery = req.params[0],
 		index = gallery.lastIndexOf('/'),
 		title = index === -1 ? gallery : gallery.substring(index + 1),
@@ -187,25 +215,28 @@ exports.docs = function(req, res, next) {
 	var urlPath = path.resolve(baseUrl, './' + gallery, './' + version, './guide/' + filename + '.md');
 
 	renderMD(urlPath, title, res);
-
 };
 
 exports.staticfile = function(req, res, next) {
+	log('request for file');
 	var filePath = req.params[0],
 		baseUrl = process.cwd();
 
 	var urlPath = path.resolve(baseUrl, './' + filePath);
+	log('target file: ' + urlPath);
 
 	fs.exists(urlPath, function(exists) {
 		if (exists) {
 			fs.readFile(urlPath, 'binary', function(err, data) {
 				if (err) {
+					log('read file error');
 					res.render('404', {
 						title: '404',
 						word: err,
 						pretty: true
 					});
 				} else {
+					log('ready to response');
 					var ext = path.extname(filePath);
 					ext = ext ? ext.slice(1) : 'unknown';
 					var contentType = mime.types[ext] || 'text/plain';
@@ -217,6 +248,7 @@ exports.staticfile = function(req, res, next) {
 				}
 			});
 		} else {
+			log('file not found');
 			res.render('404', {
 				title: '404',
 				word: 'file not exist: ' + urlPath,
@@ -224,4 +256,4 @@ exports.staticfile = function(req, res, next) {
 			});
 		}
 	});
-}
+};
