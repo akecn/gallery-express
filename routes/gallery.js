@@ -73,6 +73,18 @@ exports.quickstart = function(req, res, next) {
 
 };
 
+exports.clear = function(req, res, next) {
+	var t = new Date().toLocaleString();
+	var tag = new Date().getTime();
+	fs.renameSync('log.txt', 'log_' + tag + '.txt');
+	fs.writeFileSync('log.txt', 'clear at: ' + t + ', old file tag: ' + tag);
+	res.writeHead(200, {
+		'Content-Type': 'text/plain'
+	});
+	res.write('log file is clear, old log file is renamed log_' + tag + '.txt');
+	res.end();
+};
+
 exports.sync = function(req, res, next) {
 	log('request for sync');
 	/*res.render('sync', {
