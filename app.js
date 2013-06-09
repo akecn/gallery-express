@@ -1,14 +1,15 @@
-
 var express = require('express'),
-    http = require('http'),
-    index = require('./routes/index'),
+    http = require('http');
+
+app = express();
+server = http.createServer(app);
+
+var index = require('./routes/index'),
     gallery = require('./routes/gallery'),
     receive = require('./routes/receive'),
     path = require('path');
 
 require('./scan').init('.');
-
-var app = express();
 
 app.configure(function() {
     app.set('port', process.env.PORT || 3000);
@@ -44,7 +45,9 @@ app.get('/receive/log', receive.log);
 
 app.get('/clearlog', gallery.clear);
 
-app.get(/^\/sync\/(.+)$/, gallery.sync);
+app.get('/sync', gallery.sync);
+
+app.get(/^\/sync\/(.+)$/, gallery.syncSingle);
 
 app.get(/^((?:\/[^\/]+)+)\/([^\/]+)\/guide(?:\/(?:([^\/\.]+)(?:\.html)?)?)?$/, gallery.docs);
 
@@ -58,6 +61,6 @@ app.get('*', function(req, res) {
     });
 });
 
-http.createServer(app).listen(app.get('port'), function() {
+server.listen(app.get('port'), function() {
     console.log("Express server listening on port " + app.get('port'));
 });

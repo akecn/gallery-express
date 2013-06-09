@@ -4,21 +4,84 @@ html
 		meta(charset='utf-8')
 		title= title
 		link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
-		script(src='/socket.io/socket.io.js')
 	body
-		p#content= 'wait...'
+		div.container
+			div.row
+				div.span6.offset3
+					form.well
+						fieldset
+							legend= "repos sync center"
+							label= "choose repos name"
+							select#repos
+								option
+							div.form-actions
+								button#pull.btn.btn-primary= "git pull"
+								button#clone.btn.btn-danger= "git clone"
+								button#delete.btn.btn-inverse= "delete folder"
+							div.alert.alert-success
+								strong#info
+		script(src='http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js')
+		script(src='/socket.io/socket.io.js')
 		script
-			var socket = io.connect('http://gallery.kissyui.com')
-			var content = document.getElementById('content')
-			socket.on('start', function (data) {
-				content.innerHTML = 'git clone is in progress...\n from ' + data.repos
-			})
-			socket.on('error', function(data) {
-				content.innerHTML = data.error
-			})
-			socket.on('success', function(data) {
-				content.innerHTML = 'git clone success'
-			})
-			socket.on('fail', function(data) {
-				content.innerHTML = 'git clone fail'
+			var S = KISSY, D = S.DOM, E = S.Event;
+			var socket = io.connect('http://gallery.kissyui.com', {
+				'connect_timeout': 500,
+				'reconnect': true,
+				'reconnection delay': 500,
+				'reopen_delay': 500,
+				'max_reconnection_attempts': 10
+			});
+			var alert = D.get('#info');
+			var reposSelect = D.get('#repos');
+			var pull = D.get('#pull');
+			var clone = D.get('#clone');
+			var del = D.get('#delete');
+			D.html(alert, 'loading...');
+			socket.on('init', function (data) {
+				var repos = data.data;
+				var html = '';
+				for(var i = 0, len = repos.length; i < len; i++){
+					html += '<option value="' + repos[i] + '">' + repos[i] + '</option>';
+				}
+				D.html(alert, '');
+				D.html(reposSelect, html);
+			});
+
+			E.on(pull, 'click', function(){
+				var reposName = reposSelect.value;
+				if(checkRepos(reposName)){
+					D.html(alert, 'waiting...');
+					S.all('.btn').attr('disabled', 'disabled');
+					socket.emit('pull', { repos: reposSelect.value });
+				}
+				return false;
+			});
+			E.on(clone, 'click', function(){
+				var reposName = reposSelect.value;
+				if(checkRepos(reposName)){
+					D.html(alert, 'waiting...');
+					S.all('.btn').attr('disabled', 'disabled');
+					socket.emit('clone', { repos: reposSelect.value });
+				}
+				return false;
+			});
+			E.on(del, 'click', function(){
+				var reposName = reposSelect.value;
+				if(checkRepos(reposName)){
+					D.html(alert, 'waiting...');
+					S.all('.btn').attr('disabled', 'disabled');
+					socket.emit('delete', { repos: reposSelect.value });
+				}
+				return false;
+			});
+			function checkRepos(repos){
+				if(repos === 'gallery-express'){
+					D.html(alert, 'cannot operate on gallery-express');
+					return false;
+				}
+				return true;
+			}
+			socket.on('complete', function(data){
+				S.all('.btn').removeAttr('disabled');
+				D.html(alert, data.result);
 			})
