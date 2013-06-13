@@ -45,7 +45,7 @@ app.get('/receive/log', receive.log);
 
 app.get('/clearlog', gallery.clear);
 
-app.get('/sync', gallery.sync);
+// app.get('/sync', gallery.sync);
 
 app.get(/^\/sync\/(.+)$/, gallery.syncSingle);
 
