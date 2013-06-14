@@ -6,7 +6,7 @@ var path = require('path'),
 	marked = require('marked'),
 	shell = require('shelljs'),
 	GitHubApi = require("github"),
-	// socket = require('socket.io'),
+	socket = require('socket.io'),
 	mime = require('./mime');
 
 var github = new GitHubApi({
@@ -19,7 +19,7 @@ github.authenticate({
 	token: "7d9e8064e9b3e5d5311c6eabe9fcf6d1243481f8"
 });
 
-/*var io = socket.listen(server);
+var io = socket.listen(server);
 io.set('log level', 1);
 var reposArray = [];
 
@@ -96,7 +96,7 @@ function del(repos, socket) {
 			result: repos + ': delete complete'
 		});
 	}
-}*/
+}
 
 function renderMD(urlPath, postTitle, res) {
 	log('target file: ' + urlPath);
@@ -196,7 +196,7 @@ exports.clear = function(req, res, next) {
 	res.end();
 };
 
-/*exports.sync = function(req, res, next) {
+exports.sync = function(req, res, next) {
 	log('request for total sync');
 	reposArray = [];
 
@@ -204,7 +204,7 @@ exports.clear = function(req, res, next) {
 		title: 'sync',
 		pretty: true
 	});
-};*/
+};
 
 exports.syncSingle = function(req, res, next) {
 	log('request for single sync');
