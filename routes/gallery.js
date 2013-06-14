@@ -100,36 +100,58 @@ function del(repos, socket) {
 
 function renderMD(urlPath, postTitle, res) {
 	log('target file: ' + urlPath);
-	fs.exists(urlPath, function(exists) {
-		if (exists) {
-			fs.readFile(urlPath, 'utf8', function(err, data) {
-				if (err) {
-					log('file read error');
-					res.render('404', {
-						title: '404',
-						word: err,
-						pretty: true
-					});
-				} else {
-					log('ready for render file');
-					var tokens = marked.lexer(data);
-					var htmlContent = marked.parser(tokens);
-					res.render('show', {
-						title: postTitle,
-						blogContent: htmlContent,
-						pretty: true
-					});
-					log('render finished');
-				}
-			});
+	fs.readFile(urlPath, 'utf8', function(err, data) {
+		if (err) {
+			readFileError(res, err);
 		} else {
-			log('file not found');
-			res.render('404', {
-				title: '404',
-				word: 'file not exist: ' + urlPath,
+			log('ready for render md file');
+			var tokens = marked.lexer(data);
+			var htmlContent = marked.parser(tokens);
+			res.render('show', {
+				title: postTitle,
+				blogContent: htmlContent,
 				pretty: true
 			});
+			log('render finished');
 		}
+	});
+}
+
+function renderStatic(urlPath, res) {
+	log('target file: ' + urlPath);
+	fs.readFile(urlPath, 'binary', function(err, data) {
+		if (err) {
+			readFileError(res, err);
+		} else {
+			log('ready to response static file');
+			var ext = path.extname(urlPath);
+			ext = ext ? ext.slice(1) : 'unknown';
+			var contentType = mime.types[ext] || 'text/plain';
+			res.writeHead(200, {
+				'Content-Type': contentType
+			});
+			res.write(data, 'binary');
+			res.end();
+			log('response end');
+		}
+	});
+}
+
+function readFileError(res, err) {
+	log('read file error');
+	res.render('404', {
+		title: '404',
+		word: err,
+		pretty: true
+	});
+}
+
+function fileNotFound(res, urlPath) {
+	log('file not found');
+	res.render('404', {
+		title: '404',
+		word: 'file not exist: ' + urlPath,
+		pretty: true
 	});
 }
 
@@ -258,7 +280,21 @@ exports.docs = function(req, res, next) {
 
 	var urlPath = path.resolve(baseUrl, './' + gallery, './' + version, './guide/' + filename + '.md');
 
-	renderMD(urlPath, title, res);
+	var urlPathOp = urlPath.replace('.md', '.html');
+
+	fs.exists(urlPath, function(exists) {
+		if (exists) {
+			renderMD(urlPath, title, res);
+		} else {
+			fs.exists(urlPathOp, function(existsOp) {
+				if (existsOp) {
+					renderStatic(urlPathOp, res);
+				} else {
+					fileNotFound(res, urlPath);
+				}
+			});
+		}
+	});
 };
 
 exports.staticfile = function(req, res, next) {
@@ -267,37 +303,12 @@ exports.staticfile = function(req, res, next) {
 		baseUrl = process.cwd();
 
 	var urlPath = path.resolve(baseUrl, './' + filePath);
-	log('target file: ' + urlPath);
 
 	fs.exists(urlPath, function(exists) {
 		if (exists) {
-			fs.readFile(urlPath, 'binary', function(err, data) {
-				if (err) {
-					log('read file error');
-					res.render('404', {
-						title: '404',
-						word: err,
-						pretty: true
-					});
-				} else {
-					log('ready to response');
-					var ext = path.extname(filePath);
-					ext = ext ? ext.slice(1) : 'unknown';
-					var contentType = mime.types[ext] || 'text/plain';
-					res.writeHead(200, {
-						'Content-Type': contentType
-					});
-					res.write(data, 'binary');
-					res.end();
-				}
-			});
+			renderStatic(urlPath, res);
 		} else {
-			log('file not found');
-			res.render('404', {
-				title: '404',
-				word: 'file not exist: ' + urlPath,
-				pretty: true
-			});
+			fileNotFound(res, urlPath);
 		}
 	});
 };
