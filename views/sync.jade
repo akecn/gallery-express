@@ -37,6 +37,7 @@ html
 			var clone = D.get('#clone');
 			var del = D.get('#delete');
 			S.all('.btn').attr('disabled', 'disabled');
+			S.one(reposSelect).attr('disabled', 'disabled');
 			D.html(alert, 'loading...');
 			socket.on('init', function (data) {
 				var repos = data.data;
@@ -47,6 +48,7 @@ html
 				D.html(alert, '');
 				D.html(reposSelect, html);
 				S.all('.btn').removeAttr('disabled');
+				S.one(reposSelect).removeAttr('disabled');
 			});
 
 			E.on(pull, 'click', function(){
