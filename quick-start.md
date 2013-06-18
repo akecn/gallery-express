@@ -18,6 +18,8 @@ gallery首页地址为：[http://gallery.kissyui.com/](http://gallery.kissyui.co
 
 然后clone这个库到你本地。
 
+留意：库名必须是组件名，fork到官方库后，如果有修改需求，请联系翰文，不然会出现无法发布的问题！
+
 ## Step1: 安装kissy gallery组件工具
 
 ````sh
@@ -92,8 +94,6 @@ cover字段为组件封面图片。
 
 demo必须放在demo目录，所有的demo请仿照着demo/index.html来写，特别是gallery包的配置。
 
-文档和demo1天同步一次（github的接口限制）。
-
 guide的访问地址示例：[http://gallery.kissyui.com/imgcrop/2.0/guide/index.html](http://gallery.kissyui.com/imgcrop/2.0/guide/index.html)。
 
 demo的访问地址示例：[http://gallery.kissyui.com/imgcrop/2.0/demo/index.html](http://gallery.kissyui.com/imgcrop/2.0/demo/index.html)。
@@ -106,7 +106,7 @@ demo的访问地址示例：[http://gallery.kissyui.com/imgcrop/2.0/demo/index.h
 
 issue的内容可以参考：[editorUploader组件](https://github.com/kissygalleryteam/kpm/issues/26)，正文带上你用户名下的组件库路径。
 
-issue标题统一为:add module 组件名称。
+issue标题统一为:add 组件名称。
 
 新建issue的目的有二个：
 
@@ -117,6 +117,19 @@ issue标题统一为:add module 组件名称。
 ### 向官方库发送pull request
 
 前提是管理员已经fork你的组件库。
+
+将你的代码提交到自己的github库后，使用命令：
+
+````sh
+yo kissy-gallery:merge
+````
+
+该命令实现如下功能：
+
+* 自动将更新推送到官方库，相当于执行github的pull request
+* 官方库自动merge你的更新
+* 同步组件文档
+* 预发你的代码
 
 ### 通知承玉发布代码
 
