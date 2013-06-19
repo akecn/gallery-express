@@ -53,11 +53,13 @@ function pull(repos, socket) {
 	shell.exec('cd ' + repos + ' && git pull', function(code, output) {
 		if (code === 0) {
 			log('git pull success');
+			log('output: 'output);
 			socket.emit('complete', {
 				result: repos + ': pull success'
 			});
 		} else {
 			log('git pull fail');
+			log('output: 'output);
 			socket.emit('complete', {
 				result: repos + ': pull fail'
 			});
@@ -73,11 +75,13 @@ function clone(repos, socket) {
 	shell.exec('git clone ' + reposUrl, function(code, output) {
 		if (code === 0) {
 			log('git clone success');
+			log('output: 'output);
 			socket.emit('complete', {
 				result: repos + ': clone success'
 			});
 		} else {
 			log('git clone fail');
+			log('output: 'output);
 			socket.emit('complete', {
 				result: repos + ': clone fail'
 			});
@@ -243,11 +247,13 @@ exports.syncSingle = function(req, res, next) {
 				shell.exec('cd ' + reposName + ' && git pull', function(code, output) {
 					if (code === 0) {
 						log('git pull success');
-						res.write('git pull success\nfrom ' + reposUrl);
+						log('output: 'output);
+						res.write(output + '\ngit pull success\nfrom ' + reposUrl);
 						res.end();
 					} else {
 						log('git pull fail');
-						res.write('git pull fail\nfrom ' + reposUrl);
+						log('output: 'output);
+						res.write(output + '\ngit pull fail\nfrom ' + reposUrl);
 						res.end();
 					}
 				});
@@ -256,11 +262,13 @@ exports.syncSingle = function(req, res, next) {
 				shell.exec('git clone ' + reposUrl, function(code, output) {
 					if (code === 0) {
 						log('git clone success');
-						res.write('git clone success\nfrom ' + reposUrl);
+						log('output: 'output);
+						res.write(output + '\ngit clone success\nfrom ' + reposUrl);
 						res.end();
 					} else {
 						log('git clone fail');
-						res.write('git clone fail\nfrom ' + reposUrl);
+						log('output: 'output);
+						res.write(output + '\ngit clone fail\nfrom ' + reposUrl);
 						res.end();
 					}
 				});
