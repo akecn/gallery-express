@@ -247,12 +247,12 @@ exports.syncSingle = function(req, res, next) {
 				shell.exec('cd ' + reposName + ' && git pull', function(code, output) {
 					if (code === 0) {
 						log('git pull success');
-						log('output: 'output);
+						log('output: ' + output);
 						res.write(output + '\ngit pull success\nfrom ' + reposUrl);
 						res.end();
 					} else {
 						log('git pull fail');
-						log('output: 'output);
+						log('output: ' + output);
 						res.write(output + '\ngit pull fail\nfrom ' + reposUrl);
 						res.end();
 					}
@@ -262,12 +262,12 @@ exports.syncSingle = function(req, res, next) {
 				shell.exec('git clone ' + reposUrl, function(code, output) {
 					if (code === 0) {
 						log('git clone success');
-						log('output: 'output);
+						log('output: ' + output);
 						res.write(output + '\ngit clone success\nfrom ' + reposUrl);
 						res.end();
 					} else {
 						log('git clone fail');
-						log('output: 'output);
+						log('output: ' + output);
 						res.write(output + '\ngit clone fail\nfrom ' + reposUrl);
 						res.end();
 					}
