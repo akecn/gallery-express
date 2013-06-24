@@ -10,15 +10,16 @@ html
                 span 社区贡献组件汇集地
             ul.component-list.row
                 each item,i in components
-                    if i <= 14
-                        li.item
-                            a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
-                            title="#{item.name}",target="_blank"
-                            )
-                                =item.name
-                            p.desc #{item.desc}
+                    li.item
+                        a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
+                        title="#{item.name}",target="_blank"
+                        )
+                            =item.name
+                        p.desc #{item.desc}
 
             ul.row
-                li.span4
+                li.span3
                     a(href="http://gallery.kissyui.com/",target="_blank").all-com-btn 全部 gallery 组件
+                li.span3
+                    a(href="http://gallery.kissyui.com/",target="_blank").all-com-btn.guide-btn 15分钟开发kissy组件
         div(style="display:none;") <script src="http://s9.cnzz.com/stat.php?id=5379789&web_id=5379789&online=2" language="JavaScript"></script>

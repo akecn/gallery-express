@@ -13,3 +13,8 @@ html
     script(src='/javascripts/jquery.githubRepoWidget.min.js')
   body(data-spy='scroll', data-target='.bs-docs-sidebar')
     block content
+    script
+        var url ='http://log.mmstat.com/ued.1.1.2?type=9&_gm:id=gallery&click=1&_t='+new Date().getTime();
+        url = url + '&com='+$("h1.title").text();
+        var image = new Image();
+        image.src = url;
