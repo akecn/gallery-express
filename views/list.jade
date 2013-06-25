@@ -12,14 +12,16 @@ html
                 each item,i in components
                     li.item
                         a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
-                        title="#{item.name}",target="_blank"
+                        title="#{item.name} by #{item.author.name}",target="_blank"
                         )
                             =item.name
                         p.desc #{item.desc}
 
             ul.row
-                li.span3
-                    a(href="http://gallery.kissyui.com/",target="_blank").all-com-btn 全部 gallery 组件
-                li.span3
+                li.span4
                     a(href="http://gallery.kissyui.com/quickstart",target="_blank").all-com-btn.guide-btn 15分钟开发kissy组件
+                li.span3
+                    a(href="http://mobile.kissyui.com/",target="_blank").all-com-btn.mobile-btn Kissy Mobile
+                li.span3
+                    a(href="http://abc.f2e.taobao.net/",target="_blank").all-com-btn.abc-btn abc前端项目工具（内测）
         div(style="display:none;") <script src="http://s9.cnzz.com/stat.php?id=5379789&web_id=5379789&online=2" language="JavaScript"></script>
