@@ -4,11 +4,15 @@ gallery首页地址为：[http://gallery.kissyui.com/](http://gallery.kissyui.co
 
 请先加入组件作者旺旺群：*600859238*。
 
+合并代码到官方库：伯才
+
+（PS:请使用yo kissy-gallery:merge命令自助merge）
+
 发布：承玉
 
 答疑：伯方、翰文
 
-组件迁移：tb5887802
+组件迁移：伯才
 
 视频教程：[优酷](http://v.youku.com/v_show/id_XNTYwMzgxNDI4.html)，[youtube](http://youtu.be/quMgyoO8zB8)
 
