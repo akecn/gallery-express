@@ -25,3 +25,9 @@ html
                 li.span3
                     a(href="http://abc.f2e.taobao.net/",target="_blank").all-com-btn.abc-btn abc前端项目工具（内测）
         div(style="display:none;") <script src="http://s9.cnzz.com/stat.php?id=5379789&web_id=5379789&online=2" language="JavaScript"></script>
+            script
+                document.domain="kissyui.com";
+                var parent = window.parent;
+                var height = document.getElementById('J_List').scrollHeight+200;
+                var iframe = parent.document.getElementsByTagName('iframe')[0];
+                iframe.height = height;
