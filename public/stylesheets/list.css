@@ -12,6 +12,24 @@
   color: #80c269;
   font-weight: normal;
 }
+.list-title {
+  position: relative;
+}
+.list-title .search-box {
+  position: absolute;
+  right: 0;
+  top: 4px;
+}
+.list-title .search-box input {
+  font-size: 12px;
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  border-radius: 20px;
+  outline: none;
+}
+.list-title .search-box input:focus {
+  border-color: #80c269;
+}
 ul {
   list-style: none;
   padding-left: 0px;
