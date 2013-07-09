@@ -22,12 +22,9 @@
     }
     $listItem.hide();
     return $listItem.each(function($item) {
-      var author, data, desc, name, reg;
+      var data, reg;
 
-      name = $item.attr('data-name');
-      desc = $item.attr('data-desc');
-      author = $item.attr('data-author');
-      data = [$item.attr('data-name', $item.attr('data-desc', $item.attr('data-author')))];
+      data = [$item.attr('data-name'), $item.attr('data-desc'), $item.attr('data-author')];
       reg = new RegExp(letter);
       return S.each(data, function(d) {
         if (reg.test(d)) {
