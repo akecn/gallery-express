@@ -58,4 +58,9 @@ exports.init = function (path) {
 
     scan(path, cb);
 };
+exports.sync = function(req,res){
+    scan('../../', function(){
+        res.json({"status":1});
+    });
+}
 

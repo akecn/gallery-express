@@ -8,8 +8,8 @@ var index = require('./routes/index'),
     gallery = require('./routes/gallery'),
     receive = require('./routes/receive'),
     path = require('path');
-
-require('./scan').init('.');
+var scan = require('./scan');
+scan.init('.');
 
 app.configure(function() {
     app.set('port', process.env.PORT || 3000);
@@ -42,8 +42,9 @@ app.post('/receive/write', receive.write);
 app.get('/receive/commits', receive.commits);
 
 app.get('/receive/log', receive.log);
-
+app.get('/components/info-sync', scan.sync);
 app.get('/clearlog', gallery.clear);
+app.get('/repos', gallery.getRepos);
 
 // app.get('/sync', gallery.sync);
 
