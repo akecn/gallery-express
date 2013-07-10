@@ -1,6 +1,6 @@
 .content{
   width:710px;
-
+  font-family: "Microsoft YaHei";
   h2{
     border-bottom: 1px solid #ccc;
     padding-bottom:10px;
@@ -18,7 +18,7 @@
   .search-box{
     position: absolute;
     right:0;
-    top:4px;
+    top:2px;
 
     input{
       font-size: 12px;
@@ -54,12 +54,12 @@ ul{
     padding-left:34px;
   }
 }
-
-.span4{
-  margin-left: 36px;
+.btn-wrapper{
+  padding:20px 0;
 }
 .all-com-btn{
   padding:10px;
+  height:14px;
   background-color: #24abeb;
   color: #fff;
   display: block;
@@ -68,17 +68,62 @@ ul{
   text-align: center;
   width:120px;
   margin-right:10px;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+
+  span{
+    position: absolute;
+    left: 0;
+    top:0;
+    padding-top:6px;
+    width:100%;
+    text-align: center;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
 }
 .all-com-btn:hover{
   color:#fff;
+
+  span {
+    top: 40px;
+  }
 }
 .guide-btn{
   width:170px;
+  margin-left:32px;
+}
+.all-com-btn:before{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  left: 0;
+  top: -100%;
+}
+.all-com-btn:hover:before{
+  top: 7px;
 }
 .mobile-btn{
-  background-color: #000;
+  background-color: #24abeb;
+}
+.mobile-btn:before{
+  content:"kissy移动端框架";
+}
+.bui-btn{
+  background-color: #dd3322;
+}
+.bui-btn:before{
+  content:"kissy后台ui控件集";
 }
 .abc-btn{
-  width:180px;
   background-color: #80c269;
+}
+.abc-btn:before{
+  content:"kissy项目构建工具";
 }

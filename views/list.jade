@@ -7,10 +7,22 @@ html
         script(src='http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js')
     body
         div.content
+            ul.row.btn-wrapper
+                li.span3
+                    a(href="http://mobile.kissyui.com/",target="_blank").all-com-btn.mobile-btn
+                        span Kissy Mobile
+                li.span3
+                    a(href="http://www.builive.com/start/index.php",target="_blank").all-com-btn.bui-btn
+                        span bui
+                li.span3
+                    a(href="http://abc.f2e.taobao.net/",target="_blank").all-com-btn.abc-btn
+                        span abc
+
             h2.list-title Kissy Gallery
                 span 社区贡献组件汇集地
                 div.search-box
                     input#J_Search(type="text",placeholder="搜索gallery组件")
+
             ul.component-list.row#J_List
                 each item,i in components
                     li.item(data-name="#{item.name}",data-desc="#{item.desc}",data-author="#{item.author.name}")
@@ -19,13 +31,8 @@ html
                         )
                             =item.name
                         p.desc #{item.desc}
-
-            ul.row
+            ul.row.btn-wrapper
                 li.span4
                     a(href="http://gallery.kissyui.com/quickstart",target="_blank").all-com-btn.guide-btn 15分钟开发kissy组件
-                li.span3
-                    a(href="http://mobile.kissyui.com/",target="_blank").all-com-btn.mobile-btn Kissy Mobile
-                li.span3
-                    a(href="http://abc.f2e.taobao.net/",target="_blank").all-com-btn.abc-btn abc前端项目工具（内测）
         div(style="display:none;") <script src="http://s9.cnzz.com/stat.php?id=5379789&web_id=5379789&online=2" language="JavaScript"></script>
             script(src='/javascripts/list.js')
