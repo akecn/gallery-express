@@ -44,7 +44,7 @@ app.get('/receive/commits', receive.commits);
 app.get('/receive/log', receive.log);
 app.get('/components/info-sync', scan.sync);
 app.get('/clearlog', gallery.clear);
-app.get('/repos', gallery.getRepos);
+//app.get('/repos', gallery.getRepos);
 
 // app.get('/sync', gallery.sync);
 
