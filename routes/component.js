@@ -1,4 +1,4 @@
-var GitHubApi, crypto, fs, galleryGithub, syncCom;
+var GitHubApi, addGithubData, crypto, fs, galleryGithub, syncCom, writeJson;
 
 GitHubApi = require("github");
 
@@ -18,7 +18,7 @@ galleryGithub.authenticate({
 
 syncCom = function(com, callback) {
   var comInfos, path;
-  path = "../../" + com + "/abc.json";
+  path = "" + com + "/abc.json";
   comInfos = "gallery-express/component-info.json";
   return fs.readFile(path, 'utf8', function(err, data) {
     var md5;
@@ -31,44 +31,73 @@ syncCom = function(com, callback) {
           data.author.md5 = md5.digest('hex');
         }
         return fs.readFile(comInfos, 'utf8', function(err, coms) {
-          var authors, i, _i, _len, _ref, _results;
+          var authors, i, isExist, _i, _len, _ref;
           if (coms) {
             try {
               coms = JSON.parse(coms);
               authors = coms.authors;
               authors[data.author.name] = data.author;
+              isExist = false;
               _ref = coms.components;
-              _results = [];
               for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
                 com = _ref[i];
                 if (com.name === data.name) {
-                  _results.push(galleryGithub.repos.get({
-                    user: 'kissygalleryteam',
-                    repo: data.name
-                  }, function(err, result) {
-                    var key, keys, _j, _len1;
-                    if (!result.message) {
-                      keys = ['forks', 'watchers', 'updated_at', 'created_at', 'description', 'size'];
-                      for (_j = 0, _len1 = keys.length; _j < _len1; _j++) {
-                        key = keys[_j];
-                        data[key] = result[key];
-                        coms.components[i] = data;
-                      }
-                    }
-                    return fs.writeFile('gallery-express/component-info.json', JSON.stringify(coms), function(err) {
-                      return callback && callback(data);
+                  isExist = true;
+                  addGithubData(data, function(comData) {
+                    coms.components[i] = comData;
+                    return writeJson(coms, function() {
+                      return callback && callback(comData);
                     });
-                  }));
-                } else {
-                  _results.push(void 0);
+                  });
+                  return true;
                 }
               }
-              return _results;
+              if (!isExist) {
+                return addGithubData(data, function(comData) {
+                  coms.components.push(comData);
+                  return writeJson(coms, function() {
+                    return callback && callback(comData);
+                  });
+                });
+              }
             } catch (_error) {}
           }
         });
       } catch (_error) {}
     }
+  });
+};
+
+/*
+����github�Ŀ���Ϣ
+*/
+
+
+addGithubData = function(data, callback) {
+  return galleryGithub.repos.get({
+    user: 'kissygalleryteam',
+    repo: data.name
+  }, function(err, result) {
+    var key, keys, _i, _len;
+    if (!result.message) {
+      keys = ['forks', 'watchers', 'updated_at', 'created_at', 'description', 'size'];
+      for (_i = 0, _len = keys.length; _i < _len; _i++) {
+        key = keys[_i];
+        data[key] = result[key];
+      }
+      return callback && callback(data);
+    }
+  });
+};
+
+/*
+��������Ϣд�뵽component-info.json��
+*/
+
+
+writeJson = function(coms, callback) {
+  return fs.writeFile('gallery-express/component-info.json', JSON.stringify(coms), function(err) {
+    return callback && callback(coms);
   });
 };
 
@@ -79,3 +108,5 @@ exports.sync = function(req, res) {
     return res.json(data);
   });
 };
+
+exports.syncAll = function(req, res) {};

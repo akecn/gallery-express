@@ -14,7 +14,7 @@ galleryGithub.authenticate({
 
 #同步组件信息
 syncCom = (com,callback)->
-  path = "../../#{com}/abc.json";
+  path = "#{com}/abc.json";
   comInfos = "gallery-express/component-info.json";
   fs.readFile path,'utf8',(err,data)->
     if data
@@ -31,25 +31,53 @@ syncCom = (com,callback)->
               coms = JSON.parse coms
               authors = coms.authors
               authors[data.author.name] = data.author
+
+              isExist = false
               for com,i in coms.components
                 if com.name is data.name
-                  #加入github的组件信息
-                  galleryGithub.repos.get({
-                  user: 'kissygalleryteam',
-                  repo: data.name
-                  },(err,result)->
-                    unless result.message
-                      keys = ['forks','watchers','updated_at','created_at','description','size']
-                      for key in keys
-                        data[key] = result[key]
-                        coms.components[i] = data
-                    fs.writeFile('gallery-express/component-info.json', JSON.stringify(coms),(err)->
-                      callback && callback(data);
-                    );
+                  isExist = true;
+                  addGithubData(data,(comData)->
+                    coms.components[i] = comData
+                    writeJson(coms,->
+                      callback && callback(comData)
+                    )
                   )
+                  return true
+
+              unless isExist
+                addGithubData(data,(comData)->
+                  coms.components.push(comData);
+                  writeJson(coms,->
+                    callback && callback(comData)
+                  )
+                )
+###
+添加github的库信息
+###
+addGithubData = (data,callback)->
+  #加入github的组件信息
+  galleryGithub.repos.get({
+  user: 'kissygalleryteam',
+  repo: data.name
+  },(err,result)->
+    unless result.message
+      keys = ['forks','watchers','updated_at','created_at','description','size']
+      for key in keys
+        data[key] = result[key]
+      callback && callback(data)
+  )
+###
+将组件信息写入到component-info.json内
+###
+writeJson = (coms,callback)->
+  fs.writeFile('gallery-express/component-info.json', JSON.stringify(coms),(err)->
+    callback && callback(coms);
+  )
 
 exports.sync = (req,res)->
   com = req.params.name
   syncCom(com,(data)->
     res.json data
   )
+
+exports.syncAll = (req,res)->
