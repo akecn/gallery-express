@@ -3,20 +3,25 @@ fs = require 'fs'
 crypto = require 'crypto'
 
 galleryGithub = new GitHubApi({
-  version: "3.0.0",
-  timeout: 5000
+version: "3.0.0",
+timeout: 5000
 })
-#ÑéÖ¤githubÕËºÅ
+#éªŒè¯githubè´¦å·
 galleryGithub.authenticate({
-  type: "oauth",
-  token: "7d9e8064e9b3e5d5311c6eabe9fcf6d1243481f8"
+type: "oauth",
+token: "7d9e8064e9b3e5d5311c6eabe9fcf6d1243481f8"
 })
 
-#Í¬²½×é¼þÐÅÏ¢
+INFOS_URL = 'gallery-express/component-info.json'
+
+#åŒæ­¥ç»„ä»¶ä¿¡æ¯
 syncCom = (com,callback)->
   path = "#{com}/abc.json";
-  comInfos = "gallery-express/component-info.json";
+  comInfos = INFOS_URL;
   fs.readFile path,'utf8',(err,data)->
+    if err
+      callback && callback({},{})
+      return false
     if data
       try
         data = JSON.parse(data);
@@ -24,7 +29,7 @@ syncCom = (com,callback)->
           md5 = crypto.createHash 'md5'
           md5.update data.author.email, 'utf8'
           data.author.md5 = md5.digest 'hex'
-        #¶ÁÈ¡ËùÓÐ×é¼þµÄÐÅÏ¢
+        #è¯»å–æ‰€æœ‰ç»„ä»¶çš„ä¿¡æ¯
         fs.readFile comInfos,'utf8',(err,coms)->
           if coms
             try
@@ -39,7 +44,7 @@ syncCom = (com,callback)->
                   addGithubData(data,(comData)->
                     coms.components[i] = comData
                     writeJson(coms,->
-                      callback && callback(comData)
+                      callback && callback(comData,coms)
                     )
                   )
                   return true
@@ -48,14 +53,14 @@ syncCom = (com,callback)->
                 addGithubData(data,(comData)->
                   coms.components.push(comData);
                   writeJson(coms,->
-                    callback && callback(comData)
+                    callback && callback(comData,coms)
                   )
                 )
 ###
-Ìí¼ÓgithubµÄ¿âÐÅÏ¢
+æ·»åŠ githubçš„åº“ä¿¡æ¯
 ###
 addGithubData = (data,callback)->
-  #¼ÓÈëgithubµÄ×é¼þÐÅÏ¢
+  #åŠ å…¥githubçš„ç»„ä»¶ä¿¡æ¯
   galleryGithub.repos.get({
   user: 'kissygalleryteam',
   repo: data.name
@@ -67,10 +72,12 @@ addGithubData = (data,callback)->
       callback && callback(data)
   )
 ###
-½«×é¼þÐÅÏ¢Ð´Èëµ½component-info.jsonÄÚ
+å°†ç»„ä»¶ä¿¡æ¯å†™å…¥åˆ°component-info.jsonå†…
 ###
 writeJson = (coms,callback)->
-  fs.writeFile('gallery-express/component-info.json', JSON.stringify(coms),(err)->
+  coms.count = coms.components.length
+  coms.update = Date.now()
+  fs.writeFile(INFOS_URL, JSON.stringify(coms),(err)->
     callback && callback(coms);
   )
 
@@ -81,3 +88,35 @@ exports.sync = (req,res)->
   )
 
 exports.syncAll = (req,res)->
+  result =
+    authors: {},
+    components: [],
+    date: Date.now()
+  writeJson(result,->
+    dirs = fs.readdirSync('./')
+    i = 0
+
+    sync = (name,coms)->
+      i++
+      if i is dirs.length+1
+        coms && res.json coms
+        return true
+      syncCom(name,(com,coms)->
+        sync dirs[i],coms
+      )
+
+    sync dirs[i]
+  )
+
+exports.getInfo = (req,res)->
+  comName = req.params.name
+  json = {}
+  unless comName
+    return res.send('ç»„ä»¶åä¸èƒ½ä¸ºç©ºï¼')
+  fs.readFile INFOS_URL,'utf8',(err,data)->
+    data = JSON.parse data
+    coms = data.components
+    for com in coms
+       if com.name is comName
+         json = com
+    res.json json

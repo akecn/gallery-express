@@ -41,6 +41,8 @@ app.get('/receive/commits', receive.commits);
 
 app.get('/receive/log', receive.log);
 app.get('/component/info-sync/:name', component.sync);
+app.get('/component/all-sync', component.syncAll);
+app.get('/component/info/:name', component.getInfo);
 app.get('/clearlog', gallery.clear);
 
 app.get(/^\/sync\/(.+)$/, gallery.syncSingle);
