@@ -1,20 +1,19 @@
 # 十五分钟开发一个kissy组件
 
-gallery首页地址为：[http://gallery.kissyui.com/](http://gallery.kissyui.com/)，
+发布和同步系统：[http://kpm.f2e.taobao.net/](KPM)(阿里内网才能访问)
 
 请先加入组件作者旺旺群：*600859238*。
 
-合并代码到官方库：伯才
-
-（PS:请使用yo kissy-gallery:merge命令自助merge）
-
-发布：承玉
+组件review和fork：伯才
 
 答疑：伯方、翰文
 
-组件迁移：伯才
 
-视频教程：[优酷](http://v.youku.com/v_show/id_XNTYwMzgxNDI4.html)，[youtube](http://youtu.be/quMgyoO8zB8)
+2013-08-16更新：
+
+阿里内网用户可以自主发布和同步文档，前提是abc.json中的邮箱必须使用内网邮箱，别使用github邮箱。
+
+非内网用户发布和同步文档，请联系伯才。
 
 ## Step0: 在github中创建个组件库
 
@@ -122,32 +121,33 @@ issue标题统一为:add 组件名称。
 
 前提是管理员已经fork你的组件库。
 
-将你的代码提交到自己的github库后，使用命令：
+将你的代码提交到自己的github库后，发一个pull request到kissygalleryteam用户名下的库。
 
-````sh
-yo kissy-gallery:merge
-````
+### 使用kpm发布和同步文档
 
-该命令实现如下功能：
+进入[http://kpm.f2e.taobao.net/](KPM)，如下图：
 
-* 自动将更新推送到官方库，相当于执行github的pull request
+![kpm](http://img01.taobaocdn.com/tps/i1/T1xK9lFk8bXXcOe6rm-462-259.png)
+
+如果您没有找到自己的组件，请把邮箱发送给翰文，让他配下权限。
+
+点击*"prepub"*会触发如下功能：
+
 * 官方库自动merge你的更新
-* 同步组件文档
+* 同步组件文档和组件信息
 * 预发你的代码
 
-### 通知承玉发布代码
+点击*"publish"*正式发布组件！
 
-发布同时会合并你的代码到官方库。
+（请尽量不要覆盖式发布！以免背上故障单！）
+
+点击*"view log"*可以查看同步和发布日志！
+
 
 发布成功后，系统返回的消息类似如下：
 
 ![发布消息](http://img03.taobaocdn.com/tps/i3/T1jc9mXpNiXXbmmmfY-272-368.png)
 
-*组件的abc.json中写上author的name和email，不然会发布失败！*
-
-### 完整流程如下
-
-![kissy gallery组件发布流程](http://img02.taobaocdn.com/tps/i2/T1dBKnXtNgXXaGUE2E-714-565.png)
 
 
 
