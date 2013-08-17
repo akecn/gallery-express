@@ -21,7 +21,7 @@ html
                         button.sort.ks-button(data-sort="data-name",data-order="desc",title="按照组件名称字母数排序") 字母 ↑
                         button.sort.ks-button(data-sort="data-updated",data-order="desc",title="按照组件更新时间排序") 更新 ↓
                     div.search-box
-                        input#J_Search(type="text",placeholder="搜索gallery组件")
+                        input#J_Search(type="text",placeholder="可以使用组件名、作者、描述来筛选组件")
                     ul.component-list#J_List
                         each item in components
                             li.item.mix(data-name="#{item.name}",data-desc="#{item.desc}",data-author="#{item.author.name}",data-star="#{item.watchers}",data-create="#{item.created_at}",data-updated="#{item.updated_at}")

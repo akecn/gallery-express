@@ -30,6 +30,7 @@ app.configure('development', function() {
 
 app.get('/', index.index);
 app.get('/list', index.list);
+app.get('/coms', index.coms);
 
 app.get('/guide', gallery.guide);
 
