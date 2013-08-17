@@ -43,7 +43,7 @@ ul {
 .component-list .desc {
   color: #666;
   margin-top: 5px;
-  height: 24px;
+  height: 20px;
   line-height: 20px;
   padding-right: 10px;
   overflow: hidden;
@@ -123,4 +123,34 @@ ul {
 }
 .abc-btn:before {
   content: "kissy项目构建工具";
+}
+.component-list {
+  text-align: justify;
+  font-size: 0.1px;
+}
+.component-list .mix {
+  display: none;
+  opacity: 0;
+  vertical-align: top;
+  background-color: #fff;
+}
+.component-list .gap {
+  display: inline-block;
+}
+.component-list:after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+.controls {
+  margin-bottom: 10px;
+}
+.controls .ks-button {
+  padding: 6px 12px;
+}
+.controls .active {
+  color: #333;
+  background-position: 0 -15px;
+  transition: background-position 0.1s linear;
+  background-color: #e6e6e6;
 }

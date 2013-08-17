@@ -65,10 +65,15 @@ addGithubData = (data,callback)->
   user: 'kissygalleryteam',
   repo: data.name
   },(err,result)->
+    unless result
+      return false
     unless result.message
       keys = ['forks','watchers','updated_at','created_at','description','size']
       for key in keys
-        data[key] = result[key]
+        if key is 'updated_at' or key is 'created_at'
+          data[key] = new Date(result[key]).getTime()
+        else
+          data[key] = result[key]
       callback && callback(data)
   )
 ###

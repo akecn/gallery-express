@@ -1,30 +1,32 @@
-S = KISSY
-S.use('node,ajax',(S,Node,io)->
-  $ = Node.all
-  $search = $ '#J_Search'
-  $list = $ '#J_List'
-  $listItem = $list.all 'li'
+$ = jQuery
+$('#J_List').mixitup()
+setTimeout(()->
+  try
+    document.domain="kissyui.com"
+    parent = window.parent
+    height = document.getElementById('J_List').scrollHeight+260;
+    iframe = parent.document.getElementsByTagName('iframe')[0];
+    iframe.height = height
 
-  $search.on 'keyup',(ev)->
-    letter = $(ev.target).val()
-    if letter is ''
-      $listItem.show()
-      return true;
+  $('.J_SortNew').trigger('click')
+,1000)
 
-    $listItem.hide()
-    $listItem.each(($item)->
-      data = [$item.attr('data-name'),$item.attr('data-desc'),$item.attr('data-author')]
-      reg = new RegExp(letter)
-      S.each(data,(d)->
-        if reg.test d
-          $item.show()
-          return true
-      )
-    )
+$search = $ '#J_Search'
+$list = $ '#J_List'
 
-  document.domain="kissyui.com"
-  parent = window.parent
-  height = document.getElementById('J_List').scrollHeight+260;
-  iframe = parent.document.getElementsByTagName('iframe')[0];
-  iframe.height = height
-)
+$search.on 'keyup',(ev)->
+  letter = $(ev.target).val()
+  $listItem = $list.children 'li'
+  if letter is ''
+    $listItem.show()
+    return true;
+  $listItem.hide()
+  $listItem.each(()->
+    $item = $(this)
+    data = [$item.attr('data-name'),$item.attr('data-desc'),$item.attr('data-author')]
+    reg = new RegExp(letter)
+    for d in data
+      if reg.test d
+        $item.show()
+        return true
+  )

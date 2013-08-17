@@ -2,12 +2,14 @@ html
     head
         meta(charset='utf-8')
         title= 'KISSY-Gallery'
-        link(rel='stylesheet', href='http://a.tbcdn.cn/s/kissy/1.3.0/css/dpl/??base-min.css')
+        link(rel='stylesheet', href='http://g.tbcdn.cn/kissy/k/1.3.1/css/dpl/??base-min.css')
+        link(rel='stylesheet', href='http://g.tbcdn.cn/kissy/k/1.3.1/??button/assets/dpl-min.css')
         link(rel='stylesheet', href='/stylesheets/list.css')
-        script(src='http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js')
+        script(src='http://code.jquery.com/jquery-2.0.3.min.js')
+        script(src='/javascripts/jquery.mixitup.min.js')
     body
         div.content
-            ul.row.btn-wrapper
+            ul.row.btn-wrapper.J_Grid
                 li.span3
                     a(href="http://mobile.kissyui.com/",target="_blank").all-com-btn.mobile-btn
                         span Kissy Mobile
@@ -22,10 +24,15 @@ html
                 span 社区贡献组件汇集地
                 div.search-box
                     input#J_Search(type="text",placeholder="搜索gallery组件")
+            div.controls.ks-button-group
+                button.sort.ks-button.J_SortNew(data-sort="data-create",data-order="asc",title="按照组件fork到官方库的时间排序") 最新 ↓
+                button.sort.ks-button(data-sort="data-star",data-order="asc",title="按照组件的star数排序") 热度 ↓
+                button.sort.ks-button(data-sort="data-name",data-order="desc",title="按照组件名称字母数排序") 字母 ↑
+                button.sort.ks-button(data-sort="data-updated",data-order="desc",title="按照组件更新时间排序") 更新 ↓
 
             ul.component-list.row#J_List
                 each item,i in components
-                    li.item(data-name="#{item.name}",data-desc="#{item.desc}",data-author="#{item.author.name}")
+                    li.item.mix(data-name="#{item.name}",data-desc="#{item.desc}",data-author="#{item.author.name}",data-star="#{item.watchers}",data-create="#{item.created_at}",data-updated="#{item.updated_at}")
                         a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
                         title="#{item.name} by #{item.author.name}",target="_blank"
                         )
