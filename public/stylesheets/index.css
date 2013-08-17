@@ -231,8 +231,8 @@
     padding: 0;
 }
 
-html {
-    background: #e3e1e1;
+#page {
+    background: #F5F5F5;
 }
 
 body {
@@ -310,6 +310,11 @@ img {
     margin: 0 auto;
     background: url("/images/logo.png") no-repeat;
 }
+.logo a{
+    display: block;
+    height: 270px;
+    width:700px;
+}
 
 .guide {
     width: 90%;
@@ -345,17 +350,17 @@ img {
 }
 
 .guide .dev {
-    float: left;
+    float: right;
     background-position: 32px 0;
 }
 
 .guide .spec {
     display: inline-block;
-    background-position: -224px 0;
+    background-position: -225px 0;
 }
 
 .guide .tool {
-    float: right;
+    float: left;
     background-position: -480px 0;
 }
 
@@ -471,33 +476,15 @@ img {
 }
 
 .component {
-    padding: 97px 43px 112px 48px;
+    padding:40px;
+    position: relative;
 }
 
-.component .has-cover {
-    -webkit-perspective: 800;
-}
 
-.component .wrap {
-    -webkit-transform-style: preserve-3d;
-    -webkit-transition: 1s;
+.component-list{
+    margin: 0;
+    padding: 0;
 }
-
-.component .has-cover:hover .wrap {
-    -webkit-transform: rotateY(180deg);
-}
-
-.component .has-cover .detail-link-wrap {
-    line-height: inherit;
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: rotateY(180deg);
-}
-
-.component .has-cover .item-link {
-    line-height: 188px;
-    -webkit-backface-visibility: hidden;
-}
-
 .component-list .item {
     position: relative;
     display: inline-block;
@@ -507,11 +494,6 @@ img {
     vertical-align: top;
 }
 
-.component-list .item iframe {
-    position: absolute;
-    bottom: 10px;
-    right: 0;
-}
 
 .component-list .item-link {
     position: absolute;
@@ -540,8 +522,8 @@ img {
     height:214px;
 }
 .component-list .name {
-    height: 80px;
-    line-height: 90px;
+    height: 60px;
+    line-height: 50px;
     font-size: 18px;
     color: #333;
 }
@@ -576,32 +558,17 @@ img {
 .component-list .demo-link {
     position: absolute;
     right: 0;
-    top: 10px;
+    bottom: 10px;
     height: 24px;
     padding: 0 10px 0 5px;
     line-height: 24px;
     background: #DB8167;
     color: #fff;
-
-    -webkit-transition: padding .3s;
-    -moz-transition: padding .3s;
-    -ms-transition: padding .3s;
-    -o-transition: padding .3s;
-    transition: padding .3s;
 }
-
-.component-list .demo-link:hover {
-    padding: 0 20px 0 15px;
-}
-
-.component-list .demo-link:before {
-    content: "";
+.component-list .star{
     position: absolute;
-    left: -31px;
-    top: 0;
-    border-width: 12px 16px;
-    border-style: solid;
-    border-color: transparent #DB8167 transparent transparent;
+    left: 15px;
+    bottom: 13px;
 }
 
 .contact {
@@ -632,5 +599,24 @@ img {
     font-size: 14px;
 }
 
+.controls .ks-button {
+    padding: 10px 12px;
+}
+.controls .active {
+    color: #333;
+    background-position: 0 -15px;
+    transition: background-position 0.1s linear;
+    background-color: #e6e6e6;
+}
 
-
+.component .search-box{
+    position: absolute;
+    top: 40px;
+    left:310px;
+}
+.component .search-box input{
+    width:300px;
+    padding:10px 12px;
+    border-radius: 3px;
+    border:1px solid #ccc;
+}

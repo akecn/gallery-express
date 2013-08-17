@@ -19,6 +19,19 @@ exports.index = function (req, res) {
         }
     });
 };
+exports.coms = function (req, res) {
+    fs.readFile(dataJson, {
+        encoding: 'utf8'
+    }, function (err, data) {
+        if (err) {
+            console.log(err);
+        } else {
+            var data = JSON.parse(data);
+            data.pretty = true;
+            res.render('coms', data);
+        }
+    });
+};
 
 exports.list = function (req, res) {
     fs.readFile(dataJson, {

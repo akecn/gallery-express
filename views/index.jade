@@ -11,13 +11,13 @@ html
             #main
                 .guide
                     .bd
+                        a.guide-link.animated.tool(href="http://gallery.kissyui.com/coms")
+                            em 组件列表
                         a.guide-link.animated.dev(href="http://gallery.kissyui.com/quickstart")
                             em 15分钟开发kissy组件
                         a.guide-link.animated.spec(href="http://gallery.kissyui.com/guide"
                             target="_blank")
                             em gallery组件规范说明
-                        a.guide-link.animated.tool(href="#")
-                            em abc工具使用指南
                     .ft
                         a#J_Source.source.animated(href="https://github.com/kissygalleryteam")  source on github
                 .contribute
@@ -35,57 +35,6 @@ html
                                     .author-info.animated
                                         p.author-name #{item.name}
                                         p.author-email #{item.email}
-
-                .component
-                    ul.component-list
-                        each item in components
-                            if item.cover
-                                li.has-cover.item
-                                    .wrap
-                                        a.item-link(href="/#{item.name}/#{item.version}/guide/index.html"
-                                        title="#{item.name}"
-                                        target="_blank")
-                                            p.cover-wrapper
-                                                img.cover(src="#{item.cover}")
-
-                                            p.cover-name #{item.name}
-
-                                        .detail-link-wrap
-                                            a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
-                                            title="#{item.name}"
-                                            target="_blank")
-                                                strong.name.l-block #{item.name}
-                                                span.author.l-block #{item.author.name}
-                                                    img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
-                                                span.desc.l-block #{item.desc}
-                                                iframe.github-star(allowtransparency="true"
-                                                frameborder="0"
-                                                scrolling="0"
-                                                width="170"
-                                                height="30"
-                                                src="http://ghbtns.com/github-btn.html?user=kissygalleryteam&repo=#{item.name}&type=watch&count=true&size=large")
-
-                                            a.demo-link(href="/#{item.name}/#{item.version}/demo/index.html"
-                                            target="_blank") demo
-                            else
-                                li.item
-                                    .detail-link-wrap
-                                        a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
-                                        title="#{item.name}"
-                                        target="_blank")
-                                            strong.name.l-block #{item.name}
-                                            span.author.l-block #{item.author.name}
-                                                img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
-                                            span.desc.l-block #{item.desc}
-                                            iframe.github-star(allowtransparency="true"
-                                                frameborder="0"
-                                                scrolling="0"
-                                                width="130"
-                                                height="30"
-                                                src="http://ghbtns.com/github-btn.html?user=kissygalleryteam&repo=#{item.name}&type=watch&count=true&size=large")
-
-                                        a.demo-link(href="/#{item.name}/#{item.version}/demo/index.html"
-                                        target="_blank") demo
 
             #footer
                 .contact
