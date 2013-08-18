@@ -4,7 +4,7 @@ setTimeout(()->
   try
     document.domain="kissyui.com"
     parent = window.parent
-    height = document.getElementById('J_List').scrollHeight+260;
+    height = document.getElementById('J_List').scrollHeight+400;
     iframe = parent.document.getElementsByTagName('iframe')[0];
     iframe.height = height
 
