@@ -1,6 +1,6 @@
 # 从kissy gallery的重构谈js框架社区建设
 
-kissy是阿里几百号前端使用的js框架，生态圈的基础建设却非常薄弱，社区贡献代码的人寥寥无几。
+kissy是阿里前端自主开发的js框架，但生态圈的基础建设却非常薄弱，社区贡献代码的人寥寥无几。
 kissy的困境，算是国内js框架的缩影，国内不缺js框架，但出现完整生态圈形态的极少，所以我们都很羡慕jQuery。
 
 kissy早期的社区建设借鉴的是yui3 gallery，但发现这路子行不通，贡献代码的成本太高，从提交到部署整个流程走完，基本上把开发者吓跑了。
@@ -76,6 +76,10 @@ yui3 gallery是一个库，开发者提交的代码都往里面丢，这样做�
 * 不利用组件数据的追踪
 
 kissy gallery是把gallery当成github中的组织，各个组件独立成库，化整为零，开发者对自己的组件负责。
+
+日后做组件的数据报表时，就可以使用github的api拉取各个组件的的信息，比如star数、fork数、创建时间、更新时间、issue等。
+
+如果采用yui3 gallery的方式，很难满足数据上的需求。
 
 ### 使用markdown解决文档混乱问题
 
@@ -227,7 +231,7 @@ kissy gallery的构建工具可以自动拉取grunt构建的依赖，这样您�
 
 文档、demo的部署，最省力的方式还是直接使用github的静态文件功能。
 
-如果像kissy gallery一样使用独立的文档服务器，会麻烦些，您还需要写个服务处理组件库代码的同步，篇幅有限，就不展开论述。
+如果像kissy gallery一样使用独立的文档服务器，会麻烦些，您还需要写个服务处理组件库代码的同步等。
 
 ### 谈谈社区的运营
 
@@ -248,16 +252,16 @@ kissy gallery的构建工具可以自动拉取grunt构建的依赖，这样您�
 万事开头难，社区的建设难在初期，当您的社区有100+的组件，40+的作者时，“孩子”就可以断奶，运转起来。
 
 
-kissy gallery：http://gallery.kissyui.com
-yui3 gallery：https://github.com/yui/yui3-gallery
-node-github: http://mikedeboer.github.io/node-github/
-github的token申请：https://github.com/settings/applications
-uploader: https://github.com/kissygalleryteam/uploader
-ShellJS: https://github.com/arturadib/shelljs
-marked：https://github.com/chjj/marked
-yeoman：http://yeoman.io
-yeoman中文教程：http://www.36ria.com/6144
-grunt：http://gruntjs.com/
+* kissy gallery：http://gallery.kissyui.com
+* yui3 gallery：https://github.com/yui/yui3-gallery
+* node-github: http://mikedeboer.github.io/node-github/
+* github的token申请：https://github.com/settings/applications
+* uploader: https://github.com/kissygalleryteam/uploader
+* ShellJS: https://github.com/arturadib/shelljs
+* marked：https://github.com/chjj/marked
+* yeoman：http://yeoman.io
+* yeoman中文教程：http://www.36ria.com/6144
+* grunt：http://gruntjs.com/
 
 
 
