@@ -3,35 +3,69 @@
 kissy是阿里几百号前端使用的js框架，生态圈的基础建设却非常薄弱，社区贡献代码的人寥寥无几。
 kissy的困境，算是国内js框架的缩影，国内不缺js框架，但出现完整生态圈形态的极少，所以我们都很羡慕jQuery。
 
-kissy早期的社区建设借鉴的是yui3 gallery，但发现这路子行不通，贡献代码的成本太高，开发者不愿意跟你玩。
+kissy早期的社区建设借鉴的是yui3 gallery，但发现这路子行不通，贡献代码的成本太高，从提交到部署整个流程走完，基本上把开发者吓跑了。
 
-所以今年重构了gallery社区，我们希望建一个像jQuery一样的广场，把门槛拿掉，只要开发者知道地方都能来玩，并且能玩得开心。
+所以今年重构了gallery社区，通过建立工具和自动化的系统，降低开发者的贡献成本，我们希望建一个像jQuery一样的广场，尽可能拿掉门槛。
 
+我们用到的工具有github、Nodejs、yeoman、grunt、markdown、RMS（阿里的cdn发布系统）。
 
 ### 社区依托于github
 
-大部分的js框架社区代码都是放在github上，但很少人会用到github的api。
-
-github开发的api非常有用，我们的部署环境和文档环境想要串起来，离不开API的使用。
+github是前端工程师的宝库，github还有开放大部分功能的API，缺少这些API，我们很难完成自动化的流程，所以github是社区最好的归属。
 
 这里推荐个Node模块：*node-github*，封装了github的大部分接口，调用非常方便。
 
-想要调用github接口，绕不开用户验证，推荐使用token验证：
+github的部分API是需要账户验证的，可以使用用户名和密码进行验证，比如下面的代码：
+
+    var GitHubApi = require("github");
+    var github = new GitHubApi({
+        version: "3.0.0",
+        timeout: 5000
+    });
+    github.authenticate({
+        type: "basic",
+        username: username,
+        password: password
+    });
+
+不推荐使用这样的，会把用户名和密码暴露出去，github还支持token验证，进入github的applications页面创建一个token（一般选择“Personal Access Tokens”即可）。
 
     github.authenticate({
         type: "oauth",
-        token: "这是用户名token"
+        token: "这是你的token"
     });
 
-还需要个*shelljs*模块用于服务器执行*git pull*拉取库代码，在使用中发现一些坑，比如pull时老是提示代码已经最新等。
+接下来我们来完成文档服务器（域名：gallery.kissyui.com）pull一个开发者开发的组件uploader的例子：
 
-    shell.exec('cd uploader && git pull', function(code, output) {
-        if (code === 0) {
-            log('git pull success');
-        } else {
-            log('git pull fail');
-        }
-    });
+	var shell = require('shelljs');
+	var reposName = 'uploader';
+	github.repos.get({
+	    //组织名
+		user: 'kissygalleryteam',
+		//库名
+		repo: reposName
+	}, function(err) {
+		if (err) {
+			res.write('error to find repo');
+			res.end();
+		} else {
+		    //进入uploader目录，执行git pull命令，更新文档服务器上的uploader库代码
+            shell.exec('cd uploader && git pull', function(code, output) {
+                if (code === 0) {
+                    log('git pull success');
+                } else {
+                    log('git pull fail');
+                }
+            });
+		}
+	});
+
+实际生产环境的代码要比上面的demo复杂的多，要考虑库是否存在，第一次是git clone等。
+
+这里我们用到了*shelljs*模块，来运行git的命令。
+
+在使用中发现一些坑，比如pull时老是提示代码已经最新...
+
 
 ### 打破“大锅饭”
 
@@ -41,7 +75,7 @@ yui3 gallery是一个库，开发者提交的代码都往里面丢，这样做�
 * 库代码很臃肿，用户如果有修改的需求，往往一个组件需要clone整个gallery库
 * 不利用组件数据的追踪
 
-kissy gallery是把gallery当成github中的组织，各个组件独立成库，化整为零，开发者对自己的组件负责，解决了上述说的问题。
+kissy gallery是把gallery当成github中的组织，各个组件独立成库，化整为零，开发者对自己的组件负责。
 
 ### 使用markdown解决文档混乱问题
 
@@ -55,13 +89,44 @@ kissy gallery是把gallery当成github中的组织，各个组件独立成库，
 
 我们没有使用github文档服务，而是建了个文档服务器，服务器上挂了markdown解析器*marked*，创建了一套统一的模版和皮肤。
 
+marked可以把md文件解析成html内容，结合jade就可以输出文档页面了。
+
+    var marked = require('marked');
+
+    function renderMD(urlPath, postTitle, res) {
+    	fs.readFile(urlPath, 'utf8', function(err, data) {
+    		if (err) {
+    		    //...
+    		} else {
+    			//词法分析
+    			var tokens = marked.lexer(data);
+    			//解析成html内容
+    			var htmlContent = marked.parser(tokens);
+    			res.render('show', {
+    			    postTitle:postTitle,
+    				blogContent: htmlContent,
+    				pretty: true
+    			});
+    		}
+    	});
+    }
+
+    exports.demoMd = function(req, res, next) {
+    	var baseUrl = process.cwd(),
+    		urlPath = path.resolve(baseUrl, './uploader/1.4/guide/index.md');
+
+    	renderMD(urlPath, 'Uploader 使用指南', res);
+    };
+
+配个路由，外部访问路径：http://gallery.kissyui.com/uploader/1.4/guide/index.html。
+
 当然这样做成本比较高，我们需要解决文档服务器拉取github库代码的同步问题，最省力的方式，还是使用github的文档服务。
 
 ### 版本号的纠结
 
 kissy gallery中版本号是作为目录名存在的，当用户使用时候，use的模块名会带上版本号，比如：
 
-    S.use('gallery/auth/1.5/index', function (S, Auth) {
+    KISSY.use('gallery/auth/1.5/index', function (S, Auth) {
         var auth = new Auth('#J_Auth');
     })
 
@@ -85,6 +150,53 @@ yeoman是解决工程问题的最佳工具，在yeoman下我们创建了kissy ga
 ![gallery fold](http://s1.36ria.com/201305/4922/35448_o.png)
 
 该目录包含了组件的js、doc、demo、Gruntfile.js（用于grunt打包）模版，开发者可以立即开始写hello world！
+
+yeoman就像个工厂，生产的不是产品，而是“流水线”，流水线可以保证输出工程的标准和高效率，网上还有generator-backbone、generator-angular、generator-ember等，您也可以定义属于自己的流水线。
+
+第一步：copy一个demo生成器
+
+    git clone https://github.com/passy/generator-generator.git
+
+将generator-generator代码拉到本地，然后改下目录名称，比如将其改成generator-XXX。
+
+第二步：执行npm link命令，链接成全局模块，供开发时使用。
+
+第三步：修改app/index.js,类继承于yeoman.generators.Base
+
+    var util = require('util');
+    var path = require('path');
+    var yeoman = require('yeoman-generator');
+
+    module.exports = XXX;
+    function XXX(args, options, config) {
+        yeoman.generators.Base.apply(this, arguments);
+        console.log("模块初始化完成！");
+    }
+
+    util.inherits(Gallery, yeoman.generators.Base);
+
+到这里，你可以试着在命令行工具，输入yo XXX，正常的话就会在命令行界面打印出文案。
+
+在yeoman中，可以定义些问询，让用户配置参数，比如下面的代码：
+
+    XXX.prototype.askAuthor = function(){
+        var cb = this.async();
+        var prompts = [{
+            name: 'author',
+            message: 'author of component:',
+            default: 'kissy-team'
+        }];
+
+        this.prompt(prompts, function (err, props) {
+            if (err) {
+                return this.emit('error', err);
+            }
+            this.author = props.author;
+            cb();
+        }.bind(this));
+    }
+
+一个最简单的流水线构造完毕，更详细的技术细节请看文章后面的《yeoman中文教程》链接。
 
 同时我们还需要解决代码的打包压缩问题，在kissy gallery中我们需要把待发布的代码文件打包并压缩到build目录下，这时候就轮到grunt上场了。
 
@@ -139,9 +251,12 @@ kissy gallery的构建工具可以自动拉取grunt构建的依赖，这样您�
 kissy gallery：http://gallery.kissyui.com
 yui3 gallery：https://github.com/yui/yui3-gallery
 node-github: http://mikedeboer.github.io/node-github/
+github的token申请：https://github.com/settings/applications
+uploader: https://github.com/kissygalleryteam/uploader
 ShellJS: https://github.com/arturadib/shelljs
 marked：https://github.com/chjj/marked
 yeoman：http://yeoman.io
+yeoman中文教程：http://www.36ria.com/6144
 grunt：http://gruntjs.com/
 
 
