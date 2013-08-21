@@ -9,6 +9,10 @@ kissy早期的社区建设借鉴的是yui3 gallery，但发现这路子行不通
 
 我们用到的工具有github、Nodejs、yeoman、grunt、markdown、RMS（阿里的cdn发布系统）。
 
+社区系统的大致流程如下：
+
+![flow](http://www.36ria.com/wp-content/uploads/2013/08/mockup.png)
+
 ### 社区依托于github
 
 github是前端工程师的宝库，github还有开放大部分功能的API，缺少这些API，我们很难完成自动化的流程，所以github是社区最好的归属。
