@@ -27,17 +27,18 @@ html
             div.controls.ks-button-group
                 button.sort.ks-button.J_SortNew(data-sort="data-create",data-order="asc",title="按照组件fork到官方库的时间排序") 最新 ↓
                 button.sort.ks-button(data-sort="data-star",data-order="asc",title="按照组件的star数排序") 热度 ↓
+                button.sort.ks-button(data-sort="data-updated",data-order="asc",title="按照组件更新时间排序") 更新 ↓
                 button.sort.ks-button(data-sort="data-name",data-order="desc",title="按照组件名称字母数排序") 字母 ↑
-                button.sort.ks-button(data-sort="data-updated",data-order="desc",title="按照组件更新时间排序") 更新 ↓
 
             ul.component-list.row#J_List
                 each item,i in components
-                    li.item.mix(data-name="#{item.name}",data-desc="#{item.desc}",data-author="#{item.author.name}",data-star="#{item.watchers}",data-create="#{item.created_at}",data-updated="#{item.updated_at}")
-                        a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
-                        title="#{item.name} by #{item.author.name}",target="_blank"
-                        )
-                            =item.name
-                        p.desc #{item.desc}
+                    if !item.beta
+                        li.item.mix(data-name="#{item.name}",data-desc="#{item.desc}",data-author="#{item.author.name}",data-star="#{item.watchers}",data-create="#{item.created_at}",data-updated="#{item.updated_at}")
+                            a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
+                            title="#{item.name} by #{item.author.name}",target="_blank"
+                            )
+                                =item.name
+                            p.desc #{item.desc}
             ul.row.btn-wrapper
                 li.span4
                     a(href="http://gallery.kissyui.com/quickstart",target="_blank").all-com-btn.guide-btn 15分钟开发kissy组件

@@ -13,10 +13,10 @@ setTimeout(()->
 
 $search = $ '#J_Search'
 $list = $ '#J_List'
+$listItem = $list.children 'li'
 
 $search.on 'keyup',(ev)->
   letter = $(ev.target).val()
-  $listItem = $list.children 'li'
   if letter is ''
     $listItem.show()
     return true;
@@ -29,4 +29,20 @@ $search.on 'keyup',(ev)->
       if reg.test d
         $item.show()
         return true
+  )
+#点击标签
+$tag = $ '.J_Tag'
+$tag.on 'click',(ev)->
+  $tag.removeClass 'tag-current'
+  $target = $(ev.target)
+  $target.addClass 'tag-current'
+  #标签下的组件
+  coms = $target.attr 'data-coms'
+  $listItem.hide()
+  $listItem.each(()->
+    $item = $ this
+    name = $item.attr 'data-name'
+    reg = new RegExp(name)
+    if reg.test coms
+      $item.fadeIn "normal"
   )

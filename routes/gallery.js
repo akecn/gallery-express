@@ -6,7 +6,6 @@ var path = require('path'),
 	marked = require('marked'),
 	shell = require('shelljs'),
 	GitHubApi = require("github"),
-	// socket = require('socket.io'),
 	mime = require('./mime');
 
 var github = new GitHubApi({
@@ -18,89 +17,6 @@ github.authenticate({
 	type: "oauth",
 	token: "7d9e8064e9b3e5d5311c6eabe9fcf6d1243481f8"
 });
-
-/*var io = socket.listen(server);
-io.set('log level', 1);
-var reposArray = [];
-
-io.sockets.on('connection', function(socket) {
-	github.repos.getFromOrg({
-		org: 'kissygalleryteam',
-		per_page: 100
-	}, function(err, data) {
-		data.forEach(function(e) {
-			reposArray.push(e.name);
-		});
-		socket.emit('init', {
-			data: reposArray
-		});
-	});
-	socket.on('pull', function(data) {
-		pull(data.repos, socket);
-	});
-	socket.on('clone', function(data) {
-		clone(data.repos, socket);
-	});
-	socket.on('delete', function(data) {
-		del(data.repos, socket);
-	});
-});
-
-function pull(repos, socket) {
-	log('begin git pull');
-	log('target repos: ' + repos);
-
-	shell.exec('cd ' + repos + ' && git pull', function(code, output) {
-		if (code === 0) {
-			log('git pull success');
-			log('output: 'output);
-			socket.emit('complete', {
-				result: repos + ': pull success'
-			});
-		} else {
-			log('git pull fail');
-			log('output: 'output);
-			socket.emit('complete', {
-				result: repos + ': pull fail'
-			});
-		}
-	});
-}
-
-function clone(repos, socket) {
-	log('begin git clone');
-	log('target repos: ' + repos);
-	var reposUrl = 'https://github.com/kissygalleryteam/' + repos + '.git';
-
-	shell.exec('git clone ' + reposUrl, function(code, output) {
-		if (code === 0) {
-			log('git clone success');
-			log('output: 'output);
-			socket.emit('complete', {
-				result: repos + ': clone success'
-			});
-		} else {
-			log('git clone fail');
-			log('output: 'output);
-			socket.emit('complete', {
-				result: repos + ': clone fail'
-			});
-		}
-	});
-}
-
-function del(repos, socket) {
-	log('begin delete');
-	log('target repos: ' + repos);
-
-	if (shell.test('-d', repos)) {
-		shell.rm('-rf', repos);
-		log('delete complete');
-		socket.emit('complete', {
-			result: repos + ': delete complete'
-		});
-	}
-}*/
 
 function renderMD(urlPath, postTitle, res) {
 	log('target file: ' + urlPath);
@@ -200,15 +116,6 @@ exports.clear = function(req, res, next) {
 	res.end();
 };
 
-/*exports.sync = function(req, res, next) {
-	log('request for total sync');
-	reposArray = [];
-
-	res.render('sync', {
-		title: 'sync',
-		pretty: true
-	});
-};*/
 
 exports.syncSingle = function(req, res, next) {
 	log('request for single sync');

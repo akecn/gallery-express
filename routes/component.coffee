@@ -13,6 +13,7 @@ token: "7d9e8064e9b3e5d5311c6eabe9fcf6d1243481f8"
 })
 
 INFOS_URL = 'gallery-express/component-info.json'
+AUTHOR_TAGS = './gallery-db/author-tags.json'
 
 #同步组件信息
 syncCom = (com,callback)->
@@ -85,11 +86,44 @@ writeJson = (coms,callback)->
   fs.writeFile(INFOS_URL, JSON.stringify(coms),(err)->
     callback && callback(coms);
   )
+###
+将组件tag写入到标签库
+###
+writeTags = (com,callback)->
+  #组件名称
+  name = com.name
+  #组件标签
+  comTag = com.tag
+  if comTag == ''
+    console.log '组件不存在标签'
+    callback && callback(false)
+    return false
+  comTags = comTag.split(',')
+  fs.readFile AUTHOR_TAGS,'utf8',(err,tags)->
+    if err
+      console.log err
+      callback && callback(false)
+      return false
+    else
+      tags = JSON.parse tags
+      for comTag in comTags
+        #标签库存在此组件，予以追加
+        if tags[comTag]
+          tags[comTag] = tags[comTag] + ',' + name
+        else
+          tags[comTag] = name
+      fs.writeFile(AUTHOR_TAGS, JSON.stringify(tags),(err)->
+        if err
+          console.log err
+        else
+          callback && callback(tags);
+      )
 
 exports.sync = (req,res)->
   com = req.params.name
   syncCom(com,(data)->
-    res.json data
+    writeTags data,()->
+      res.json data
   )
 
 exports.syncAll = (req,res)->

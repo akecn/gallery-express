@@ -230,13 +230,9 @@
     margin: 0;
     padding: 0;
 }
-
-#page {
-    background: #F5F5F5;
-}
-
 body {
     font-family: "Microsoft YaHei";
+    background: #F5F5F5;
 }
 
 ul {
@@ -261,6 +257,10 @@ img {
 
 .l-fixed {
     position: fixed;
+}
+.clearfix{
+    overflow:auto;
+    _height:1%;
 }
 
 .l-block {
@@ -301,8 +301,10 @@ img {
 
 #footer {
     height: 189px;
-    background: #10222b;
-
+    background: #09C;
+    position:fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 .logo {
@@ -484,6 +486,7 @@ img {
 .component-list{
     margin: 0;
     padding: 0;
+    padding-bottom: 200px;
 }
 .component-list .item {
     position: relative;
@@ -498,9 +501,8 @@ img {
 .component-list .item-link {
     position: absolute;
     display: block;
-    width: 194px;
+    width: 200px;
     height: 250px;
-    padding: 10px 10px 14px 14px;
     background: #fff;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -522,21 +524,22 @@ img {
     height:214px;
 }
 .component-list .name {
-    height: 60px;
-    line-height: 50px;
+    padding: 15px;
+    padding-bottom: 0;
     font-size: 18px;
-    color: #333;
+    color: #fff;
+    background-color: #09C;
+}
+.component-list .item-link:hover .name,.component-list .item-link:hover .author{
+    background-color: #DB8167;
 }
 
 .component-list .author {
     position: relative;
-    height: 30px;
-    line-height: 30px;
-    width: 100%;
-    padding: 0 10px 0 14px;
-    margin-left: -14px;
-    background: #24abeb;
     color: #fff;
+    background-color: #09C;
+    padding: 10px 15px;
+    text-align: right;
 }
 
 .component-list .avatar {
@@ -547,18 +550,17 @@ img {
 }
 
 .component-list .desc {
-    margin: 15px 0 8px;
+    padding: 15px;
     color: #333;
     font-size: 14px;
     line-height: 26px;
-    height:80px;
-    overflow-y: hidden;
+    height:70px;
 }
 
 .component-list .demo-link {
     position: absolute;
-    right: 0;
-    bottom: 10px;
+    right: 18px;
+    bottom: 40px;
     height: 24px;
     padding: 0 10px 0 5px;
     line-height: 24px;
@@ -568,11 +570,10 @@ img {
 .component-list .star{
     position: absolute;
     left: 15px;
-    bottom: 13px;
+    bottom: 40px;
 }
 
 .contact {
-    height: 51px;
     padding: 43px 53px 57px;
 }
 
@@ -581,7 +582,9 @@ img {
     margin-right: 73px;
     color: #fff;
 }
-
+.contact .title{
+    font-size: 16px;
+}
 .contact .desc {
     margin-top: 15px;
     font-size: 24px;
@@ -619,4 +622,25 @@ img {
     padding:10px 12px;
     border-radius: 3px;
     border:1px solid #ccc;
+}
+.tag-list{
+    cursor: pointer;
+    padding:0;
+    margin: 0;
+    margin-top: 10px;
+}
+.tag-list li{
+    margin-right: 10px;
+    background-color: #fff;
+    padding: 4px 20px;
+    border: 1px solid #f5f5f5;
+    border-left: 4px solid #DB8167;
+    font-size: 14px;
+    border-radius: 3px;
+}
+.author-tags li{
+    border-left-color: rgba(77, 90, 98, 0.65098);
+}
+.tag-list li:hover,.tag-list .tag-current{
+   border-color: #09C;
 }

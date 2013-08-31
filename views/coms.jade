@@ -18,10 +18,16 @@ html
                     div.controls.ks-button-group
                         button.sort.ks-button.J_SortNew(data-sort="data-create",data-order="asc",title="按照组件fork到官方库的时间排序") 最新 ↓
                         button.sort.ks-button(data-sort="data-star",data-order="asc",title="按照组件的star数排序") 热度 ↓
+                        button.sort.ks-button(data-sort="data-updated",data-order="asc",title="按照组件更新时间排序") 更新 ↓
                         button.sort.ks-button(data-sort="data-name",data-order="desc",title="按照组件名称字母数排序") 字母 ↑
-                        button.sort.ks-button(data-sort="data-updated",data-order="desc",title="按照组件更新时间排序") 更新 ↓
                     div.search-box
                         input#J_Search(type="text",placeholder="可以使用组件名、作者、描述来筛选组件")
+                    ul.clearfix.tag-list.system-tags
+                        each com,tag in systemTags
+                            li.l-left.J_Tag(data-coms="#{com}") #{tag}
+                    ul.clearfix.tag-list.author-tags
+                        each com,tag in authorTags
+                            li.l-left.J_Tag(data-coms="#{com}") #{tag}
                     ul.component-list#J_List
                         each item in components
                             li.item.mix(data-name="#{item.name}",data-desc="#{item.desc}",data-author="#{item.author.name}",data-star="#{item.watchers}",data-create="#{item.created_at}",data-updated="#{item.updated_at}")
@@ -31,7 +37,6 @@ html
                                     target="_blank")
                                         strong.name.l-block #{item.name}
                                         span.author.l-block #{item.author.name}
-                                            img.avatar(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=30")
                                         span.desc.l-block #{item.desc}
                                     div.star star：#{item.watchers}
                                     a.demo-link(href="/#{item.name}/#{item.version}/demo/index.html"
@@ -39,7 +44,7 @@ html
 
             #footer
                 .contact
-                    ul
+                    ul.clearfix
                         li.item
                             p.title 开发者旺旺群
                             p.desc  600859238
