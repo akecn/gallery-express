@@ -301,7 +301,7 @@ img {
 
 #footer {
     height: 189px;
-    background: #09C;
+    background: #2ac56c;
     position:fixed;
     bottom: 0;
     width: 100%;
@@ -637,6 +637,7 @@ img {
     border-left: 4px solid #DB8167;
     font-size: 14px;
     border-radius: 3px;
+    margin-bottom:10px;
 }
 .author-tags li{
     border-left-color: rgba(77, 90, 98, 0.65098);
