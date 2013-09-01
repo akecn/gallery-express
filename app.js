@@ -33,7 +33,6 @@ app.get('/list', index.list);
 app.get('/coms', index.coms);
 
 app.get('/guide', gallery.guide);
-
 app.get('/quickstart', gallery.quickstart);
 
 app.post('/receive/write', receive.write);

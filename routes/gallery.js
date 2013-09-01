@@ -7,7 +7,7 @@ var path = require('path'),
 	shell = require('shelljs'),
 	GitHubApi = require("github"),
 	mime = require('./mime');
-
+var DB = './gallery-db/';
 var github = new GitHubApi({
 	version: "3.0.0",
 	timeout: 5000
@@ -89,7 +89,7 @@ function log(text) {
 exports.guide = function(req, res, next) {
 	log('request for guide');
 	var baseUrl = process.cwd(),
-		urlPath = path.resolve(baseUrl, './gallery-express/readme.md');
+		urlPath = path.resolve(baseUrl, DB+'readme.md');
 
 	renderMD(urlPath, 'Kissy Gallery组件开发规范说明', res);
 
@@ -98,11 +98,10 @@ exports.guide = function(req, res, next) {
 exports.quickstart = function(req, res, next) {
 	log('request for quickstart');
 	var baseUrl = process.cwd(),
-		urlPath = path.resolve(baseUrl, './gallery-express/quick-start.md');
-
+		urlPath = path.resolve(baseUrl, DB+'quick-start.md');
 	renderMD(urlPath, '十五分钟开发一个kissy组件', res);
-
 };
+
 
 exports.clear = function(req, res, next) {
 	var t = new Date().toLocaleString();
