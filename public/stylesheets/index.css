@@ -306,6 +306,9 @@ img {
     bottom: 0;
     width: 100%;
 }
+.index #footer{
+    position:static;
+}
 
 .logo {
     height: 270px;
@@ -600,6 +603,7 @@ img {
     line-height: 38px;
     background: #e3e1e1;
     font-size: 14px;
+    display: none;
 }
 
 .controls .ks-button {
