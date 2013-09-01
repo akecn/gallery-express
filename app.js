@@ -44,6 +44,7 @@ app.get('/component/info-sync/:name', component.sync);
 app.get('/component/all-sync', component.syncAll);
 app.get('/component/info/:name', component.getInfo);
 app.get('/clearlog', gallery.clear);
+app.get('/push-db', gallery.pushDb);
 
 app.get(/^\/sync\/(.+)$/, gallery.syncSingle);
 

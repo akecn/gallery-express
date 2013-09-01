@@ -183,6 +183,26 @@ exports.syncSingle = function(req, res, next) {
 	});
 };
 
+exports.pushDb= function(req, res){
+    if (!shell.which('git')) {
+        shell.echo('Sorry, this script requires git');
+        shell.exit(1);
+    }
+    shell.exec('cd gallery-db && git add -u && git commit -m "modify"', function(code, output) {
+        if (code === 0) {
+            log('git push success');
+            log('output: ' + output);
+            res.write('git push success');
+            res.end();
+        } else {
+            log('git push fail');
+            log('output: ' + output);
+            res.write('git push fail');
+            res.end();
+        }
+    });
+}
+
 exports.docs = function(req, res, next) {
 	log('request for doc');
 	var gallery = req.params[0],

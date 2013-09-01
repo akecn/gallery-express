@@ -18,7 +18,7 @@
     token: "7d9e8064e9b3e5d5311c6eabe9fcf6d1243481f8"
   });
 
-  INFOS_URL = 'gallery-express/component-info.json';
+  INFOS_URL = 'gallery-db/component-info.json';
 
   AUTHOR_TAGS = './gallery-db/author-tags.json';
 
