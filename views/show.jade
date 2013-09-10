@@ -1,29 +1,30 @@
 extends layout
 
 block content
-	div.color-line
-		i.one
-		i.two
-		i.three
-	div.container-fluid
-		div.row-fluid
-			div.span3.bs-docs-sidebar
-				h1= '导航'
-				ul.nav.nav-list.bs-docs-sidenav(data-spy='affix', data-offset-top='0')
-				a.nav-toggle.J_Toggle(href='javascript:void(0);')
-			div.bs-docs-sidebar-mini
-				a.nav-toggle.J_Toggle(href='javascript:void(0);')
-			div.span9.bs-docs-content
-				div.common-link
-					a.demo(href='../demo/index.html', target='_blank')= 'demo'
-					a.source(href='javascript:void(0);', target='_blank')= 'source'
-					a.home(href='http://gallery.kissyui.com/coms', target='_blank')= 'Kissy Gallery'
-				h1.title= title
-				iframe.github-star(allowtransparency='true', frameborder='0', scrolling='0', width='170px', height='30px')
-				hr.title-hr
-				!{blogContent}
-				h2= 'issues'
-				div.GithubEmbed
-					div.github-widget
-					a.btn.btn-priamry(target='_blank')= '向作者提问'
-				div(style="display:none;") <script src="http://s9.cnzz.com/stat.php?id=5379789&web_id=5379789&online=2" language="JavaScript"></script>
+    div.color-line
+        i.one
+        i.two
+        i.three
+    div.container-fluid
+        div.row-fluid
+            div.span3.bs-docs-sidebar
+                h1= '导航'
+                ul.nav.nav-list.bs-docs-sidenav(data-spy='affix', data-offset-top='0')
+                a.nav-toggle.J_Toggle(href='javascript:void(0);')
+            div.bs-docs-sidebar-mini
+                a.nav-toggle.J_Toggle(href='javascript:void(0);')
+            div.span9.bs-docs-content
+                div.common-link
+                    a.demo(href='../demo/index.html', target='_blank')= 'demo'
+                    a.source(href='javascript:void(0);', target='_blank')= 'source'
+                    a.home(href='http://gallery.kissyui.com/coms', target='_blank')= 'Kissy Gallery'
+                h1.title= title
+                iframe.github-star(allowtransparency='true', frameborder='0', scrolling='0', width='170px', height='30px')
+                p.add-star-tip kissy组件大赛进行中！如果 #{title} 组件帮到了亲，请给 #{title} 加个star吧 O(∩_∩)O
+                hr.title-hr
+                !{blogContent}
+                h2= 'issues'
+                div.GithubEmbed
+                    div.github-widget
+                    a.btn.btn-priamry(target='_blank')= '向作者提问'
+                div(style="display:none;") <script src="http://s9.cnzz.com/stat.php?id=5379789&web_id=5379789&online=2" language="JavaScript"></script>

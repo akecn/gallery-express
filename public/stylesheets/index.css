@@ -302,14 +302,8 @@ img {
 #footer {
     height: 189px;
     background: #435a6b;
-    position:fixed;
-    bottom: 0;
     width: 100%;
 }
-.index #footer{
-    position:static;
-}
-
 .logo {
     height: 270px;
     margin: 0 auto;
