@@ -4,7 +4,7 @@
 
 var config = require('../config');
 var fs = require('fs');
-var dataJson =  './gallery-express/component-info.json';
+var dataJson =  './gallery-db/component-info.json';
 //系统标签
 var systemTags = './gallery-db/system-tags.json';
 //用户定义的标签
