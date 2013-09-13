@@ -1,13 +1,14 @@
 $ = jQuery
-$('#J_List').mixitup()
-setTimeout(()->
-  try
-    document.domain="kissyui.com"
-    parent = window.parent
-    height = document.getElementById('J_List').scrollHeight+600;
-    iframe = parent.document.getElementsByTagName('iframe')[0];
-    iframe.height = height
+$list = $('#J_List')
+$list.mixitup()
+try
+  document.domain="kissyui.com"
+  parent = window.parent
+  height = $('body').height()+50;
+  iframe = parent.document.getElementsByTagName('iframe')[0];
+  iframe.height = height
 
+setTimeout(()->
   $('.J_SortNew').trigger('click')
 ,1000)
 
