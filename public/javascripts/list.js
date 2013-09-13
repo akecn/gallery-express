@@ -12,7 +12,7 @@
     try {
       document.domain = "kissyui.com";
       parent = window.parent;
-      height = document.getElementById('J_List').scrollHeight + 400;
+      height = document.getElementById('J_List').scrollHeight + 600;
       iframe = parent.document.getElementsByTagName('iframe')[0];
       iframe.height = height;
     } catch (_error) {}
