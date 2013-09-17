@@ -13,6 +13,13 @@ html
             #header
                 .logo
                     a(href="http://gallery.kissyui.com")
+                ul.clearfix.count-list
+                    li.l-left.animated.bounce
+                        p.number #{comsCount}
+                        p.text 组件数
+                    li.l-left.animated.bounce.authors-count
+                        p.number #{authorCount}
+                        p.text 贡献者
             #main
                 .component
                     div.controls.ks-button-group

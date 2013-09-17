@@ -293,10 +293,9 @@ img {
 }
 
 #header {
-    background: #10222b;
-}
-
-#main {
+    background: #0099cc;
+    padding:30px 60px;
+    position: relative;
 }
 
 #footer {
@@ -305,14 +304,44 @@ img {
     width: 100%;
 }
 .logo {
-    height: 270px;
-    margin: 0 auto;
     background: url("/images/logo.png") no-repeat;
+    height: 163px;
 }
 .logo a{
     display: block;
     height: 270px;
     width:700px;
+}
+.count-list{
+    position: absolute;
+    bottom: 50px;
+    right: 120px;
+    color: #fff;
+}
+.count-list li{
+    width:140px;
+    text-align: center;
+    display: none;
+}
+.count-list li p{
+    margin: 0;
+}
+.count-list li .number{
+    font-size: 50px;
+    font-weight: bold;
+}
+.count-list li .text{
+    font-size: 30px;
+}
+.count-list .bounce {
+    display: inline-block;
+    -webkit-animation-name: bounceInDown;
+    -moz-animation-name: bounceInDown;
+    -o-animation-name: bounceInDown;
+    animation-name: bounceInDown;
+}
+.count-list .authors-count{
+    -webkit-animation-duration: 2s;
 }
 
 .guide {
@@ -377,7 +406,8 @@ img {
 }
 
 .guide .source {
-    display: none;
+    display: block;
+    margin: 0 auto;
     width: 363px;
     height: 92px;
     line-height: 92px;
@@ -386,14 +416,6 @@ img {
     color: #fff;
     background: #24abeb url(/images/source.png) 10px no-repeat;
     font-size: 40px;
-}
-
-.guide .source.bounce {
-    display: inline-block;
-    -webkit-animation-name: bounceInDown;
-    -moz-animation-name: bounceInDown;
-    -o-animation-name: bounceInDown;
-    animation-name: bounceInDown;
 }
 
 .contribute {

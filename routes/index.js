@@ -10,6 +10,21 @@ var systemTags = './gallery-db/system-tags.json';
 //用户定义的标签
 var authorTags = './gallery-db/author-tags.json';
 
+function pageData(data){
+    var data = JSON.parse(data);
+    var authors = data.authors;
+    data.authorCount = 0;
+    data.comsCount = 0;
+    for(author in authors){
+        data.authorCount ++;
+    }
+    for(com in data.components){
+        data.comsCount ++;
+    }
+    data.pretty = true;
+    return data;
+}
+
 exports.index = function (req, res) {
     fs.readFile(dataJson, {
         encoding: 'utf8'
@@ -17,8 +32,7 @@ exports.index = function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            var data = JSON.parse(data);
-            data.pretty = true;
+            var data = pageData(data);
             res.render('index', data);
         }
     });
@@ -28,8 +42,7 @@ exports.coms = function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            var data = JSON.parse(data);
-            data.pretty = true;
+            var data = pageData(data);
             fs.readFile(systemTags,{encoding: 'utf8'},function(err,systemTagsData){
                 var systemTagsData = JSON.parse(systemTagsData);
                 data.systemTags = systemTagsData;
