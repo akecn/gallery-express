@@ -341,7 +341,7 @@ img {
     animation-name: bounceInDown;
 }
 .count-list .authors-count{
-    -webkit-animation-duration: 2s;
+    -webkit-animation-duration: 1s;
 }
 
 .guide {
