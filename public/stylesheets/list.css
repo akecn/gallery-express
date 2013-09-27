@@ -1,2 +1,164 @@
-.content{width:710px;font-family:"Microsoft YaHei"}.content h2{border-bottom:1px solid #ccc;padding-bottom:10px;margin-bottom:20px}.content h2 span{font-size:12px;margin-left:10px;color:#80c269;font-weight:400}.list-title{position:relative}.list-title .search-box{position:absolute;right:0;top:2px}.list-title .search-box input{font-size:12px;border:1px solid #ccc;padding:6px 10px;border-radius:20px;outline:0}.list-title .search-box input:focus{border-color:#80c269}.banner{margin-bottom:18px}ul{list-style:none;padding-left:0;margin-bottom:0}.component-list{margin-left:0;margin-bottom:20px}.component-list .desc{color:#666;margin-top:5px;height:20px;line-height:20px;padding-right:10px;overflow:hidden}.component-list li{width:180px;float:left;padding-left:34px}.btn-wrapper{padding:20px 0}.all-com-btn{padding:10px;height:14px;background-color:#24abeb;color:#fff;display:block;font-size:14px;text-decoration:none;text-align:center;width:120px;margin-right:10px;position:relative;-webkit-transition:all .3s;-moz-transition:all .3s;transition:all .3s}.all-com-btn span{position:absolute;left:0;top:0;padding-top:6px;width:100%;text-align:center;-webkit-transition:all .3s;-moz-transition:all .3s;transition:all .3s}.all-com-btn:hover{color:#fff}.all-com-btn:hover span{top:40px}.guide-btn{width:170px;margin-left:32px}.all-com-btn:before{position:absolute;height:100%;width:100%;-webkit-transition:all .3s;-moz-transition:all .3s;transition:all .3s;left:0;top:-100%}.all-com-btn:hover:before{top:7px}.mobile-btn{background-color:#24abeb}.mobile-btn:before{content:"kissy移动端框架"}.bui-btn{background-color:#d32}.bui-btn:before{content:"kissy后台ui控件集"}.abc-btn{background-color:#80c269}.abc-btn:before{content:"kissy项目构建工具"}.component-list{text-align:justify}.component-list .mix{display:none;opacity:0;vertical-align:top;background-color:#fff}.component-list .gap{display:inline-block}.component-list:after{content:'';display:inline-block;width:100%}.controls{margin-bottom:10px}.controls .ks-button{padding:6px 12px}.controls .active{color:#333;background-position:0 -15px;transition:background-position .1s linear;background-color:#e6e6e6}
-/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
+.content {
+  width: 710px;
+  font-family: "Microsoft YaHei";
+}
+.content h2 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+.content h2 span {
+  font-size: 12px;
+  margin-left: 10px;
+  color: #80c269;
+  font-weight: normal;
+}
+.list-title {
+  position: relative;
+}
+.list-title .search-box {
+  position: absolute;
+  right: 0;
+  top: 2px;
+}
+.list-title .search-box input {
+  font-size: 12px;
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  border-radius: 20px;
+  outline: none;
+}
+.list-title .search-box input:focus {
+  border-color: #80c269;
+}
+.banner {
+  margin-bottom: 18px;
+}
+ul {
+  list-style: none;
+  padding-left: 0px;
+  margin-bottom: 0;
+}
+.component-list {
+  margin-left: 0;
+  margin-bottom: 20px;
+}
+.component-list .desc {
+  color: #666;
+  margin-top: 5px;
+  height: 20px;
+  line-height: 20px;
+  padding-right: 10px;
+  overflow: hidden;
+}
+.component-list li {
+  width: 180px;
+  float: left;
+  padding-left: 34px;
+}
+.btn-wrapper {
+  padding: 20px 0;
+}
+.all-com-btn {
+  padding: 10px;
+  height: 14px;
+  background-color: #24abeb;
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+  width: 120px;
+  margin-right: 10px;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.all-com-btn span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 6px;
+  width: 100%;
+  text-align: center;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.all-com-btn:hover {
+  color: #fff;
+}
+.all-com-btn:hover span {
+  top: 40px;
+}
+.guide-btn {
+  width: 170px;
+  margin-left: 32px;
+}
+.all-com-btn:before {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  left: 0;
+  top: -100%;
+}
+.all-com-btn:hover:before {
+  top: 7px;
+}
+.mobile-btn {
+  background-color: #24abeb;
+}
+.mobile-btn:before {
+  content: "kissy移动端框架";
+}
+.bui-btn {
+  background-color: #dd3322;
+}
+.bui-btn:before {
+  content: "kissy后台ui控件集";
+}
+.abc-btn {
+  background-color: #80c269;
+}
+.abc-btn:before {
+  content: "kissy项目构建工具";
+}
+.component-list {
+  text-align: justify;
+  position: relative;
+}
+.component-list .item {
+  display: inline-block;
+  position: absolute;
+  vertical-align: top;
+  background-color: #fff;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.component-list .gap {
+  display: inline-block;
+}
+.component-list:after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+.controls {
+  margin-bottom: 10px;
+}
+.controls .ks-button {
+  padding: 6px 12px;
+}
+.controls .active {
+  color: #333;
+  background-position: 0 -15px;
+  transition: background-position 0.1s linear;
+  background-color: #e6e6e6;
+}

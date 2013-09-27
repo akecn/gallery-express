@@ -134,11 +134,18 @@ ul{
 
 .component-list{
   text-align: justify;
-  .mix{
-    display: none;
-    opacity: 0;
-    vertical-align: top;
-    background-color: #fff;
+  position:relative;
+
+ .item {
+  display:inline-block;
+  position:absolute;
+  vertical-align: top;
+  background-color: #fff;
+      -webkit-transition-duration:0.3s;
+    -moz-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
   }
   .gap{
     display: inline-block;

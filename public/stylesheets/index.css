@@ -2,230 +2,230 @@
     20%, 40%, 60%, 80%, 100% {
         -webkit-transform-origin: top center;
     }
-
+ 
     20% {
         -webkit-transform: rotate(15deg);
     }
-
+ 
     40% {
         -webkit-transform: rotate(-10deg);
     }
-
+ 
     60% {
         -webkit-transform: rotate(5deg);
     }
-
+ 
     80% {
         -webkit-transform: rotate(-5deg);
     }
-
+ 
     100% {
         -webkit-transform: rotate(0deg);
     }
 }
-
+ 
 @-moz-keyframes swing {
     20% {
         -moz-transform: rotate(15deg);
     }
-
+ 
     40% {
         -moz-transform: rotate(-10deg);
     }
-
+ 
     60% {
         -moz-transform: rotate(5deg);
     }
-
+ 
     80% {
         -moz-transform: rotate(-5deg);
     }
-
+ 
     100% {
         -moz-transform: rotate(0deg);
     }
 }
-
+ 
 @-o-keyframes swing {
     20% {
         -o-transform: rotate(15deg);
     }
-
+ 
     40% {
         -o-transform: rotate(-10deg);
     }
-
+ 
     60% {
         -o-transform: rotate(5deg);
     }
-
+ 
     80% {
         -o-transform: rotate(-5deg);
     }
-
+ 
     100% {
         -o-transform: rotate(0deg);
     }
 }
-
+ 
 @keyframes swing {
     20% {
         transform: rotate(15deg);
     }
-
+ 
     40% {
         transform: rotate(-10deg);
     }
-
+ 
     60% {
         transform: rotate(5deg);
     }
-
+ 
     80% {
         transform: rotate(-5deg);
     }
-
+ 
     100% {
         transform: rotate(0deg);
     }
 }
-
+ 
 @-webkit-keyframes rotateIn {
     0% {
         -webkit-transform-origin: center center;
         -webkit-transform: rotate(-200deg);
         opacity: 0;
     }
-
+ 
     100% {
         -webkit-transform-origin: center center;
         -webkit-transform: rotate(0);
         opacity: 1;
     }
 }
-
+ 
 @-moz-keyframes rotateIn {
     0% {
         -moz-transform-origin: center center;
         -moz-transform: rotate(-200deg);
         opacity: 0;
     }
-
+ 
     100% {
         -moz-transform-origin: center center;
         -moz-transform: rotate(0);
         opacity: 1;
     }
 }
-
+ 
 @-o-keyframes rotateIn {
     0% {
         -o-transform-origin: center center;
         -o-transform: rotate(-200deg);
         opacity: 0;
     }
-
+ 
     100% {
         -o-transform-origin: center center;
         -o-transform: rotate(0);
         opacity: 1;
     }
 }
-
+ 
 @keyframes rotateIn {
     0% {
         transform-origin: center center;
         transform: rotate(-200deg);
         opacity: 0;
     }
-
+ 
     100% {
         transform-origin: center center;
         transform: rotate(0);
         opacity: 1;
     }
 }
-
+ 
 @-webkit-keyframes bounceInDown {
     0% {
         opacity: 0;
         -webkit-transform: translateY(-2000px);
     }
-
+ 
     60% {
         opacity: 1;
         -webkit-transform: translateY(30px);
     }
-
+ 
     80% {
         -webkit-transform: translateY(-10px);
     }
-
+ 
     100% {
         -webkit-transform: translateY(0);
     }
 }
-
+ 
 @-moz-keyframes bounceInDown {
     0% {
         opacity: 0;
         -moz-transform: translateY(-2000px);
     }
-
+ 
     60% {
         opacity: 1;
         -moz-transform: translateY(30px);
     }
-
+ 
     80% {
         -moz-transform: translateY(-10px);
     }
-
+ 
     100% {
         -moz-transform: translateY(0);
     }
 }
-
+ 
 @-o-keyframes bounceInDown {
     0% {
         opacity: 0;
         -o-transform: translateY(-2000px);
     }
-
+ 
     60% {
         opacity: 1;
         -o-transform: translateY(30px);
     }
-
+ 
     80% {
         -o-transform: translateY(-10px);
     }
-
+ 
     100% {
         -o-transform: translateY(0);
     }
 }
-
+ 
 @keyframes bounceInDown {
     0% {
         opacity: 0;
         transform: translateY(-2000px);
     }
-
+ 
     60% {
         opacity: 1;
         transform: translateY(30px);
     }
-
+ 
     80% {
         transform: translateY(-10px);
     }
-
+ 
     100% {
         transform: translateY(0);
     }
 }
-
+ 
 * {
     margin: 0;
     padding: 0;
@@ -234,27 +234,27 @@ body {
     font-family: "Microsoft YaHei";
     background: #F5F5F5;
 }
-
+ 
 ul {
     list-style: none;
 }
-
+ 
 a {
     text-decoration: none;
 }
-
+ 
 img {
     max-width: 100%;
 }
-
+ 
 .l-left {
     float: left;
 }
-
+ 
 .l-right {
     float: right;
 }
-
+ 
 .l-fixed {
     position: fixed;
 }
@@ -262,25 +262,25 @@ img {
     overflow:auto;
     _height:1%;
 }
-
+ 
 .l-block {
     display: block;
 }
-
+ 
 .l-inline {
     display: inline;
 }
-
+ 
 .l-inline-block {
     display: inline-block;
     *display: inline;
     *zoom: 1;
 }
-
+ 
 .l-none {
     display: none;
 }
-
+ 
 .animated {
     -webkit-animation-duration: 1s;
     -moz-animation-duration: 1s;
@@ -291,20 +291,20 @@ img {
     -o-animation-fill-mode: both;
     animation-fill-mode: both;
 }
-
+ 
 #header {
     background: #0099cc;
     padding:30px 60px;
     position: relative;
 }
-
+ 
 #footer {
     height: 189px;
     background: #435a6b;
     width: 100%;
 }
 .logo {
-    background: url("/images/logo.png") no-repeat;
+    background: url(http://gallery.kissyui.com/images/logo.png) no-repeat;
     height: 163px;
 }
 .logo a{
@@ -343,19 +343,19 @@ img {
 .count-list .authors-count{
     -webkit-animation-duration: 1s;
 }
-
+ 
 .guide {
     width: 90%;
     margin: 0 auto;
     height: 450px;
     text-align: center;
 }
-
+ 
 .guide > .bd {
     margin-top: 87px;
     text-align: center;
 }
-
+ 
 .guide .guide-link {
     width: 30%;
     max-width: 284px;
@@ -363,9 +363,9 @@ img {
     padding-top: 148px;
     color: #333;
     font-size: 26px;
-    background: url(/images/guide.png) no-repeat;
+    background: url(http://gallery.kissyui.com/images/guide.png) no-repeat;
 }
-
+ 
 .guide .guide-link:hover {
     -webkit-transform-origin: top center;
     -moz-transform-origin: top center;
@@ -376,35 +376,35 @@ img {
     -o-animation-name: swing;
     animation-name: swing;
 }
-
+ 
 .guide .dev {
     float: right;
     background-position: 32px 0;
 }
-
+ 
 .guide .spec {
     display: inline-block;
     background-position: -225px 0;
 }
-
+ 
 .guide .tool {
     float: left;
     background-position: -480px 0;
 }
-
+ 
 .guide .guide-link em {
     display: block;
     margin-top: 20px;
     line-height: 73px;
-
+ 
     font-style: normal;
 }
-
+ 
 .guide .ft {
     margin-top: 65px;
     text-align: center;
 }
-
+ 
 .guide .source {
     display: block;
     margin: 0 auto;
@@ -414,10 +414,10 @@ img {
     padding-left: 109px;
     text-align: left;
     color: #fff;
-    background: #24abeb url(/images/source.png) 10px no-repeat;
+    background: #24abeb url(http://gallery.kissyui.com/images/source.png) 10px no-repeat;
     font-size: 40px;
 }
-
+ 
 .contribute {
     display: table;
     min-height: 240px;
@@ -427,7 +427,7 @@ img {
     background: #24abeb;
     overflow: hidden;
 }
-
+ 
 .contribute .hd {
     display: table-cell;
     width: 30px;
@@ -438,27 +438,27 @@ img {
     vertical-align: middle;
     text-align: center;
 }
-
+ 
 .contribute .title {
     font-size: 20px;
     color: #fff;
 }
-
+ 
 .contribute .bd {
     display: table-cell;
 }
-
+ 
 .author-list {
     margin-bottom: -10px;
 }
-
+ 
 .author-list .author {
     float: left;
     position: relative;
     margin-left: 12px;
     margin-bottom: 7px;
 }
-
+ 
 .author-list .author-info {
     position: absolute;
     display: none;
@@ -469,9 +469,9 @@ img {
     padding: 5px 10px;
     text-align: right;
     background: rgb(255, 255, 217);
-
+ 
 }
-
+ 
 .author-list .author:hover .author-info {
     display: block;
     -webkit-animation-name: rotateIn;
@@ -479,44 +479,52 @@ img {
     -o-animation-name: rotateIn;
     animation-name: rotateIn;
 }
-
+ 
 .author-list img {
     width: 70px;
     height: 70px;
 }
-
+ 
 .author-list .author-email {
     font-size: 12px;
 }
-
+ 
 .author-list .author-name {
     margin: 10px 0;
 }
 .author-name a{
     color:#666;
 }
-
+ 
 .component {
     padding:40px;
     position: relative;
 }
-
-
+ 
+ 
 .component-list{
     margin: 0;
     padding: 0;
-    padding-bottom: 200px;
+    margin-top；10px;
+    position:relative;
 }
 .component-list .item {
-    position: relative;
+    position: absolute;
     display: inline-block;
     width: 218px;
     height: 274px;
-    margin: 20px 12px 0 0;
     vertical-align: top;
+    -webkit-transform: translate(999px, 999px);
+    -moz-transform: translate(999px, 999px);
+    -ms-transform: translate(999px, 999px);
+    -o-transform: translate(999px, 999px);
+    transform: translate(999px, 999px);
+    -webkit-transition-duration:0.3s;
+    -moz-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
 }
-
-
 .component-list .item-link {
     position: absolute;
     display: block;
@@ -526,13 +534,13 @@ img {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+ 
 .component-list .cover {
     vertical-align: middle;
     max-width: 190px;
     max-height:214px;
 }
-
+ 
 .component-list .cover-name{
     line-height: 24px;
     height: 24px;
@@ -552,7 +560,7 @@ img {
 .component-list .item-link:hover .name,.component-list .item-link:hover .author{
     background-color: #DB8167;
 }
-
+ 
 .component-list .author {
     position: relative;
     color: #fff;
@@ -560,14 +568,14 @@ img {
     padding: 10px 15px;
     text-align: right;
 }
-
+ 
 .component-list .avatar {
     float: left;
     width: 30px;
     height: 30px;
     margin-right: 15px;
 }
-
+ 
 .component-list .desc {
     padding: 15px;
     color: #333;
@@ -575,7 +583,7 @@ img {
     line-height: 26px;
     height:70px;
 }
-
+ 
 .component-list .demo-link {
     position: absolute;
     right: 18px;
@@ -591,11 +599,11 @@ img {
     left: 15px;
     bottom: 40px;
 }
-
+ 
 .contact {
     padding: 43px 53px 57px;
 }
-
+ 
 .contact .item {
     float: left;
     margin-right: 73px;
@@ -608,11 +616,11 @@ img {
     margin-top: 15px;
     font-size: 24px;
 }
-
+ 
 .contact a {
     color: #fff;
 }
-
+ 
 .index-author {
     height: 38px;
     padding-right: 17px;
@@ -621,7 +629,7 @@ img {
     font-size: 14px;
     display: none;
 }
-
+ 
 .controls .ks-button {
     padding: 10px 12px;
 }
@@ -631,7 +639,7 @@ img {
     transition: background-position 0.1s linear;
     background-color: #e6e6e6;
 }
-
+ 
 .component .search-box{
     position: absolute;
     top: 40px;
@@ -648,6 +656,7 @@ img {
     padding:0;
     margin: 0;
     margin-top: 10px;
+    margin-bottom:20px;
 }
 .tag-list li{
     margin-right: 10px;
