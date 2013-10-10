@@ -73,7 +73,6 @@
             ,changeTagView:function(t){
                 var that = this;
                 that.clearTags();
-                that.clearBtns();
                 D.addClass(t,'tag-current');
             }
             ,clearTags:function(){
