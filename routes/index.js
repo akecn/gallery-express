@@ -56,14 +56,13 @@ exports.coms = function (req, res) {
                             arr.push({tagName:tagName,coms:authorTagsData[tagName]});
                         }
                         arr.sort(function(a,b){
-                            var al = a.coms.split(',').length;
-                            var bl = b.coms.split(',').length;
+                            var al = getComsLen(a.coms);
+                            var bl = getComsLen(b.coms);
                             return bl-al;
                         });
                         authorTagsData = {};
                         for(var i = 0;i<arr.length;i++){
                             var item = arr[i];
-                            console.log(item);
                             authorTagsData[item.tagName] = item.coms;
                         }
                         data.authorTags = authorTagsData;
@@ -87,3 +86,19 @@ exports.list = function (req, res) {
         }
     });
 };
+
+function getComsLen(coms){
+    coms = coms.split(',');
+    var newComs = [];
+    for(var i = 0;i<coms.length;i++){
+        var isExist = false;
+        for(var j = 0;j<newComs.length;j++){
+            if(coms[i] == newComs[j]){
+                isExist = true;
+                return true;
+            }
+        }
+        if(!isExist) newComs.push(coms[i]);
+    }
+    return newComs.length;
+}
