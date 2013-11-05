@@ -51,6 +51,21 @@ exports.coms = function (req, res) {
                         console.log(err);
                     }else{
                         var authorTagsData = JSON.parse(authorTagsData);
+                        var arr = [];
+                        for(tagName in authorTagsData){
+                            arr.push({tagName:tagName,coms:authorTagsData[tagName]});
+                        }
+                        arr.sort(function(a,b){
+                            var al = a.coms.split(',').length;
+                            var bl = b.coms.split(',').length;
+                            return bl-al;
+                        });
+                        authorTagsData = {};
+                        for(var i = 0;i<arr.length;i++){
+                            var item = arr[i];
+                            console.log(item);
+                            authorTagsData[item.tagName] = item.coms;
+                        }
                         data.authorTags = authorTagsData;
                         res.render('coms', data);
                     }

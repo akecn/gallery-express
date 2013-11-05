@@ -31,9 +31,12 @@ html
                     ul.clearfix.tag-list.system-tags
                         each com,tag in systemTags
                             li.l-left.J_Tag(data-coms="#{com}") #{tag}
-                    ul.clearfix.tag-list.author-tags
-                        each com,tag in authorTags
-                            li.l-left.J_Tag(data-coms="#{com}") #{tag}
+                    div.author-tags-wrapper.J_AuthorTagsWrapper
+                        ul.clearfix.tag-list.author-tags.J_AuthorTags
+                            each com,tag in authorTags
+                                li.l-left.J_Tag(data-coms="#{com}") #{tag}
+                    ul.clearfix.tag-list.system-tags
+                            li.l-left.J_ShowAll 显示所有标签
                     ul.component-list#J_List
                         each item in components
                             li.item.mix(data-name="#{item.name}",data-desc="#{item.desc}",data-author="#{item.author.name}",data-star="#{item.watchers}",data-create="#{item.created_at}",data-updated="#{item.updated_at}")

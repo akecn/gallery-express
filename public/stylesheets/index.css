@@ -505,7 +505,7 @@ img {
 .component-list{
     margin: 0;
     padding: 0;
-    margin-top；10px;
+    margin-top:10px;
     position:relative;
 }
 .component-list .item {
@@ -667,6 +667,13 @@ img {
     font-size: 14px;
     border-radius: 3px;
     margin-bottom:10px;
+}
+.author-tags-wrapper{
+    height: 40px;
+    overflow-y: hidden;
+}
+.author-tags{
+    margin-bottom: 0;
 }
 .author-tags li{
     border-left-color: rgba(77, 90, 98, 0.65098);

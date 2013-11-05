@@ -4,7 +4,8 @@
  * dafeng.xdf@taobao.com
  */
 ;KISSY.ready(function(S){
-    S.add('gallery-page/layout',function(S,Auto,Sort){
+    S.add('gallery-page/layout',function(S,Node,Auto,Sort){
+        var $ = Node.all;
         var D = S.DOM,E = S.Event;
         var container = S.get('#J_List');
         var controls = S.get('.controls');
@@ -44,6 +45,25 @@
                     that.autoHeight();
                     that.execSort();
                 },10);
+
+                var $showAll = $('.J_ShowAll');
+
+                var isShowAll = false;
+
+                var $tagList = $('.J_AuthorTagsWrapper');
+
+                var height = $tagList.height();
+
+                $showAll.on('click', function(ev) {
+                    if (isShowAll) {
+                        isShowAll = false;
+                        $tagList.animate({height:height},0.3);
+                    } else {
+                        var ulHeight = $tagList.children('ul').height();
+                        $tagList.animate({height:ulHeight},0.3);
+                        isShowAll = true;
+                    }
+                });
             }
             ,autoHeight:function(){
                 try {
@@ -192,6 +212,7 @@
         });
         return Layout;
     },{requires:[
+        'node',
         'gallery/autoResponsive/1.3/base',
         'gallery/autoResponsive/1.3/plugin/sort',
         'dom',
