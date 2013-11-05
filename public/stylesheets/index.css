@@ -656,7 +656,6 @@ img {
     padding:0;
     margin: 0;
     margin-top: 10px;
-    margin-bottom:20px;
 }
 .tag-list li{
     margin-right: 10px;
@@ -669,7 +668,7 @@ img {
     margin-bottom:10px;
 }
 .author-tags-wrapper{
-    height: 80px;
+    height: 82px;
     overflow-y: hidden;
 }
 .author-tags{
