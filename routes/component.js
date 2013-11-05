@@ -141,7 +141,7 @@
     }
     comTags = comTag.split(',');
     return fs.readFile(AUTHOR_TAGS, 'utf8', function(err, tags) {
-      var _i, _len;
+      var reg, _i, _len;
 
       if (err) {
         console.log(err);
@@ -152,7 +152,10 @@
         for (_i = 0, _len = comTags.length; _i < _len; _i++) {
           comTag = comTags[_i];
           if (tags[comTag]) {
-            tags[comTag] = tags[comTag] + ',' + name;
+            reg = new RegExp(name);
+            if (!reg.test(tags[comTag])) {
+              tags[comTag] = tags[comTag] + ',' + name;
+            }
           } else {
             tags[comTag] = name;
           }
@@ -230,3 +233,7 @@
   };
 
 }).call(this);
+
+/*
+//@ sourceMappingURL=component.map
+*/

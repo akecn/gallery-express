@@ -40,7 +40,11 @@ html
                             title="#{item.name} by #{item.author.name}",target="_blank"
                             )
                                 =item.name
-                            p.desc #{item.desc}
+                            p.desc
+                                if item.desc
+                                    =item.desc
+                                else
+                                    =item.description
             ul.row.btn-wrapper
                 li.span4
                     a(href="http://gallery.kissyui.com/quickstart",target="_blank").all-com-btn.guide-btn 15分钟开发kissy组件

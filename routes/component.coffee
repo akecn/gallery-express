@@ -109,7 +109,9 @@ writeTags = (com,callback)->
       for comTag in comTags
         #标签库存在此组件，予以追加
         if tags[comTag]
-          tags[comTag] = tags[comTag] + ',' + name
+          reg = new RegExp(name)
+          unless reg.test(tags[comTag])
+            tags[comTag] = tags[comTag] + ',' + name
         else
           tags[comTag] = name
       fs.writeFile(AUTHOR_TAGS, JSON.stringify(tags),(err)->

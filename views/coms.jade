@@ -43,7 +43,11 @@ html
                                     target="_blank")
                                         strong.name.l-block #{item.name}
                                         span.author.l-block #{item.author.name}
-                                        span.desc.l-block #{item.desc}
+                                        span.desc.l-block
+                                            if item.desc
+                                                =item.desc
+                                            else
+                                                =item.description
                                     div.star star：#{item.watchers}
                                     a.demo-link(href="/#{item.name}/#{item.version}/demo/index.html"
                                     target="_blank") demo
