@@ -293,7 +293,7 @@ img {
 }
  
 #header {
-    background: #0099cc;
+    background: #24ABEB;
     padding:30px 60px;
     position: relative;
 }
@@ -305,18 +305,20 @@ img {
 }
 .logo {
     background: url(http://gallery.kissyui.com/images/logo.png) no-repeat;
-    height: 163px;
+    height: 60px;
 }
 .logo a{
     display: block;
-    height: 270px;
-    width:700px;
+    height: 60px;
+    width:310px;
 }
 .count-list{
     position: absolute;
-    bottom: 50px;
+    top: 16px;
     right: 120px;
     color: #fff;
+    margin: 0;
+    width: 300px;
 }
 .count-list li{
     width:140px;
@@ -327,11 +329,11 @@ img {
     margin: 0;
 }
 .count-list li .number{
-    font-size: 50px;
+    font-size: 30px;
     font-weight: bold;
 }
 .count-list li .text{
-    font-size: 30px;
+    font-size: 20px;
 }
 .count-list .bounce {
     display: inline-block;
