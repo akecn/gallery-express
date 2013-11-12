@@ -501,6 +501,7 @@ img {
 .component {
     padding:40px;
     position: relative;
+    padding-top:10px;
 }
  
  
@@ -644,7 +645,7 @@ img {
  
 .component .search-box{
     position: absolute;
-    top: 40px;
+    top: 10px;
     left:310px;
 }
 .component .search-box input{
@@ -681,4 +682,14 @@ img {
 }
 .tag-list li:hover,.tag-list .tag-current{
    border-color: #09C;
+}
+.ads{
+    margin-top:40px;
+}
+.ads li{
+    margin-right:15px;
+}
+.ads img{
+    width:300px;
+    height:100px;
 }

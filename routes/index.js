@@ -9,6 +9,7 @@ var dataJson =  './gallery-db/component-info.json';
 var systemTags = './gallery-db/system-tags.json';
 //用户定义的标签
 var authorTags = './gallery-db/author-tags.json';
+var adJson = './gallery-db/ad.json';
 
 function pageData(data){
     var data = JSON.parse(data);
@@ -50,8 +51,8 @@ exports.coms = function (req, res) {
                     if(err){
                         console.log(err);
                     }else{
-                        var authorTagsData = JSON.parse(authorTagsData);
                         var arr = [];
+                        var authorTagsData = JSON.parse(authorTagsData);
                         for(tagName in authorTagsData){
                             arr.push({tagName:tagName,coms:authorTagsData[tagName]});
                         }
@@ -66,7 +67,28 @@ exports.coms = function (req, res) {
                             authorTagsData[item.tagName] = item.coms;
                         }
                         data.authorTags = authorTagsData;
-                        res.render('coms', data);
+                        //读取广告数据
+                        fs.readFile(adJson,{encoding: 'utf8'},function(err,ads){
+                            if(err){
+                                console.log(err);
+                            }else{
+                                ads = JSON.parse(ads);
+                                var newAds = [];
+                                for(i in ads){
+                                    var ad = ads[i];
+                                    var expire = ad.expire;
+                                    var timestamp = Number(new Date(expire).getTime());
+                                    var now = Number(new Date().getTime());
+                                    console.log(now-timestamp);
+                                    //不显示过期的广告
+                                    if(now-timestamp < 0){
+                                        newAds.push(ad);
+                                    }
+                                }
+                                data.ads = newAds;
+                                res.render('coms', data);
+                            }
+                        })
                     }
                 })
             })

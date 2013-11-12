@@ -20,6 +20,11 @@ html
                         p.number #{authorCount}
                         p.text 贡献者
             #main
+                ul.ads.clearfix
+                    each ad in ads
+                        li.l-left
+                            a(href="#{ad.url}",target="_blank",title="#{ad.title}")
+                                img(src="#{ad.image}")
                 .component
                     div.controls.ks-button-group
                         button.sort.ks-button.J_SortNew(data-sort="data-create",data-order="asc",title="按照组件fork到官方库的时间排序") 最新 ↓
