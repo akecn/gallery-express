@@ -9,6 +9,7 @@ var index = require('./routes/index'),
     receive = require('./routes/receive'),
     path = require('path');
 var component = require('./routes/component');
+var api = require('./routes/api');
 app.configure(function() {
     app.set('port', process.env.PORT || 3000);
     app.set('views', __dirname + '/views');
@@ -34,6 +35,7 @@ app.get('/coms', index.coms);
 
 app.get('/guide', gallery.guide);
 app.get('/quickstart', gallery.quickstart);
+app.get('/api/index-ad', api.indexAd);
 
 app.post('/receive/write', receive.write);
 
