@@ -47,13 +47,9 @@
                 },10);
 
                 var $showAll = $('.J_ShowAll');
-
                 var isShowAll = false;
-
                 var $tagList = $('.J_AuthorTagsWrapper');
-
                 var height = $tagList.height();
-
                 $showAll.on('click', function(ev) {
                     if (isShowAll) {
                         isShowAll = false;
@@ -88,7 +84,7 @@
                 var that = this;
                 that.changeTagView(target);
                 var coms = D.attr(target,'data-coms');
-                that.filter(coms);
+                that.filter(coms,['data-name']);
             }
             ,changeTagView:function(t){
                 var that = this;
@@ -120,8 +116,10 @@
                 });
                 E.on(search,'keyup',function(e){
                     var letter;
+                    var _i= -1;
                     var _target = e.target;
-                 
+                    var _coms = [];
+                    var _attrs = ['data-name','data-author','data-desc'];
                     letter = D.val(_target);
                     that.range.clear();
                     if (letter === '') {
@@ -131,22 +129,19 @@
                         that.autoResponsive.adjust();
                         return;
                     }
-                    S.each(listItem,function(i) {
-                      var d, data, reg, _i, _len;
-                      data = [D.attr(i,'data-name'), D.attr(i,'data-desc'), D.attr(i,'data-author')];
-                      reg = new RegExp(letter);
-                      for (_i = 0, _len = data.length; _i < _len; _i++) {
-                        d = data[_i];
-                        if (reg.test(d)) {
-                            that.range.filter({
-                                dataAttr:data,
-                                attrName:['data-name','data-desc','data-author'],
-                                hide:true
-                            });
-                          D.show(i);
-                        }
-                      }
-                    });
+                    function itemsFilter(attr){
+                        _i ++;
+                        S.each(listItem,function(i){
+                            var reg = new RegExp(letter,'i');
+                            if(reg.test(D.attr(i,attr))){
+                               _coms.push(D.attr(i,attr));
+                            }
+                        });
+                    }
+                    S.each(_attrs,function(j){
+                        !_coms.length && itemsFilter(j);
+                    })
+                    that.filter(_coms,[_attrs[_i]]);
                     that.autoResponsive.adjust();
                 });
             }
@@ -173,12 +168,14 @@
                 });
                 that.autoResponsive.adjust();
             }
-            ,filter:function(coms){
+            ,filter:function(coms,attrs){
                 var that = this;
-                var coms = that.distinct(coms.split(','));
+                if(!S.isArray(coms)){
+                    coms = that.distinct(coms.split(','));               
+                }
                 that.range.filter({
                     dataAttr:coms,
-                    attrName:['data-name'],
+                    attrName:attrs,
                     hide:true
                 });
                 that.autoResponsive.adjust();
