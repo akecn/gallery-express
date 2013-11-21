@@ -183,26 +183,6 @@ exports.syncSingle = function(req, res, next) {
 	});
 };
 
-exports.pushDb= function(req, res){
-    if (!shell.which('git')) {
-        shell.echo('Sorry, this script requires git');
-        shell.exit(1);
-    }
-    shell.exec('cd gallery-db && git add -u && git commit -m "modify"', function(code, output) {
-        if (code === 0) {
-            log('git push success');
-            log('output: ' + output);
-            res.write('git push success');
-            res.end();
-        } else {
-            log('git push fail');
-            log('output: ' + output);
-            res.write('git push fail');
-            res.end();
-        }
-    });
-}
-
 exports.docs = function(req, res, next) {
 	log('request for doc');
 	var gallery = req.params[0],
@@ -245,4 +225,34 @@ exports.staticfile = function(req, res, next) {
 			fileNotFound(res, urlPath);
 		}
 	});
+};
+//拉取gallery-db的数据
+exports.dbSync = function(req, res, next) {
+    log('pull gallery-db.');
+
+    if (!shell.which('git')) {
+        shell.echo('Sorry, this script requires git');
+        shell.exit(1);
+    }
+    shell.exec('cd gallery-db && git pull', function(code, output) {
+        if (code === 0) {
+            log('git pull gallery-db success');
+            log('output: ' + output);
+            res.write('git pull gallery-db success,output:'+output);
+            res.end();
+        } else {
+            log('git pull gallery-db fail');
+            log('output: ' + output);
+            res.write('git pull gallery-db fail,output:'+output);
+            res.end();
+        }
+    });
+};
+//显示gallery-db下的文档
+exports.dbMd = function(req, res, next) {
+    var md = req.params.name;
+    var url = DB+md;
+    url = url.replace(/\.html$/,'.md');
+    console.log(url);
+    renderMD(url,md, res);
 };

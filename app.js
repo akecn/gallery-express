@@ -34,6 +34,9 @@ app.get('/list', index.list);
 app.get('/coms', index.coms);
 
 app.get('/guide', gallery.guide);
+//同步gallery-db库
+app.get('/db/sync', gallery.dbSync);
+app.get('/guide/:name', gallery.dbMd);
 app.get('/quickstart', gallery.quickstart);
 app.get('/api/index-ad', api.indexAd);
 
@@ -46,7 +49,6 @@ app.get('/component/info-sync/:name', component.sync);
 app.get('/component/all-sync', component.syncAll);
 app.get('/component/info/:name', component.getInfo);
 app.get('/clearlog', gallery.clear);
-app.get('/push-db', gallery.pushDb);
 
 app.get(/^\/sync\/(.+)$/, gallery.syncSingle);
 
