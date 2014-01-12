@@ -108,7 +108,24 @@
 				}, 600);
 			});
 		});
-
+        var galleryName = location.pathname.split('/')[1];
+        var currentVersion = location.pathname.split('/')[2];
+        $.get("/version",{
+            name:galleryName
+        }, function(r){
+            var r = JSON.parse(r);
+            var h = '';
+            if(r.success){
+                r.list.forEach(function(i){
+                    h += '<a href="/'+galleryName+'/'+i+'/guide/index.html" '+(currentVersion == i ?'class="act" title="当前版本"' : '')+'>'+ i +'</a>';
+                });
+            }else {
+                h = '暂无信息';
+            }
+            setTimeout(function(){
+                $('#J_version').html(h);
+            },100)
+        });
 	});
 
 }(window.jQuery);

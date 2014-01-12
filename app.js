@@ -38,6 +38,7 @@ app.get('/guide', gallery.guide);
 app.get('/db/sync', gallery.dbSync);
 app.get('/guide/:name', gallery.dbMd);
 app.get('/quickstart', gallery.quickstart);
+app.get('/version',api.version)
 app.get('/api/index-ad', api.indexAd);
 
 app.post('/receive/write', receive.write);

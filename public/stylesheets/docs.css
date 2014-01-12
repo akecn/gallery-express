@@ -221,6 +221,156 @@ body {
   bottom: 7px;
   right: 100px;
 }
+.bs-docs-content .version {
+  font-size: 18px;
+  font-weight: bolder;
+  color: #317eac;
+}
+.bs-docs-content .version a {
+  text-decoration: none;
+  font-size: 16px;
+  margin: 0 10px;
+}
+.bs-docs-content .version .act,
+.bs-docs-content .version a:hover {
+  color: #f50;
+  font-size: 16px;
+  border-bottom: 2px solid #f50;
+}
+.bs-docs-content .version .LoadingAnim {
+  position: relative;
+  width: 116px;
+  height: 14px;
+  display: inline;
+  margin-left: 10px;
+}
+.bs-docs-content .version .LoadingAnimFrame {
+  position: absolute;
+  top: 0;
+  background-color: #FF5500;
+  width: 15px;
+  height: 15px;
+  -moz-animation-name: bounce_anim;
+  -moz-animation-duration: 1.4s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-direction: linear;
+  -moz-transform: scale(0.3);
+  -moz-border-radius: 10px;
+  -webkit-animation-name: bounce_anim;
+  -webkit-animation-duration: 1.4s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: linear;
+  -webkit-transform: scale(0.3);
+  -webkit-border-radius: 10px;
+  -ms-animation-name: bounce_anim;
+  -ms-animation-duration: 1.4s;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-direction: linear;
+  -ms-transform: scale(0.3);
+  -ms-border-radius: 10px;
+  -o-animation-name: bounce_anim;
+  -o-animation-duration: 1.4s;
+  -o-animation-iteration-count: infinite;
+  -o-animation-direction: linear;
+  -o-transform: scale(0.3);
+  -o-border-radius: 10px;
+  animation-name: bounce_anim;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  transform: scale(0.3);
+  border-radius: 10px;
+}
+.bs-docs-content .version #LoadingAnimFrame_1 {
+  left: 0;
+  -moz-animation-delay: 0.56s;
+  -webkit-animation-delay: 0.56s;
+  -ms-animation-delay: 0.56s;
+  -o-animation-delay: 0.56s;
+  animation-delay: 0.56s;
+}
+.bs-docs-content .version #LoadingAnimFrame_2 {
+  left: 15px;
+  -moz-animation-delay: 0.7s;
+  -webkit-animation-delay: 0.7s;
+  -ms-animation-delay: 0.7s;
+  -o-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+.bs-docs-content .version #LoadingAnimFrame_3 {
+  left: 29px;
+  -moz-animation-delay: 0.84s;
+  -webkit-animation-delay: 0.84s;
+  -ms-animation-delay: 0.84s;
+  -o-animation-delay: 0.84s;
+  animation-delay: 0.84s;
+}
+.bs-docs-content .version #LoadingAnimFrame_4 {
+  left: 44px;
+  -moz-animation-delay: 0.98s;
+  -webkit-animation-delay: 0.98s;
+  -ms-animation-delay: 0.98s;
+  -o-animation-delay: 0.98s;
+  animation-delay: 0.98s;
+}
+.bs-docs-content .version #LoadingAnimFrame_5 {
+  left: 58px;
+  -moz-animation-delay: 1.12s;
+  -webkit-animation-delay: 1.12s;
+  -ms-animation-delay: 1.12s;
+  -o-animation-delay: 1.12s;
+  animation-delay: 1.12s;
+}
+@-moz-keyframes bounce_anim {
+  0% {
+    -moz-transform: scale(1);
+    background-color: #FF5500;
+  }
+  100% {
+    -moz-transform: scale(0.3);
+    background-color: #317FAC;
+  }
+}
+@-webkit-keyframes bounce_anim {
+  0% {
+    -webkit-transform: scale(1);
+    background-color: #FF5500;
+  }
+  100% {
+    -webkit-transform: scale(0.3);
+    background-color: #317FAC;
+  }
+}
+@-ms-keyframes bounce_anim {
+  0% {
+    -ms-transform: scale(1);
+    background-color: #FF5500;
+  }
+  100% {
+    -ms-transform: scale(0.3);
+    background-color: #317FAC;
+  }
+}
+@-o-keyframes bounce_anim {
+  0% {
+    -o-transform: scale(1);
+    background-color: #FF5500;
+  }
+  100% {
+    -o-transform: scale(0.3);
+    background-color: #317FAC;
+  }
+}
+@keyframes bounce_anim {
+  0% {
+    transform: scale(1);
+    background-color: #FF5500;
+  }
+  100% {
+    transform: scale(0.3);
+    background-color: #317FAC;
+  }
+}
 /* Responsive
 -------------------------------------------------- */
 /* Desktop large
