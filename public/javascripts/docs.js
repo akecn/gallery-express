@@ -110,7 +110,7 @@
 		});
         var galleryName = location.pathname.split('/')[1];
         var currentVersion = location.pathname.split('/')[2];
-        $.get("/version",{
+        $.get("/api/version",{
             name:galleryName
         }, function(r){
             var r = JSON.parse(r);
