@@ -6,8 +6,14 @@ var adJson = './gallery-db/kissy-index-ad.json';
 //所有组件信息数据
 var comsJson = './gallery-db/component-info.json';
 
-//kissy首页广告
+/**
+ * kissy首页广告
+ * @param req
+ *      req.query.callback jsonp回调
+ * @param res
+ */
 exports.indexAd = function(req, res){
+    var callback = req.query.callback;
     fs.readFile(adJson, { encoding: 'utf8' }, function (err, ads) {
         if (err) {
             console.log(err);
@@ -25,6 +31,10 @@ exports.indexAd = function(req, res){
                 }
             }
             newAds = JSON.stringify(newAds);
+            //如果带有callback，组装jsonp数据
+            if(callback){
+                newAds = callback + '('+newAds+')';
+            }
             res.send(newAds);
         }
     });
@@ -33,7 +43,7 @@ exports.indexAd = function(req, res){
  * 获取所有最新的组件列表
  * @param req
  *      req.query.len 返回的数据量
- *      req.query.callback jsonp回掉
+ *      req.query.callback jsonp回调
  * @param res
  */
 exports.coms = function(req,res){
