@@ -38,7 +38,9 @@ app.get('/guide', gallery.guide);
 app.get('/db/sync', gallery.dbSync);
 app.get('/guide/:name', gallery.dbMd);
 app.get('/quickstart', gallery.quickstart);
-app.get('/api/version',api.version)
+app.get('/api/version',api.version);
+//获取所有最新的组件列表
+app.get('/api/coms', api.coms);
 app.get('/api/index-ad', api.indexAd);
 
 app.post('/receive/write', receive.write);
