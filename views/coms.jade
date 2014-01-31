@@ -44,21 +44,22 @@ html
                             li.l-left.J_ShowAll 显示所有标签
                     ul.component-list#J_List
                         each item in components
-                            li.item.mix(data-name="#{item.name}",data-desc="#{item.desc}",data-author="#{item.author.name}",data-star="#{item.watchers}",data-create="#{item.created_at}",data-updated="#{item.updated_at}")
-                                .detail-link-wrap
-                                    a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
-                                    title="#{item.name}"
-                                    target="_blank")
-                                        strong.name.l-block #{item.name}
-                                        span.author.l-block #{item.author.name}
-                                        span.desc.l-block
-                                            if item.desc
-                                                =item.desc
-                                            else
-                                                =item.description
-                                    div.star star：#{item.watchers}
-                                    a.demo-link(href="/#{item.name}/#{item.version}/demo/index.html"
-                                    target="_blank") demo
+                            if !item.beta
+                                li.item.mix(data-name="#{item.name}",data-desc="#{item.desc}",data-author="#{item.author.name}",data-star="#{item.watchers}",data-create="#{item.created_at}",data-updated="#{item.updated_at}")
+                                    .detail-link-wrap
+                                        a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
+                                        title="#{item.name}"
+                                        target="_blank")
+                                            strong.name.l-block #{item.name}
+                                            span.author.l-block #{item.author.name}
+                                            span.desc.l-block
+                                                if item.desc
+                                                    =item.desc
+                                                else
+                                                    =item.description
+                                        div.star star：#{item.watchers}
+                                        a.demo-link(href="/#{item.name}/#{item.version}/demo/index.html"
+                                        target="_blank") demo
 
             #footer
                 .contact

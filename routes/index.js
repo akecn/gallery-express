@@ -57,17 +57,17 @@ exports.coms = function (req, res) {
                 var adminComData = JSON.parse(adminComData);
                 //组件数据
                 var components = data.components;
+
                 //管理员配置替换用户配置信息
-                for(var i = 0;i<components.length;i++){
-                    var item = components[i];
+                data.components.forEach(function(item){
                     var adminCom = adminComData[item.name];
                     //系统组件配置存在该组件
                     if(adminCom){
                         for(var infoKey in adminCom){
-                            components[i][infoKey] = adminCom[infoKey];
+                            item[infoKey] = adminCom[infoKey];
                         }
                     }
-                }
+                })
                 //默认根据时间来排序
                 data.components = components.sort(function(a,b){
                     return b.created_at - a.created_at ;
