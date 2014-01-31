@@ -5,7 +5,7 @@ var path = require('path');
 var adJson = './gallery-db/kissy-index-ad.json';
 //所有组件信息数据
 var comsJson = './gallery-db/component-info.json';
-
+var dbMap = require('../lib/db-map');
 /**
  * kissy首页广告
  * @param req
@@ -50,54 +50,22 @@ exports.coms = function(req,res){
     //默认取12条组件数据
     var len = req.query.len || 12;
     var callback = req.query.callback;
-    fs.readFile(comsJson, { encoding: 'utf8' }, function (err, coms) {
-        if (err) {
-            console.log(err);
-        } else {
-            var comsData = JSON.parse(coms);
-            /* demo :
-             [
-                {
-                    "name": "auth",
-                    "version": "1.5",
-                    "desc": "表单验证组件，新版测试中...",
-                    "cover": "",
-                    "tag": "表单,表单验证",
-                    "author": {
-                        "name": "张挺/明河",
-                        "email": "zhangting@taobao.com",
-                        "page": "https://github.com/czy88840616",
-                        "md5": "78be5c66a336222dd063f8a115712a38"
-                    },
-                    "type": "kissy-pie",
-                    "type-url": "http://abc.alibaba-inc.com/r/kissy-pie",
-                    "forks": 2,
-                    "watchers": 3,
-                    "updated_at": 1377782551000,
-                    "created_at": 1369624383000,
-                    "description": "表单验证组件",
-                    "size": 299
-                }
-            ]*/
-            comsData = comsData.components;
-
-            var newComsData = comsData.sort(function(a,b){
-                return b.created_at - a.created_at ;
-            });
-            //截取指定数量的数据
-            newComsData = newComsData.splice(0,len);
-            newComsData = {
-                result: newComsData,
-                success:1
-            }
-            newComsData = JSON.stringify(newComsData);
-            //如果带有callback，组装jsonp数据
-            if(callback){
-                newComsData = callback + '('+newComsData+')';
-            }
-            res.send(newComsData);
+    dbMap.coms(function(data){
+        var coms = data.components;
+        //截取指定数量的数据
+        coms = coms.splice(0,len);
+        coms = {
+            result: coms,
+            success:1
         }
-    });
+        coms = JSON.stringify(coms);
+        //如果带有callback，组装jsonp数据
+        if(callback){
+            coms = callback + '('+coms+')';
+        }
+        res.send(coms);
+    })
+
 }
 
 /**
