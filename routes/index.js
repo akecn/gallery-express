@@ -7,6 +7,21 @@ var fs = require('fs');
 var dataJson =  './gallery-db/component-info.json';
 var dbMap = require('../lib/db-map');
 
+function pageData(data){
+    var data = JSON.parse(data);
+    var authors = data.authors;
+    data.authorCount = 0;
+    data.comsCount = 0;
+    for(author in authors){
+        data.authorCount ++;
+    }
+    for(com in data.components){
+        data.comsCount ++;
+    }
+    data.pretty = true;
+    return data;
+}
+
 exports.index = function (req, res) {
     fs.readFile(dataJson, {
         encoding: 'utf8'
