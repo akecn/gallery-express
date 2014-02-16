@@ -20,7 +20,7 @@ $(function(){
 
 			success: function(results){
 				var repo = results.data;
-
+                var parent = repo.parent?repo.parent:repo;
 				var pushed_at = repo.pushed_at.substr(0,10);
 				if(repo.homepage == null || repo.homepage == 'null') repo.homepage = '';
 				
@@ -28,37 +28,40 @@ $(function(){
 					<div class="github-box repo">  \
 					    <div class="github-box-title"> \
 					        <h3> \
-					            <a class="owner" href="' + repo.owner.url.replace('api.','').replace('users/','') + '" target="_blank">' + repo.owner.login  + '</a> \
+					            <a class="owner" href="' + parent.owner.url.replace('api.','').replace('users/','') + '" target="_blank">' + parent.owner.login  + '</a> \
 					            /  \
-					            <a class="repo" href="' + repo.url.replace('api.','').replace('repos/','') + '" target="_blank">' + repo.name + '</a> \
+					            <a class="repo" href="' + parent.url.replace('api.','').replace('repos/','') + '" target="_blank">' + parent.name + '</a> \
 					        </h3> \
 					        <div class="github-stats"> \
-					        Watch<a class="watchers" title="Watchers" href="' + repo.url.replace('api.','').replace('repos/','') + '/watchers" target="_blank">' + repo.watchers + '</a> \
-					        Fork<a class="forks" title="Forks" href="' + repo.url.replace('api.','').replace('repos/','') + '/network" target="_blank">' + repo.forks + '</a> \
+					        Watch<a class="watchers" title="Watchers" href="' + parent.url.replace('api.','').replace('repos/','') + '/watchers" target="_blank">' + parent.watchers + '</a> \
+					        Fork<a class="forks" title="Forks" href="' + parent.url.replace('api.','').replace('repos/','') + '/network" target="_blank">' + parent.forks + '</a> \
 					        </div> \
 					    </div> \
 					    <div class="github-box-content"> \
-					        <p class="description">' + repo.description + ' &mdash; <a href="' + repo.url.replace('api.','').replace('repos/','') + '#readme"  target="_blank">More...</a></p> \
-					        <p class="link"><a href="' + repo.homepage + '">' + repo.homepage + '</a></p> \
+					        <p class="description">' + parent.description + ' &mdash; <a href="' + parent.url.replace('api.','').replace('repos/','') + '#readme"  target="_blank">More...</a></p> \
 					        <table class="issues" width="100%"></table> \
 					    </div> \
 					    <div class="github-box-download"> \
-					        <p class="updated"><a href="' + repo.url.replace('api.','').replace('repos/','') + '/tree/master" target="_blank"><strong>master</strong>分支</a>代码最近更新：' + pushed_at + '</p> \
-					        <a class="download" href="' + repo.url.replace('api.','').replace('repos/','') + '/zipball/master">下载zip</a> \
+					        <p class="updated"><a href="' + parent.url.replace('api.','').replace('repos/','') + '/tree/master" target="_blank"><strong>master</strong>分支</a>代码最近更新：' + pushed_at + '</p> \
+					        <a class="btn btn-priamry" target="_blank" href="' + parent.url.replace('api.','').replace('repos/','') + '/issues/new">提交issues</a> \
+                            <a class="download" href="' + parent.url.replace('api.','').replace('repos/','') + '/zipball/master">下载zip</a> \
 					    </div> \
 					</div> \
 				');
-				
 				$widget.appendTo($container);
-				
-				if(repo.has_issues && repo.open_issues > 0) {
+				if(parent.has_issues && parent.open_issues > 0) {
 					$.ajax({
-						url: 'https://api.github.com/repos/' + repo_name + "/issues?state=open&per_page=5&page=1&sort=updated",
+						url: 'https://api.github.com/repos/' + parent.owner.login +'/' + parent.name + "/issues",
 						dataType: 'jsonp',
+                        data:{
+                            state:'open',
+                            per_page:5,
+                            page:1,
+                            sort:'update'
+                        },
 						success: function(results){
 							var issues = results.data;
 							var $issues_table = $(".github-box-content table");
-							$issues_table.append('<tr><td colspan="2"><a href="' + repo.html_url + '/issues" target="_blank"><strong>Issues</strong></a></td></tr>');
 							for(var i=0;i<issues.length;i++) {
 								var updated_at = issues[i].updated_at.substr(0,10);
 								$issues_table.append('<tr> \
@@ -66,7 +69,7 @@ $(function(){
 										<td class="info"><a href="' + issues[i].html_url + '" target="_blank">' + issues[i].title + '</a></td> \
 										<td class="author" width="200" align="right">by <a href="' + issues[i].user.url.replace('api.','').replace('users/','') 
 										+'" target="_blank">' + issues[i].user.login
-										+ '</a>&nbsp;&nbsp;<em style="font-size: 8pt;font-family: Candara,arial;color: #666;-webkit-text-size-adjust: none;">' 
+										+ '</a>&nbsp;&nbsp;<em style="font-size: 8pt;font-family: Candara,arial;cursor:default;color: #fff;-webkit-text-size-adjust: none;">' 
 										+ updated_at +'</em></td></tr> \
 								');
 							}
