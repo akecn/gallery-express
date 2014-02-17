@@ -77,16 +77,22 @@ exports.version = function(req,res){
     var r = [];
     var name = req.query["name"];
     var dirPath = path.join('./',name);
-    fs.readdirSync(dirPath).forEach(function(i){
-        var stat = fs.statSync(path.join(dirPath,i));
-        if(stat.isDirectory()&&new RegExp(/\d+.\d+/).test(i)){
-            r.push(i);
-        }
-    });
-    r = {
-        "success":true,
-        "list":r
-    };
+    if(!fs.existsSync(dirPath)){
+        r = {
+            "success":false
+        };
+    }else{
+        fs.readdirSync(dirPath).forEach(function(i){
+            var stat = fs.statSync(path.join(dirPath,i));
+            if(stat.isDirectory()&&new RegExp(/\d+.\d+/).test(i)){
+                r.push(i);
+            }
+        });
+        r = {
+            "success":true,
+            "list":r
+        };
+    }
     r = JSON.stringify(r)
     res.send(r);
 }
