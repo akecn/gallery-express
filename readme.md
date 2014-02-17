@@ -1,5 +1,30 @@
 # kissy gallery组件开发规范说明
 
+## 安装工具
+
+```javascript
+npm install generator-kpm -g
+```
+
+generator-kpm 由明正开发和维护，工具的详细使用说明请看[generator-kpm](https://github.com/kissygalleryteam/generator-kpm)。
+
+工具依赖于yoeman，如果本机没有安装，请先安装yeoman：
+
+```javascript
+npm install yo -g
+```
+
+## 使用工具生成组件目录
+
+```javascript
+yo kpm 1.0
+```
+
+打包运行：
+
+```javascript
+grunt
+```
 
 ## 目录规范
 
