@@ -30,6 +30,7 @@ exports.indexAd = function(req, res){
                     newAds.push(ad);
                 }
             }
+            newAds = {data:newAds};
             newAds = JSON.stringify(newAds);
             //如果带有callback，组装jsonp数据
             if(callback){
