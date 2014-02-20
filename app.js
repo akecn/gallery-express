@@ -53,7 +53,7 @@ app.get('/component/all-sync', component.syncAll);
 app.get('/component/info/:name', component.getInfo);
 app.get('/clearlog', gallery.clear);
 
-app.get(/^\/sync\/(.+)$/, gallery.syncSingle);
+app.get('/sync/:name', gallery.syncSingle);
 
 app.get(/^((?:\/[^\/]+)+)\/([^\/]+)\/guide(?:\/(?:([^\/\.]+)(?:\.html)?)?)?$/, gallery.docs);
 

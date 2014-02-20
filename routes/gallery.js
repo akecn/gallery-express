@@ -8,6 +8,7 @@ var path = require('path'),
 	GitHubApi = require("github"),
 	mime = require('./mime');
 var DB = './gallery-db/';
+var component = require('./component');
 var github = new GitHubApi({
 	version: "3.0.0",
 	timeout: 5000
@@ -116,10 +117,11 @@ exports.clear = function(req, res, next) {
 };
 
 
+
 exports.syncSingle = function(req, res, next) {
 	log('request for single sync');
 
-	var reposName = req.params[0];
+	var reposName = req.params.name;
 	var reposUrl = 'https://github.com/kissygalleryteam/' + reposName + '.git';
 	log('target repos: ' + reposName);
 
@@ -151,32 +153,32 @@ exports.syncSingle = function(req, res, next) {
 			if (shell.test('-d', reposName)) {
 				log('repos exists on server, begin git pull');
 				shell.exec('cd ' + reposName + ' && git pull', function(code, output) {
+                    var text;
 					if (code === 0) {
 						log('git pull success');
 						log('output: ' + output);
-						res.write(output + '\ngit pull success\nfrom ' + reposUrl);
-						res.end();
+                        text = output + '\ngit pull success from ' + reposUrl;
 					} else {
 						log('git pull fail');
 						log('output: ' + output);
-						res.write(output + '\ngit pull fail\nfrom ' + reposUrl);
-						res.end();
+                        text = output + '\ngit pull fail from ' + reposUrl;
 					}
+                   component.sync(req,res,text);
 				});
 			} else {
 				log('repos not exist on server, begin git clone');
 				shell.exec('git clone ' + reposUrl, function(code, output) {
-					if (code === 0) {
-						log('git clone success');
-						log('output: ' + output);
-						res.write(output + '\ngit clone success\nfrom ' + reposUrl);
-						res.end();
-					} else {
-						log('git clone fail');
-						log('output: ' + output);
-						res.write(output + '\ngit clone fail\nfrom ' + reposUrl);
-						res.end();
-					}
+                    var text;
+                    if (code === 0) {
+                        log('git clone success');
+                        log('output: ' + output);
+                        text = output + '\ngit clone success from ' + reposUrl;
+                    } else {
+                        log('git clone fail');
+                        log('output: ' + output);
+                        text = output + '\ngit clone fail from ' + reposUrl;
+                    }
+                    component.sync(req,res,text);
 				});
 			}
 		}

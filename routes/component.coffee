@@ -94,7 +94,7 @@ writeTags = (com,callback)->
   name = com.name
   #组件标签
   comTag = com.tag
-  if comTag == ''
+  if !comTag || comTag == ''
     console.log '组件不存在标签'
     callback && callback(false)
     return false
@@ -121,11 +121,15 @@ writeTags = (com,callback)->
           callback && callback(tags);
       )
 
-exports.sync = (req,res)->
+exports.sync = (req,res,text)->
   com = req.params.name
   syncCom(com,(data)->
     writeTags data,()->
-      res.json data
+      data = JSON.stringify data
+      if text
+        data = text + '\n'+data
+      res.write data
+      res.end()
   )
 
 exports.syncAll = (req,res)->
