@@ -693,3 +693,10 @@ img {
     width:300px;
     height:100px;
 }
+.tag-page #header h2{
+    position: absolute;
+    left: 350px;
+    top: 20px;
+    color: #fff;
+    font-size: 30px;
+}

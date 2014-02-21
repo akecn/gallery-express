@@ -10,6 +10,7 @@ var index = require('./routes/index'),
     path = require('path');
 var component = require('./routes/component');
 var api = require('./routes/api');
+var tag = require('./routes/tag');
 app.configure(function() {
     app.set('port', process.env.PORT || 3000);
     app.set('views', __dirname + '/views');
@@ -54,6 +55,7 @@ app.get('/component/info/:name', component.getInfo);
 app.get('/clearlog', gallery.clear);
 
 app.get('/sync/:name', gallery.syncSingle);
+app.get('/tag/:name', tag.coms);
 
 app.get(/^((?:\/[^\/]+)+)\/([^\/]+)\/guide(?:\/(?:([^\/\.]+)(?:\.html)?)?)?$/, gallery.docs);
 

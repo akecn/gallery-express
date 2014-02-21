@@ -1,0 +1,58 @@
+doctype 5
+html
+    head
+        meta(charset='utf-8')
+        title= '#{tag}下的所有组件'
+        link(rel='stylesheet', href='http://g.tbcdn.cn/kissy/k/1.3.1/css/dpl/??base-min.css')
+        link(rel='stylesheet', href='http://g.tbcdn.cn/kissy/k/1.3.1/??button/assets/dpl-min.css')
+        script(src='http://g.tbcdn.cn/kissy/k/1.3.1/seed-min.js')
+        link(rel='stylesheet', href='/stylesheets/index.css?t=20131107')
+    body
+        #page.tag-page
+            #header
+                .logo
+                    a(href="http://gallery.kissyui.com")
+                h2 #{tag}下的所有组件
+            #main
+                .component
+                    ul.component-list#J_List
+                        each item in components
+                            if !item.beta
+                                li.item.mix(data-name="#{item.name}",data-desc="#{item.desc}",data-author="#{item.author.name}",data-star="#{item.watchers}",data-create="#{item.created_at}",data-updated="#{item.updated_at}")
+                                    .detail-link-wrap
+                                        a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
+                                        title="#{item.name}"
+                                        target="_blank")
+                                            strong.name.l-block #{item.name}
+                                            span.author.l-block #{item.author.name}
+                                            span.desc.l-block
+                                                if item.desc
+                                                    =item.desc
+                                                else
+                                                    =item.description
+                                        div.star star：#{item.watchers}
+                                        a.demo-link(href="/#{item.name}/#{item.version}/demo/index.html"
+                                        target="_blank") demo
+
+            #footer
+                .contact
+                    ul.clearfix
+                        li.item
+                            p.title 开发者旺旺群
+                            p.desc  600859238
+                        li.item
+                            p.title 邮箱
+                            p.desc kissyteam@gmail.com
+                        li.item
+                            p.title 讨论组
+                            p.desc
+                                a(href="http://groups.google.com/group/kissy-ui/"
+                                target="_blank") kissy-ui
+                        li.item
+                            p.title &nbsp;
+                            p.desc
+                                a(href="http://docs.kissyui.com/"
+                                target="_blank") Kissy首页
+                .index-author
+                    script(src='/javascripts/list.js')
+                    div.author-name.l-right <script src="http://s9.cnzz.com/stat.php?id=5379789&web_id=5379789&online=2" language="JavaScript"></script>

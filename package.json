@@ -15,5 +15,8 @@
     "shelljs": "*",
     "github": "*",
     "socket.io": "*"
+  },
+  "devDependencies": {
+    "underscore": "~1.6.0"
   }
 }
