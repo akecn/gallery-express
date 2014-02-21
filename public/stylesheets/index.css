@@ -693,10 +693,16 @@ img {
     width:300px;
     height:100px;
 }
+/*标签页面*/
 .tag-page #header h2{
     position: absolute;
     left: 350px;
     top: 20px;
     color: #fff;
     font-size: 30px;
+}
+.tag-page .component-list .item{
+    position: relative;
+    -webkit-transform: none;
+    transform: none;
 }
