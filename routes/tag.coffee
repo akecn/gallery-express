@@ -28,13 +28,13 @@ getcoms = (tag,tags)->
 exports.coms = (req,res)->
   #标签名称
   tagName = req.params.name
-
   fs.readFile SYSTEM_TAGS,'utf8',(err,systemTags)->
     if err
       console.log err
       return false
     systemTags = JSON.parse systemTags
-    systemComs = systemTags[tagName].split ','
+    systemComs = systemTags[tagName]
+    systemComs = systemComs && systemComs.split ',' || []
 
     fs.readFile AUTHOR_TAGS,'utf8',(err,authorTags)->
       if err
@@ -42,12 +42,14 @@ exports.coms = (req,res)->
         return false
 
       authorTags = JSON.parse authorTags
-      authorComs = authorTags[tagName].split ','
-
+      authorComs = authorTags[tagName]
+      authorComs = authorComs && authorComs.split(',') || []
+      console.log systemComs
       #合并管理员标签和用户标签定义的组件
       coms = _.union(authorComs,systemComs)
+      unless coms.length
+        res.render '404', {"msg":tagName+"标签下不存在组件"}
 
-      console.log coms
       #获取所有组件数据
       dbMap.coms (data)->
         newcoms = [];

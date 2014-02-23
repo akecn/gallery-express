@@ -45,7 +45,8 @@ exports.coms = function(req, res) {
       return false;
     }
     systemTags = JSON.parse(systemTags);
-    systemComs = systemTags[tagName].split(',');
+    systemComs = systemTags[tagName];
+    systemComs = systemComs && systemComs.split(',' || []);
     return fs.readFile(AUTHOR_TAGS, 'utf8', function(err, authorTags) {
       var authorComs, coms;
       if (err) {
@@ -53,9 +54,15 @@ exports.coms = function(req, res) {
         return false;
       }
       authorTags = JSON.parse(authorTags);
-      authorComs = authorTags[tagName].split(',');
+      authorComs = authorTags[tagName];
+      authorComs = authorComs && authorComs.split(',') || [];
+      console.log(systemComs);
       coms = _.union(authorComs, systemComs);
-      console.log(coms);
+      if (!coms.length) {
+        res.render('404', {
+          "msg": tagName + "标签下不存在组件"
+        });
+      }
       return dbMap.coms(function(data) {
         var components, newcoms;
         newcoms = [];
