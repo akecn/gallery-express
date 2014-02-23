@@ -21,9 +21,8 @@ block content
                 h1.title= title
                 iframe.github-star(allowtransparency='true', frameborder='0', scrolling='0', width='170px', height='30px')
                 p.add-star-tip 如果 #{title} 组件帮到了亲，请给 #{title} 加个star吧 O(∩_∩)O
-                hr.title-hr
                 div.version
-                    span 所有版本:
+                    span.version-label 所有版本
                     span(id="J_version")
                         div.LoadingAnim
                             div.LoadingAnimFrame(id="LoadingAnimFrame_1")
@@ -31,6 +30,7 @@ block content
                             div.LoadingAnimFrame(id="LoadingAnimFrame_3")
                             div.LoadingAnimFrame(id="LoadingAnimFrame_4")
                             div.LoadingAnimFrame(id="LoadingAnimFrame_5")
+                hr.title-hr
                 !{blogContent}
                 h2= 'issues'
                 div.GithubEmbed

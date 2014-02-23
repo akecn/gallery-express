@@ -222,20 +222,26 @@ body {
   right: 100px;
 }
 .bs-docs-content .version {
-  font-size: 18px;
-  font-weight: bolder;
-  color: #317eac;
+  font-size: 14px;
+  margin-top: 30px;
+}
+.bs-docs-content .version .version-label {
+  background-color: #e5e5e5;
+  padding: 5px 10px;
+  margin-right: 2px;
 }
 .bs-docs-content .version a {
   text-decoration: none;
-  font-size: 16px;
-  margin: 0 10px;
+  font-size: 14px;
+  padding: 5px 10px;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+  margin-right: 2px;
 }
 .bs-docs-content .version .act,
 .bs-docs-content .version a:hover {
-  color: #f50;
-  font-size: 16px;
-  border-bottom: 2px solid #f50;
+  color: #fff;
+  background-color: #fa681f;
 }
 .bs-docs-content .version .LoadingAnim {
   position: relative;
@@ -375,9 +381,6 @@ body {
 -------------------------------------------------- */
 /* Desktop large
 ------------------------- */
-@media (min-width: 1200px) {
-  
-}
 /* Desktop
 ------------------------- */
 @media (min-width: 980px) and (max-width: 1199px) {
