@@ -255,6 +255,5 @@ exports.dbMd = function(req, res, next) {
     var md = req.params.name;
     var url = DB+md;
     url = url.replace(/\.html$/,'.md');
-    console.log(url);
-    renderMD(url,md, res,'doc');
+    renderMD(url,md.split('.')[0], res,'doc');
 };
