@@ -19,7 +19,7 @@ github.authenticate({
 	token: "fa54fd27365f90a9932285323805a6b59568f474"
 });
 
-function renderMD(urlPath, postTitle, res) {
+function renderMD(urlPath, postTitle, res,tpl) {
 	log('target file: ' + urlPath);
 	fs.readFile(urlPath, 'utf8', function(err, data) {
 		if (err) {
@@ -28,7 +28,7 @@ function renderMD(urlPath, postTitle, res) {
 			log('ready for render md file');
 			var tokens = marked.lexer(data);
 			var htmlContent = marked.parser(tokens);
-			res.render('show', {
+			res.render(tpl || 'show', {
 				title: postTitle,
 				blogContent: htmlContent,
 				pretty: true
@@ -256,5 +256,5 @@ exports.dbMd = function(req, res, next) {
     var url = DB+md;
     url = url.replace(/\.html$/,'.md');
     console.log(url);
-    renderMD(url,md, res);
+    renderMD(url,md, res,'doc');
 };
