@@ -94,6 +94,38 @@ exports.version = function(req,res){
             "list":r
         };
     }
-    r = JSON.stringify(r)
+    r = JSON.stringify(r);
     res.send(r);
+}
+
+/**
+ * 搜索组件接口
+ * @param req
+ * @param res
+ */
+exports.search = function(req,res){
+    var name = req.query.name;
+    var callback = req.query.callback;
+    //读取组件
+    dbMap.coms(function(data){
+        var coms = data.components;
+        var searchComs = [];
+        var reg;
+        coms.forEach(function(com){
+            reg = new RegExp(name);
+            if(reg.test(com.name)){
+                searchComs.push(com);
+            }
+        })
+
+        var sData = JSON.stringify({
+            result : searchComs,
+            success: searchComs.length > 0
+        });
+        //如果带有callback，组装jsonp数据
+        if(callback){
+            sData = callback + '('+sData+')';
+        }
+        res.send(sData);
+    })
 }

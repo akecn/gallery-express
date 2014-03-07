@@ -43,6 +43,7 @@ app.get('/api/version',api.version);
 //获取所有最新的组件列表
 app.get('/api/coms', api.coms);
 app.get('/api/index-ad', api.indexAd);
+app.get('/api/search', api.search);
 
 app.post('/receive/write', receive.write);
 
@@ -56,6 +57,9 @@ app.get('/clearlog', gallery.clear);
 
 app.get('/sync/:name', gallery.syncSingle);
 app.get('/tag/:name', tag.coms);
+
+/*var rCom = require('./routes/com');
+app.get('/test',rCom.all );*/
 
 app.get(/^((?:\/[^\/]+)+)\/([^\/]+)\/guide(?:\/(?:([^\/\.]+)(?:\.html)?)?)?$/, gallery.docs);
 
