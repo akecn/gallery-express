@@ -1,0 +1,6 @@
+div.author-tags-wrapper.J_AuthorTagsWrapper
+    ul.clearfix.tag-list.author-tags.J_AuthorTags
+        each com,tag in authorTags
+            li.l-left.J_Tag(data-coms="#{com}") #{tag}
+ul.clearfix.tag-list.system-tags
+    li.l-left.J_ShowAll 显示所有标签

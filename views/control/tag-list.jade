@@ -1,0 +1,7 @@
+nav.nav-tag-list
+    if !tag
+        a.current(href="./coms") 最新组件
+    else
+        a(href="./coms") 最新组件
+    each com,tag in systemTags
+        a(href="./tag/#{tag}") #{tag}

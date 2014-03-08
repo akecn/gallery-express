@@ -2,84 +2,36 @@ doctype 5
 html
     head
         meta(charset='utf-8')
-        title= 'KISSY-Gallery'
-        link(rel='stylesheet', href='http://g.tbcdn.cn/kissy/k/1.3.1/css/dpl/??base-min.css')
-        link(rel='stylesheet', href='http://g.tbcdn.cn/kissy/k/1.3.1/??button/assets/dpl-min.css')
-        script(src='http://g.tbcdn.cn/kissy/k/1.3.1/seed-min.js')
-        link(rel='stylesheet', href='/stylesheets/index.css?t=20131107')
+        title= 'KISSY-Gallery 组件列表'
+        script(src='http://g.tbcdn.cn/kissy/k/1.4.2/seed-min.js')
+        link(rel='stylesheet', href='/stylesheets/index.css?t=20140308')
     body
         #page
-            #header
-                .logo
-                    a(href="http://gallery.kissyui.com")
-                ul.clearfix.count-list
-                    li.l-left.animated.bounce
-                        p.number #{comsCount}
-                        p.text 组件数
-                    li.l-left.animated.bounce.authors-count
-                        p.number #{authorCount}
-                        p.text 贡献者
+            include control/header
+            include control/search-box
+            include control/tag-list
             #main
-                ul.ads.clearfix
-                    each ad in ads
-                        li.l-left
-                            a(href="#{ad.url}",target="_blank",title="#{ad.title}")
-                                img(src="#{ad.image}")
+                include control/ad
                 .component
-                    div.controls.ks-button-group
-                        button.sort.ks-button.J_SortNew(data-sort="data-create",data-order="asc",title="按照组件fork到官方库的时间排序") 最新 ↓
-                        button.sort.ks-button(data-sort="data-star",data-order="asc",title="按照组件的star数排序") 热度 ↓
-                        button.sort.ks-button(data-sort="data-updated",data-order="asc",title="按照组件更新时间排序") 更新 ↓
-                        button.sort.ks-button(data-sort="data-name",data-order="desc",title="按照组件名称字母数排序") 字母 ↑
-                    div.search-box
-                        input#J_Search(type="text",placeholder="可以使用组件名、作者、描述来筛选组件")
-                    ul.clearfix.tag-list.system-tags
-                        each com,tag in systemTags
-                            li.l-left.J_Tag(data-coms="#{com}") #{tag}
-                    div.author-tags-wrapper.J_AuthorTagsWrapper
-                        ul.clearfix.tag-list.author-tags.J_AuthorTags
-                            each com,tag in authorTags
-                                li.l-left.J_Tag(data-coms="#{com}") #{tag}
-                    ul.clearfix.tag-list.system-tags
-                            li.l-left.J_ShowAll 显示所有标签
                     ul.component-list#J_List
                         each item in components
                             if !item.beta
-                                li.item.mix(data-name="#{item.name}",data-desc="#{item.desc}",data-author="#{item.author.name}",data-star="#{item.watchers}",data-create="#{item.created_at}",data-updated="#{item.updated_at}")
-                                    .detail-link-wrap
-                                        a.item-link.item-detail(href="/#{item.name}/#{item.version}/guide/index.html"
-                                        title="#{item.name}"
-                                        target="_blank")
-                                            strong.name.l-block #{item.name}
-                                            span.author.l-block #{item.author.name}
-                                            span.desc.l-block
-                                                if item.desc
-                                                    =item.desc
-                                                else
-                                                    =item.description
-                                        div.star star：#{item.watchers}
-                                        a.demo-link(href="/#{item.name}/#{item.version}/demo/index.html"
-                                        target="_blank") demo
-
-            #footer
-                .contact
-                    ul.clearfix
-                        li.item
-                            p.title 开发者旺旺群
-                            p.desc  600859238
-                        li.item
-                            p.title 邮箱
-                            p.desc kissyteam@gmail.com
-                        li.item
-                            p.title 讨论组
-                            p.desc
-                                a(href="http://groups.google.com/group/kissy-ui/"
-                                target="_blank") kissy-ui
-                        li.item
-                            p.title &nbsp;
-                            p.desc
-                                a(href="http://docs.kissyui.com/"
-                                target="_blank") Kissy首页
-                .index-author
-                    script(src='/javascripts/list.js')
-                    div.author-name.l-right <script src="http://s9.cnzz.com/stat.php?id=5379789&web_id=5379789&online=2" language="JavaScript"></script>
+                                li.item(data-name="#{item.name}",data-desc="#{item.desc}",data-author="#{item.author.name}",data-star="#{item.watchers}",data-create="#{item.created_at}",data-updated="#{item.updated_at}")
+                                    a.item-link(href="/#{item.name}/#{item.version}/guide/index.html",title="#{item.name}",target="_blank")
+                                        h4.name.l-block #{item.name}
+                                        //span.author.l-block #{item.author.name}
+                                    div.desc.l-block
+                                        if item.desc
+                                            =item.desc
+                                        else
+                                            =item.description
+                                    div.com-links
+                                        a.author-link(href="https://github.com/#{item.githubName}",target="_blank",data-name="#{item.author.name}")
+                                            img(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=70",alt="#{item.author.name}")
+                                            span.author-name #{item.author.name}
+                                        a.star-link(href="https://github.com/kissygalleryteam/#{item.name}",target="_blank")
+                                            span #{item.watchers}
+                                            p STAR
+                                        a.demo-link(href="/#{item.name}/#{item.version}/demo/index.html",target="_blank")
+                                            span DEMO
+            include control/footer

@@ -1,0 +1,5 @@
+ul.ads.clearfix
+    each ad in ads
+        li.l-left
+            a(href="#{ad.url}",target="_blank",title="#{ad.title}")
+                img(src="#{ad.image}")
