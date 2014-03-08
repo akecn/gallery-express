@@ -3,18 +3,11 @@ html
     head
         meta(charset='utf-8')
         title= 'KISSY-Gallery'
-        link(rel='stylesheet', href='/stylesheets/index.css?t=20131107')
+        include control/assets
     body.index
         #page
-            #header
-                .logo
-                ul.clearfix.count-list
-                    li.l-left.animated.bounce
-                        p.number #{comsCount}
-                        p.text 组件数
-                    li.l-left.animated.bounce.authors-count
-                        p.number #{authorCount}
-                        p.text 贡献者
+            include control/header
+            include control/search-box
             #main
                 .guide
                     .bd

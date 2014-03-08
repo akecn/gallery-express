@@ -77,7 +77,7 @@ exports.coms = function(req, res) {
         });
         data.components = newcoms;
         data.tag = tagName;
-        return res.render('tag-coms', data);
+        return res.render('coms', data);
       });
     });
   });

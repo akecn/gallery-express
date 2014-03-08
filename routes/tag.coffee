@@ -61,4 +61,4 @@ exports.coms = (req,res)->
               return true
         data.components = newcoms
         data.tag = tagName
-        res.render 'tag-coms', data
+        res.render 'coms', data

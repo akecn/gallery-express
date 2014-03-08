@@ -3,5 +3,9 @@ nav.nav-tag-list
         a.current(href="./coms") 最新组件
     else
         a(href="./coms") 最新组件
-    each com,tag in systemTags
-        a(href="./tag/#{tag}") #{tag}
+    if systemTags
+        each com,t in systemTags
+            if tag && t == tag
+                a.current(href="./tag/#{t}") #{t}
+            else
+                a(href="./tag/#{t}") #{t}

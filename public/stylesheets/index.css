@@ -541,9 +541,8 @@ img {
 }
 
 .component-list{
-    margin: 0;
-    padding: 0;
     margin-top:10px;
+    margin-bottom: 40px;
 }
 .component-list .item {
     display: inline-block;
