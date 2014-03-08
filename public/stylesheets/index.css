@@ -578,6 +578,18 @@ img {
     line-height: 26px;
     height:80px;
     background-color: #1CC6E9;
+    position: relative;
+}
+.component-list .desc:after{
+    content:' ';
+    position:absolute;
+    top: -10px;
+    left: 30px;
+    background-color: #fff;
+    transform:rotate(50deg);
+    -webkit-transform:rotate(50deg);
+    width: 15px;
+    height: 15px;
 }
 
 .com-links{
