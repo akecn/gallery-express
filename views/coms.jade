@@ -22,11 +22,14 @@ html
                                     a.item-link(href="/#{item.name}/#{item.version}/guide/index.html",title="#{item.name}",target="_blank")
                                         h4.name.l-block #{item.name}
                                         //span.author.l-block #{item.author.name}
-                                    div.desc.l-block
-                                        if item.desc
-                                            =item.desc
-                                        else
-                                            =item.description
+                                    a.desc.l-block(href="/#{item.name}/#{item.version}/guide/index.html",target="_blank")
+                                        if item.cover
+                                            img(src="#{item.cover}")
+                                        p
+                                            if item.desc
+                                                =item.desc
+                                            else
+                                                =item.description
                                     div.com-links
                                         a.author-link(href="https://github.com/#{item.githubName}",target="_blank",data-name="#{item.author.name}")
                                             img(src="http://0.gravatar.com/avatar/#{item.author.md5}?s=70",alt="#{item.author.name}")
