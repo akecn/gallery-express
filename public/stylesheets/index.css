@@ -342,6 +342,7 @@ img {
     background-color: #fff;
     z-index: 20000;
     height: 300px;
+    overflow-y: scroll;
 }
 .search-menuitem{
     padding: 10px;
