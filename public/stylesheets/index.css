@@ -341,7 +341,7 @@ img {
     border: 1px solid #ccc;
     background-color: #fff;
     z-index: 20000;
-    height: 300px;
+    max-height: 300px;
     overflow-y: scroll;
 }
 .search-menuitem{
