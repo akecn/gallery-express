@@ -340,6 +340,8 @@ img {
 .search-popupmenu{
     border: 1px solid #ccc;
     background-color: #fff;
+    z-index: 20000;
+    height: 300px;
 }
 .search-menuitem{
     padding: 10px;
