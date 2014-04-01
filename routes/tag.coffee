@@ -12,8 +12,6 @@ SYSTEM_TAGS = './gallery-db/system-tags.json'
 获取标签的组件列表
 ###
 getcoms = (tag,tags)->
-  console.log tag
-  console.log tags
   tags = JSON.parse tags
   coms = tags[tag]
   console.log coms
@@ -24,10 +22,12 @@ getcoms = (tag,tags)->
 
 ###
 获取指定tag的组件列表
+  callback 存在时输出json（api调用）
 ###
-exports.coms = (req,res)->
+exports.coms = (req,res,callback)->
   #标签名称
   tagName = req.params.name
+  console.log tagName
   fs.readFile SYSTEM_TAGS,'utf8',(err,systemTags)->
     if err
       console.log err
@@ -61,4 +61,7 @@ exports.coms = (req,res)->
               return true
         data.components = newcoms
         data.tag = tagName
-        res.render 'coms', data
+        unless callback
+          res.render 'coms', data
+        else
+          callback(data)

@@ -18,8 +18,6 @@ SYSTEM_TAGS = './gallery-db/system-tags.json';
 
 getcoms = function(tag, tags) {
   var coms;
-  console.log(tag);
-  console.log(tags);
   tags = JSON.parse(tags);
   coms = tags[tag];
   console.log(coms);
@@ -32,12 +30,14 @@ getcoms = function(tag, tags) {
 
 /*
 获取指定tag的组件列表
+  callback 存在时输出json（api调用）
 */
 
 
-exports.coms = function(req, res) {
+exports.coms = function(req, res, callback) {
   var tagName;
   tagName = req.params.name;
+  console.log(tagName);
   return fs.readFile(SYSTEM_TAGS, 'utf8', function(err, systemTags) {
     var systemComs;
     if (err) {
@@ -77,7 +77,11 @@ exports.coms = function(req, res) {
         });
         data.components = newcoms;
         data.tag = tagName;
-        return res.render('coms', data);
+        if (!callback) {
+          return res.render('coms', data);
+        } else {
+          return callback(data);
+        }
       });
     });
   });

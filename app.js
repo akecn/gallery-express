@@ -44,6 +44,7 @@ app.get('/api/version',api.version);
 app.get('/api/coms', api.coms);
 app.get('/api/index-ad', api.indexAd);
 app.get('/api/search', api.search);
+app.get('/api/tag-coms/:name', api.tagComs);
 
 app.post('/receive/write', receive.write);
 

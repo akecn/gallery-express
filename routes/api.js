@@ -3,9 +3,8 @@ var path = require('path');
 
 //首页广告数据
 var adJson = './gallery-db/kissy-index-ad.json';
-//所有组件信息数据
-var comsJson = './gallery-db/component-info.json';
 var dbMap = require('../lib/db-map');
+var tagRouter = require('./tag');
 /**
  * kissy首页广告
  * @param req
@@ -67,6 +66,23 @@ exports.coms = function(req,res){
         res.send(coms);
     })
 
+}
+/**
+ * 输出指定标签的列表数据
+ * @param req
+ * @param res
+ */
+exports.tagComs = function(req,res){
+    tagRouter.coms(req,res,function(data){
+        var callback = req.query.callback;
+        delete data['authors'];
+        data = JSON.stringify(data);
+        //如果带有callback，组装jsonp数据
+        if(callback){
+            data = callback + '('+data+')';
+        }
+        res.send(data);
+    });
 }
 
 /**
