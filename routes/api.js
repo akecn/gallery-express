@@ -73,6 +73,7 @@ exports.coms = function(req,res){
  * @param res
  */
 exports.tagComs = function(req,res){
+    req.params.api = true;
     tagRouter.coms(req,res,function(data){
         var callback = req.query.callback;
         delete data['authors'];

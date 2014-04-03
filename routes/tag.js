@@ -37,7 +37,6 @@ getcoms = function(tag, tags) {
 exports.coms = function(req, res, callback) {
   var tagName;
   tagName = req.params.name;
-  console.log(tagName);
   return fs.readFile(SYSTEM_TAGS, 'utf8', function(err, systemTags) {
     var systemComs;
     if (err) {
@@ -56,7 +55,6 @@ exports.coms = function(req, res, callback) {
       authorTags = JSON.parse(authorTags);
       authorComs = authorTags[tagName];
       authorComs = authorComs && authorComs.split(',') || [];
-      console.log(systemComs);
       coms = _.union(authorComs, systemComs);
       if (!coms.length) {
         res.render('404', {
@@ -77,10 +75,10 @@ exports.coms = function(req, res, callback) {
         });
         data.components = newcoms;
         data.tag = tagName;
-        if (!callback) {
-          return res.render('coms', data);
-        } else {
+        if (req.params.api) {
           return callback(data);
+        } else {
+          return res.render('coms', data);
         }
       });
     });

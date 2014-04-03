@@ -27,7 +27,6 @@ getcoms = (tag,tags)->
 exports.coms = (req,res,callback)->
   #标签名称
   tagName = req.params.name
-  console.log tagName
   fs.readFile SYSTEM_TAGS,'utf8',(err,systemTags)->
     if err
       console.log err
@@ -44,7 +43,6 @@ exports.coms = (req,res,callback)->
       authorTags = JSON.parse authorTags
       authorComs = authorTags[tagName]
       authorComs = authorComs && authorComs.split(',') || []
-      console.log systemComs
       #合并管理员标签和用户标签定义的组件
       coms = _.union(authorComs,systemComs)
       unless coms.length
@@ -61,7 +59,8 @@ exports.coms = (req,res,callback)->
               return true
         data.components = newcoms
         data.tag = tagName
-        unless callback
-          res.render 'coms', data
-        else
+
+        if req.params.api
           callback(data)
+        else
+          res.render 'coms', data
