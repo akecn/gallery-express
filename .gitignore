@@ -165,3 +165,16 @@ pip-log.txt
 
 log.txt
 node_modules/
+
+
+#############
+## webstorm
+#############
+.idea
+
+
+#############
+## Project
+#############
+
+gallery-db

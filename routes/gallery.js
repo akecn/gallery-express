@@ -6,6 +6,7 @@ var path = require('path'),
 	marked = require('marked'),
 	shell = require('shelljs'),
 	GitHubApi = require("github"),
+    demoLinks = require("./demolinks"),
 	mime = require('./mime');
 var DB = './gallery-db/';
 var component = require('./component');
@@ -19,7 +20,7 @@ github.authenticate({
 	token: "fa54fd27365f90a9932285323805a6b59568f474"
 });
 
-function renderMD(urlPath, postTitle, res,tpl) {
+function renderMD(urlPath, postTitle, res, tpl) {
 	log('target file: ' + urlPath);
 	fs.readFile(urlPath, 'utf8', function(err, data) {
 		if (err) {
@@ -31,7 +32,8 @@ function renderMD(urlPath, postTitle, res,tpl) {
 			res.render(tpl || 'show', {
 				title: postTitle,
 				blogContent: htmlContent,
-				pretty: true
+				pretty: true,
+                demoLinks: demoLinks.getData(urlPath, postTitle)
 			});
 			log('render finished');
 		}

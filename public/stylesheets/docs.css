@@ -122,6 +122,7 @@ body {
   top: 10px;
   width: 365px;
   height: 40px;
+  z-index: 1;
 }
 .bs-docs-content .common-link a {
   display: inline-block;
@@ -131,6 +132,20 @@ body {
   color: #fff;
   text-decoration: none;
   font-size: 16px;
+}
+.bs-docs-content .common-link .demo-menu {
+  float: left;
+  width: 100px;
+  height: 40px;
+  overflow: hidden;
+  background-color: #fa681f;
+}
+.bs-docs-content .common-link .demo-menu a {
+  width: 100px;
+  border-bottom: 1px solid #fff;
+}
+.bs-docs-content .common-link .demo-menu:hover {
+  height: auto;
 }
 .bs-docs-content .common-link .source {
   width: 100px;
